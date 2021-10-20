@@ -3,14 +3,24 @@ package generator;
 import java.util.ArrayList;
 
 public class Customers {
-    private ArrayList<Customer> Customers;
-    private float CustomerFrequency;
+    private static final int NB_CUSTOMER = 50;
+
+    private ArrayList<Customer> customers;
+    private float customerFrequency;
+
+    public Customers() {
+        customers = new ArrayList<Customer>();
+
+        for(int i = 0; i< NB_CUSTOMER; i++){
+            customers.add(new Customer());
+        }
+    }
 
     public ArrayList<Customer> getCustomers() {
-        return Customers;
+        return customers;
     }
 
     public void addCustomer(Customer customer){
-        Customers.add(customer);
+        customers.add(customer);
     }
 }
