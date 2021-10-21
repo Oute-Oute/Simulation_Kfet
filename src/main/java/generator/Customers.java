@@ -3,7 +3,7 @@ package generator;
 import java.util.ArrayList;
 
 public class Customers {
-    private static final int NB_CUSTOMER = 50;
+    private static final int NB_MAX_CUSTOMER = 50;
 
     private ArrayList<Customer> customers;
     private float customerFrequency;
@@ -11,7 +11,7 @@ public class Customers {
     public Customers() {
         customers = new ArrayList<Customer>();
 
-        for(int i = 0; i< NB_CUSTOMER; i++){
+        for(int i = 0; i< NB_MAX_CUSTOMER; i++){
             customers.add(new Customer());
         }
     }
