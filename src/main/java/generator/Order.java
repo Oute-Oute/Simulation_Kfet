@@ -5,7 +5,7 @@ import java.util.Random;
 
 public class Order {
 
-    private static final int MAX_ORDER = 5;
+    private static final int MAX_ORDER = 5, MIN_COOKINGTIME_PIZZA = 900, MAX_COOKINGTIME_PIZZA = 1200, AVERAGE_COOKINGTIME_PIZZA = 1020;
 
     private int coffee;
     private int chocolate;
@@ -25,7 +25,7 @@ public class Order {
         pizza = new ArrayList<Integer>();
 
         for(int i=0; i<nbPizza; i++){
-            pizza.add(150*(int)r.nextGaussian() + 1050);
+            pizza.add( ((MAX_COOKINGTIME_PIZZA-MIN_COOKINGTIME_PIZZA)/2) * (int)r.nextGaussian() + AVERAGE_COOKINGTIME_PIZZA );
         }
     }
 
