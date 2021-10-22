@@ -3,6 +3,6 @@ module com.example.simulationkfet {
     requires javafx.fxml;
 
 
-    opens com.example.simulationkfet to javafx.fxml;
-    exports com.example.simulationkfet;
+    opens com.kfet.generator to javafx.fxml;
+    exports com.kfet.generator;
 }
