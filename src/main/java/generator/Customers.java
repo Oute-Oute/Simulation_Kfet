@@ -22,7 +22,7 @@ public class Customers {
         customers.add(customer);
     }
 
-    public void generate(){
-        Customers clientele = new Customers(50);
+    public static void generate(int size){
+        Customers clientele = new Customers(size);
     }
 }
