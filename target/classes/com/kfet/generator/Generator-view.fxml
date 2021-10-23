@@ -21,7 +21,7 @@
          <menus>
             <Menu mnemonicParsing="false" text="Generation">
                <items>
-                  <MenuItem mnemonicParsing="false" onAction="#onGenerateClick" onMenuValidation="#onGenerateClick" text="Generate" />
+                  <MenuItem mnemonicParsing="false" onAction="#onGenerateClick" text="Generate" />
                </items></Menu>
             <Menu mnemonicParsing="false" text="Help" />
          </menus>
@@ -39,8 +39,7 @@
                               <Cursor fx:constant="CLOSED_HAND" />
                            </cursor>
                         </Slider>
-                        <Button fx:id="buttonTest" layoutX="149.0" layoutY="39.0" mnemonicParsing="false" onAction="#onGenerateClick" text="Button" />
-                        <Spinner fx:id="nbCustomersSpin" editable="true" layoutX="63.0" layoutY="97.0" min="0" max="500"/>
+                        <Spinner fx:id="nbCustomersSpin" editable="true" layoutX="63.0" layoutY="97.0" max="500" min="0" />
                      </children>
                   </AnchorPane>
                </content>
@@ -60,7 +59,7 @@
                         <Slider blockIncrement="5.0" layoutX="67.0" layoutY="262.0" majorTickUnit="60.0" max="120.0" showTickLabels="true" showTickMarks="true" value="15.0" />
                         <Label layoutX="111.0" layoutY="297.0" text="Lydia Slow" textAlignment="CENTER" />
                         <Slider blockIncrement="5.0" layoutX="68.0" layoutY="312.0" majorTickUnit="60.0" max="120.0" showTickLabels="true" showTickMarks="true" value="20.0" />
-                        <Spinner editable="true" initialValue="30" layoutX="98.0" layoutY="57.0" prefHeight="25.0" prefWidth="58.0" />
+                        <Spinner layoutX="98.0" layoutY="57.0" prefHeight="25.0" prefWidth="58.0" />
                      </children>
                   </AnchorPane>
                </content>

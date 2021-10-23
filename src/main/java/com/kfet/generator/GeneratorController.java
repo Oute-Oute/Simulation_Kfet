@@ -1,21 +1,18 @@
 package com.kfet.generator;
 
+import generator.Customers;
 import javafx.fxml.FXML;
-import javafx.scene.control.Label;
 import javafx.scene.control.Spinner;
-import javafx.scene.control.TextField;
 
 public class GeneratorController {
-    @FXML
-    private Label welcomeText;
     @FXML
     private Spinner nbCustomersSpin;
 
     @FXML
     protected void onGenerateClick() {
-        //welcomeText.setText("Welcome to JavaFX Application!");
-        //Customers.generate(Integer.parseInt(nbCustomersSpin.getValue().toString()));
-        System.out.println(Integer.parseInt(nbCustomersSpin.getValue().toString()));
-    }
 
+            System.out.println(Integer.parseInt(nbCustomersSpin.getValue().toString()));
+            Customers.generate(Integer.parseInt(nbCustomersSpin.getValue().toString()));
+
+    }
 }

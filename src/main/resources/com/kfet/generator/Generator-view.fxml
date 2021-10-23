@@ -2,10 +2,10 @@
 
 <?import javafx.scene.Cursor?>
 <?import javafx.scene.control.Accordion?>
-<?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.Menu?>
 <?import javafx.scene.control.MenuBar?>
+<?import javafx.scene.control.MenuItem?>
 <?import javafx.scene.control.Slider?>
 <?import javafx.scene.control.Spinner?>
 <?import javafx.scene.control.Tab?>
@@ -19,7 +19,10 @@
    <children>
       <MenuBar layoutY="2.0" prefHeight="25.0" prefWidth="275.0">
          <menus>
-            <Menu mnemonicParsing="false" onAction="#onGenerateClick" onMenuValidation="#onGenerateClick" onShowing="#onGenerateClick" text="Generate" />
+            <Menu mnemonicParsing="false" text="Generation">
+               <items>
+                  <MenuItem mnemonicParsing="false" onAction="#onGenerateClick" text="Generate" />
+               </items></Menu>
             <Menu mnemonicParsing="false" text="Help" />
          </menus>
       </MenuBar>
@@ -36,8 +39,7 @@
                               <Cursor fx:constant="CLOSED_HAND" />
                            </cursor>
                         </Slider>
-                        <Button fx:id="buttonTest" layoutX="149.0" layoutY="39.0" mnemonicParsing="false" onAction="#onGenerateClick" text="Button" />
-                        <Spinner fx:id="nbCustomersSpin" editable="true" layoutX="63.0" layoutY="97.0" min="0" max="500"/>
+                        <Spinner fx:id="nbCustomersSpin" editable="true" layoutX="63.0" layoutY="97.0" max="500" min="0" />
                      </children>
                   </AnchorPane>
                </content>
