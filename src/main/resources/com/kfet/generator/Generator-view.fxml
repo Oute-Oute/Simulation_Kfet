@@ -19,11 +19,11 @@
    <children>
       <MenuBar layoutY="2.0" prefHeight="25.0" prefWidth="275.0">
          <menus>
-            <Menu mnemonicParsing="false" text="Generation">
+            <Menu mnemonicParsing="false" onAction="#onGenerateClick" text="Generation">
                <items>
-                  <MenuItem mnemonicParsing="false" onAction="#onGenerateClick" text="Generate" />
+                  <MenuItem mnemonicParsing="false" onAction="#onGenerateClick" text="Generate" visible="false" />
                </items></Menu>
-            <Menu mnemonicParsing="false" text="Help" />
+            <Menu mnemonicParsing="false" onAction="#onGenerateClick" text="Help" />
          </menus>
       </MenuBar>
       <TabPane layoutY="27.0" prefHeight="393.0" prefWidth="275.0" tabClosingPolicy="UNAVAILABLE">
@@ -59,7 +59,7 @@
                         <Slider blockIncrement="5.0" layoutX="67.0" layoutY="262.0" majorTickUnit="60.0" max="120.0" showTickLabels="true" showTickMarks="true" value="15.0" />
                         <Label layoutX="111.0" layoutY="297.0" text="Lydia Slow" textAlignment="CENTER" />
                         <Slider blockIncrement="5.0" layoutX="68.0" layoutY="312.0" majorTickUnit="60.0" max="120.0" showTickLabels="true" showTickMarks="true" value="20.0" />
-                        <Spinner layoutX="98.0" layoutY="57.0" prefHeight="25.0" prefWidth="58.0" />
+                        <Spinner fx:id="probaKfetierSpin" layoutX="98.0" layoutY="57.0" prefHeight="25.0" prefWidth="58.0" max="100" min="0"/>
                      </children>
                   </AnchorPane>
                </content>

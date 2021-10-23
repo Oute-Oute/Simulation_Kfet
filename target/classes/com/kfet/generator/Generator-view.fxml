@@ -19,11 +19,11 @@
    <children>
       <MenuBar layoutY="2.0" prefHeight="25.0" prefWidth="275.0">
          <menus>
-            <Menu mnemonicParsing="false" text="Generation">
+            <Menu mnemonicParsing="false" onAction="#onGenerateClick" text="Generation">
                <items>
-                  <MenuItem mnemonicParsing="false" onAction="#onGenerateClick" text="Generate" />
+                  <MenuItem mnemonicParsing="false" onAction="#onGenerateClick" text="Generate" visible="false" />
                </items></Menu>
-            <Menu mnemonicParsing="false" text="Help" />
+            <Menu mnemonicParsing="false" onAction="#onGenerateClick" text="Help" />
          </menus>
       </MenuBar>
       <TabPane layoutY="27.0" prefHeight="393.0" prefWidth="275.0" tabClosingPolicy="UNAVAILABLE">
