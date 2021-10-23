@@ -1,9 +1,10 @@
 package generator;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Random;
 
-public class Order {
+public class Order implements Serializable {
 
     private static final int MAX_ORDER = 5, MIN_COOKINGTIME_PIZZA = 900, MAX_COOKINGTIME_PIZZA = 1200, AVERAGE_COOKINGTIME_PIZZA = 1020;
 

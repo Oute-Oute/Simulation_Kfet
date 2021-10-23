@@ -1,31 +1,37 @@
 package generator;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Random;
 import java.util.stream.*;
 
-public class Customer {
+public class Customer implements Serializable {
 
-    private static final double PROBA_KFETIER = 0.06;
-    private static final int CPT_PAYMENT = 3, FAST_LYDIA_PAYMENT = 7, CASH_PAYMENT = 15, SLOW_LYDIA_PAYMENT = 20;
-    private static final ArrayList<Integer> PAYMENT = new ArrayList<Integer>(Stream.of(CPT_PAYMENT, FAST_LYDIA_PAYMENT, CASH_PAYMENT,SLOW_LYDIA_PAYMENT).collect(Collectors.toList()));
+    private  double probaKfetier = 0.06;
+    private static int cptPayement = 3, fastLydiaPayement = 7, cashPayement = 15, slowLydiaPayement = 20;
+    private static ArrayList<Integer> payement = new ArrayList<Integer>(Stream.of(cptPayement, fastLydiaPayement, cashPayement,slowLydiaPayement).collect(Collectors.toList()));
 
     private Boolean kfetier;
     private Order order;
     private float paymentDuration; //Cpt = 3s, Lydia rapide = 7s, Liquide = 15s, Lydia lent = 20s
     private float arrivalTime;
 
-    public Customer(){
+    public Customer(double proba,int fast,int cash, int slow, int cpt){
+        probaKfetier=proba;
+        fastLydiaPayement=fast;
+        cashPayement=cash;
+        slowLydiaPayement=slow;
+        cptPayement=cpt;
         Random r = new Random();
 
-        if(r.nextDouble() > PROBA_KFETIER){
+        if(r.nextDouble() > probaKfetier){
             kfetier = false;
         } else kfetier = true;
 
         if (kfetier){
-            paymentDuration = CPT_PAYMENT;
+            paymentDuration = cptPayement;
         } else {
-            paymentDuration = PAYMENT.get(r.nextInt(PAYMENT.size()));
+            paymentDuration = payement.get(r.nextInt(payement.size()));
         }
         order = new Order();
 
