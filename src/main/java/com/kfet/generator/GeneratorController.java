@@ -30,9 +30,9 @@ public class GeneratorController {
             int fast= (int)fastSlider.getValue();
             int slow = (int)slowSlider.getValue();
             int cash = (int)cashSlider.getValue();
-            int aurane =3600*(int) Double.parseDouble(String.valueOf(customerFrequencySlider.getValue());
+            int frequency =3600*(int) Double.parseDouble(String.valueOf(customerFrequencySlider.getValue()));
 
-            Customers customers = new Customers(nbCustomers,proba,fast,cash,slow,cpt,aurane);
+            Customers customers = new Customers(nbCustomers,proba,fast,cash,slow,cpt,frequency);
             //System.out.println(Integer.parseInt(nbCustomersSpin.getValue().toString()));
             //Customers.generate(Integer.parseInt(nbCustomersSpin.getValue().toString()));
             Serializer serializer = new Serializer();

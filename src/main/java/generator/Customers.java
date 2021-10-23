@@ -1,7 +1,6 @@
 package generator;
 
 import java.io.Serializable;
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Random;
 
@@ -28,7 +27,7 @@ public class Customers implements Serializable {
     }
 
     public ArrayList<Integer> arrivalTimeGenerator (int nbMaxCustomer, int customerFrequency){
-        ArrayList<Integer> arrivalTimeCustomers = new ArrayList<Integer>();
+        ArrayList<Integer> arrivalTimeCustomers = new ArrayList<>();
 
        int globalTime = 0;
        int lastArrivalTime= 0;
@@ -47,7 +46,7 @@ public class Customers implements Serializable {
        return arrivalTimeCustomers;
     }
 
-    public static void generate(int size, int customerFrequency){
-        Customers clientele = new Customers(size, customerFrequency);
-    }
+    //public static void generate(int size, int customerFrequency){
+        //Customers clientele = new Customers(size, customerFrequency);
+    //}
 }
