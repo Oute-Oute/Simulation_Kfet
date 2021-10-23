@@ -1,9 +1,9 @@
 package generator;
 
-import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Random;
-import java.util.stream.*;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 public class Customer implements Serializable {
 
@@ -13,10 +13,10 @@ public class Customer implements Serializable {
 
     private Boolean kfetier;
     private Order order;
-    private float paymentDuration; //Cpt = 3s, Lydia rapide = 7s, Liquide = 15s, Lydia lent = 20s
-    private float arrivalTime;
+    private int paymentDuration; //Cpt = 3s, Lydia rapide = 7s, Liquide = 15s, Lydia lent = 20s
+    private int arrivalTime;
 
-    public Customer(double proba,int fast,int cash, int slow, int cpt){
+    public Customer(double proba,int fast,int cash, int slow, int cpt), int ArrivalTime{
         probaKfetier=proba;
         fastLydiaPayement=fast;
         cashPayement=cash;

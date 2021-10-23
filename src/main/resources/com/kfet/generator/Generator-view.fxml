@@ -1,21 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.Cursor?>
-<?import javafx.scene.control.Accordion?>
-<?import javafx.scene.control.Label?>
-<?import javafx.scene.control.Menu?>
-<?import javafx.scene.control.MenuBar?>
-<?import javafx.scene.control.MenuItem?>
-<?import javafx.scene.control.Slider?>
-<?import javafx.scene.control.Spinner?>
-<?import javafx.scene.control.Tab?>
-<?import javafx.scene.control.TabPane?>
-<?import javafx.scene.control.TextField?>
-<?import javafx.scene.control.TitledPane?>
-<?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
 
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="420.0" prefWidth="275.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.kfet.generator.GeneratorController">
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="420.0" prefWidth="275.0" xmlns="http://javafx.com/javafx/11.0.2" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.kfet.generator.GeneratorController">
    <children>
       <MenuBar layoutY="2.0" prefHeight="25.0" prefWidth="275.0">
          <menus>
@@ -23,7 +11,7 @@
                <items>
                   <MenuItem mnemonicParsing="false" onAction="#onGenerateClick" text="Generate" />
                </items></Menu>
-            <Menu mnemonicParsing="false" text="Help" />
+            <Menu mnemonicParsing="false" onAction="#onGenerateClick" text="Help" />
          </menus>
       </MenuBar>
       <TabPane layoutY="27.0" prefHeight="393.0" prefWidth="275.0" tabClosingPolicy="UNAVAILABLE">
@@ -33,13 +21,10 @@
                   <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="355.0" prefWidth="262.0">
                      <children>
                         <Label layoutX="77.0" layoutY="73.0" prefHeight="24.0" prefWidth="124.0" text="How many customers?" />
-                        <Label layoutX="31.0" layoutY="161.0" text="At which frequency will they be coming?" />
-                        <Slider blockIncrement="0.1" layoutX="68.0" layoutY="189.0" majorTickUnit="0.1" max="1.0" minorTickCount="0" showTickLabels="true" showTickMarks="true" value="0.5">
-                           <cursor>
-                              <Cursor fx:constant="CLOSED_HAND" />
-                           </cursor>
-                        </Slider>
-                        <Spinner fx:id="nbCustomersSpin" editable="true" layoutX="63.0" layoutY="97.0" max="500" initialValue="50" min="0" />
+                        <Label layoutX="24.0" layoutY="158.0" text="At which time interval will they be coming?" />
+                        <Spinner fx:id="nbCustomersSpin" editable="true" layoutX="63.0" layoutY="97.0" max="500" min="0" />
+                        <Slider fx:id="customerFrequencySlider" blockIncrement="0.0" layoutX="20.0" layoutY="191.0" majorTickUnit="1.0" max="2.0" minorTickCount="5" prefHeight="38.0" prefWidth="232.0" showTickLabels="true" showTickMarks="true" />
+                        <Label layoutX="87.0" layoutY="239.0" text="A shift last 2 hours" />
                      </children>
                   </AnchorPane>
                </content>
