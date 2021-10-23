@@ -59,7 +59,7 @@
                         <Slider fx:id="cashSlider" blockIncrement="5.0" layoutX="67.0" layoutY="262.0" majorTickUnit="60.0" max="120.0" showTickLabels="true" showTickMarks="true" value="15.0" />
                         <Label layoutX="111.0" layoutY="297.0" text="Lydia Slow" textAlignment="CENTER" />
                         <Slider fx:id="slowSlider" blockIncrement="5.0" layoutX="68.0" layoutY="312.0" majorTickUnit="60.0" max="120.0" showTickLabels="true" showTickMarks="true" value="20.0" />
-                        <Spinner layoutX="98.0" layoutY="57.0" prefHeight="25.0" prefWidth="58.0" />
+                        <Spinner fx:id="probaKfetierSpin" layoutX="98.0" layoutY="57.0" prefHeight="25.0" prefWidth="58.0" max="100" min="0"/>
                      </children>
                   </AnchorPane>
                </content>
