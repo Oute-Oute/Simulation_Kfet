@@ -12,10 +12,10 @@ public class Customer {
 
     private Boolean kfetier;
     private Order order;
-    private float paymentDuration; //Cpt = 3s, Lydia rapide = 7s, Liquide = 15s, Lydia lent = 20s
-    private float arrivalTime;
+    private int paymentDuration; //Cpt = 3s, Lydia rapide = 7s, Liquide = 15s, Lydia lent = 20s
+    private int arrivalTime;
 
-    public Customer(){
+    public Customer(int arrivalTime){
         Random r = new Random();
 
         if(r.nextDouble() > PROBA_KFETIER){
