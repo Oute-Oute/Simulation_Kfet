@@ -3,6 +3,7 @@ package com.kfet.generator;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.control.Spinner;
+import javafx.scene.control.TextField;
 
 public class GeneratorController {
     @FXML
@@ -16,4 +17,5 @@ public class GeneratorController {
         //Customers.generate(Integer.parseInt(nbCustomersSpin.getValue().toString()));
         System.out.println(Integer.parseInt(nbCustomersSpin.getValue().toString()));
     }
+
 }

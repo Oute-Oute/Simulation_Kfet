@@ -36,8 +36,8 @@
                               <Cursor fx:constant="CLOSED_HAND" />
                            </cursor>
                         </Slider>
-                        <Spinner id="nbCustomersSpin" fx:id="nbCustomersSpin" editable="true" layoutX="63.0" layoutY="106.0" />
-                        <Button layoutX="149.0" layoutY="39.0" mnemonicParsing="false" onAction="#onGenerateClick" text="Button" />
+                        <Button fx:id="buttonTest" layoutX="149.0" layoutY="39.0" mnemonicParsing="false" onAction="#onGenerateClick" text="Button" />
+                        <Spinner fx:id="nbCustomersSpin" editable="true" layoutX="63.0" layoutY="97.0" min="0" max="500"/>
                      </children>
                   </AnchorPane>
                </content>
