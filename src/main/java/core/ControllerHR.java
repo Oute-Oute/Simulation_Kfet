@@ -3,9 +3,9 @@ package core;
 import java.util.ArrayList;
 
 public class ControllerHR {
-    ArrayList<Kfetier> cashier;
-    ArrayList<Kfetier> cooks;
-    ArrayList<Kfetier> kfetiers;
+    private ArrayList<Kfetier> cashier;
+    private ArrayList<Kfetier> cooks;
+    private ArrayList<Kfetier> kfetiers;
 
     public ArrayList<Kfetier> getCashier() {
         return cashier;

@@ -1,9 +1,9 @@
 package core;
 
 public class Kfetier {
-    int id;
-    String type;
-    Boolean isFree;
+    private int id;
+    private String type;
+    private Boolean isFree;
 
     public Kfetier(int id) {
         this.id = id;

@@ -4,26 +4,67 @@ import java.util.ArrayList;
 import java.util.HashMap;
 
 public class ControllerDevices {
-    ArrayList<Device> Oven;
-    ArrayList<Device> Microwave;
-    ArrayList<Device> Cafetiere;
-    ArrayList<Device> Kettle;
-    ArrayList<Device> 
-    HashMap<String, Integer> freeDevices;
+    private ArrayList<Device> oven;
+    private ArrayList<Device> microwave;
+    private ArrayList<Device> cafetiere;
+    private ArrayList<Device> kettle;
+    private ArrayList<Device> cocoa;
+    private HashMap<String, Integer> freeDevices;
+
+    public ControllerDevices(){
+        freeDevices = new HashMap<>();
+        freeDevices.put("Oven",0);
+        freeDevices.put("Microwave",0);
+        freeDevices.put("Cafetiere",0);
+        freeDevices.put("Kettle",0);
+        freeDevices.put("Cocoa",0);
+    }
 
     public ArrayList<Device> getOven() {
-        return Oven;
+        return oven;
     }
 
     public void setOven(ArrayList<Device> oven) {
-        Oven = oven;
+        this.oven = oven;
     }
 
     public ArrayList<Device> getMicrowave() {
-        return Microwave;
+        return microwave;
     }
 
     public void setMicrowave(ArrayList<Device> microwave) {
-        Microwave = microwave;
+        this.microwave = microwave;
+    }
+
+    public ArrayList<Device> getCafetiere() {
+        return cafetiere;
+    }
+
+    public void setCafetiere(ArrayList<Device> cafetiere) {
+        this.cafetiere = cafetiere;
+    }
+
+    public ArrayList<Device> getKettle() {
+        return kettle;
+    }
+
+    public void setKettle(ArrayList<Device> kettle) {
+        this.kettle = kettle;
+    }
+
+    public ArrayList<Device> getCocoa() {
+        return cocoa;
+    }
+
+    public void setCocoa(ArrayList<Device> cocoa) {
+        this.cocoa = cocoa;
+    }
+
+    public HashMap<String, Integer> getFreeDevices() {
+        return freeDevices;
+    }
+
+    public void setFreeDevices(HashMap<String, Integer> freeDevices) {
+        this.freeDevices = freeDevices;
     }
 }

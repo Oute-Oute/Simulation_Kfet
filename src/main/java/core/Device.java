@@ -1,9 +1,9 @@
 package core;
 
 public class Device {
-    int id;
-    String type;
-    Boolean isFree;
+    private int id;
+    private String type;
+    private Boolean isFree;
 
     public Device(int id) {
         this.id = id;
