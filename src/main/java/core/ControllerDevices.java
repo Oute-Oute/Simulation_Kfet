@@ -1,10 +1,15 @@
 package core;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 public class ControllerDevices {
     ArrayList<Device> Oven;
     ArrayList<Device> Microwave;
+    ArrayList<Device> Cafetiere;
+    ArrayList<Device> Kettle;
+    ArrayList<Device> 
+    HashMap<String, Integer> freeDevices;
 
     public ArrayList<Device> getOven() {
         return Oven;
