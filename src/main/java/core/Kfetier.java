@@ -5,8 +5,10 @@ public class Kfetier {
     private String type;
     private Boolean isFree;
 
-    public Kfetier(int id) {
+    public Kfetier(int id, String type) {
         this.id = id;
+        this.type = type;
+        isFree = true;
     }
 
     public int getId() {

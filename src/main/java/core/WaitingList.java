@@ -7,7 +7,8 @@ public class WaitingList {
     private ArrayList<Customer> postOrder;
 
     public WaitingList() {
-
+        preOrder = new ArrayList<Customer>();
+        postOrder = new ArrayList<Customer>();
     }
 
     public ArrayList<Customer> getPreOrder() {
@@ -61,4 +62,19 @@ public class WaitingList {
         }
     }
 
+    /**
+     * Move a customer from preOrder to postOrder after his order has been taken
+     */
+    public void orderTaken(){
+        postOrder.add(preOrder.get(0));
+        preOrder.remove(0);
+    }
+
+    /**
+     * Remove a customer from the waiting list when his order is done.
+     * @param customer customer to remove
+     */
+    public void orderFinished(Customer customer){
+        postOrder.remove(customer);
+    }
 }
