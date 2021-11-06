@@ -1,9 +1,11 @@
 package core;
 
+import com.kfet.core.CoreController;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 
-public class ControllerHR {
+public class ControllerHR extends CoreController {
 
     private int nbCashier, nbCooks, nbkfetiers;
 
@@ -68,5 +70,24 @@ public class ControllerHR {
 
     public HashMap<String, Integer> getFreeKfetier() {
         return freeKfetier;
+    }
+
+    /**
+     * Event arrivée d'un client
+     * @param customer
+     */
+    public void newCustomer(Customer customer){
+        int time = 60;
+
+        if(freeKfetier.get("Cashier") > 0){
+            cashier.get(0).setFree(false);
+            notFree("Cashier");
+            time += customer.getPaymentDuration();
+
+            //Attendre time secondes puis appeler fin de paiement
+        }
+        else {
+            //getPreOrder().add(customer);
+        }
     }
 }

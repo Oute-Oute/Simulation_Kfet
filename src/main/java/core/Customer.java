@@ -42,4 +42,8 @@ public class Customer implements Serializable {
     public Order getOrder() {
         return order;
     }
+
+    public int getPaymentDuration() {
+        return paymentDuration;
+    }
 }
