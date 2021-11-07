@@ -7,40 +7,42 @@ import javafx.scene.shape.Circle;
 import java.util.HashMap;
 import java.util.Map;
 
+import java.util.HashMap;
+
 public class CoreController {
 
     @FXML
     private Circle Cashier, Oven_1, Oven_2, Oven_3, Oven_4, Oven_5, Oven_6, Oven_7, Oven_8, MO_1, MO_2, MO_3, Coffee_1, Coffee_2, Chocolate, Kettle_1, Kettle_2;
 
     @FXML
-    private Map<String, Circle> Circles = new HashMap<>();
+    private Map<Integer, Circle> Circles = new HashMap<>();
 
     @FXML
     private void initialize() {
-        Circles.put("Cashier", Cashier);
-        Circles.put("Oven_1", Oven_1);
-        Circles.put("Oven_2", Oven_2);
-        Circles.put("Oven_3", Oven_3);
-        Circles.put("Oven_4", Oven_4);
-        Circles.put("Oven_5", Oven_5);
-        Circles.put("Oven_6", Oven_6);
-        Circles.put("Oven_7", Oven_7);
-        Circles.put("Oven_8", Oven_8);
-        Circles.put("MO_1", MO_1);
-        Circles.put("MO_2", MO_2);
-        Circles.put("MO_3", MO_3);
-        Circles.put("Coffee_1", Coffee_1);
-        Circles.put("Coffee_2", Coffee_2);
-        Circles.put("Chocolate",Chocolate);
-        Circles.put("Kettle_1", Kettle_1);
-        Circles.put("kettle_2", Kettle_2);
-
+        Circles.put(0, Oven_1);
+        Circles.put(1, Oven_2);
+        Circles.put(2, Oven_3);
+        Circles.put(3, Oven_4);
+        Circles.put(4, Oven_5);
+        Circles.put(5, Oven_6);
+        Circles.put(6, Oven_7);
+        Circles.put(7, Oven_8);
+        Circles.put(8, MO_1);
+        Circles.put(9, MO_2);
+        Circles.put(10, MO_3);
+        Circles.put(11, Coffee_1);
+        Circles.put(12, Coffee_2);
+        Circles.put(13, Kettle_1);
+        Circles.put(14, Kettle_2);
+        Circles.put(15,Chocolate);
+        //Circles.put("Cashier", Cashier);
     }
+
     @FXML
-    protected void notFree(String name){
-        Circles.get(name).setFill(Color.rgb(196,55,55));
-        Circles.get(name).setStroke(Color.rgb(112,39,39));
-        /*switch (name){
+    protected void notFree(int id){
+        Circles.get(id).setFill(Color.rgb(196,55,55));
+        Circles.get(id).setStroke(Color.rgb(112,39,39));
+        /* switch (name){
             case "Cashier":
                 Cashier.setFill(Color.rgb(196,55,55));
                 Cashier.setStroke(Color.rgb(112,39,39));
@@ -130,10 +132,10 @@ public class CoreController {
     }
 
     @FXML
-    protected void free(String name){
-        Circles.get(name).setFill(Color.rgb(81,198,55));
-        Circles.get(name).setStroke(Color.rgb(39,114,53));
-        /*switch (name){
+    protected void free(int id){
+        Circles.get(id).setFill(Color.rgb(81,198,55));
+        Circles.get(id).setStroke(Color.rgb(39,114,53));
+        /* switch (name){
             case "Cashier":
                 Cashier.setFill(Color.rgb(81,198,55));
                 Cashier.setStroke(Color.rgb(39,114,53));

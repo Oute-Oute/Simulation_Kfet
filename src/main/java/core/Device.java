@@ -1,6 +1,8 @@
 package core;
 
-public class Device {
+import com.kfet.core.CoreController;
+
+public class Device extends CoreController {
     private int id;
     private String type;
     private Boolean isFree;
@@ -29,5 +31,10 @@ public class Device {
 
     public void setFree(Boolean free) {
         isFree = free;
+        if(free){
+            free(this.id);
+        } else {
+            notFree(this.id);
+        }
     }
 }

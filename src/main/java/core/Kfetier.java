@@ -1,6 +1,8 @@
 package core;
 
-public class Kfetier {
+import com.kfet.core.CoreController;
+
+public class Kfetier extends CoreController {
     private int id;
     private String type;
     private Boolean isFree;
@@ -29,5 +31,10 @@ public class Kfetier {
 
     public void setFree(Boolean free) {
         isFree = free;
+        if(free){
+            free(this.id);
+        } else {
+            notFree(this.id);
+        }
     }
 }

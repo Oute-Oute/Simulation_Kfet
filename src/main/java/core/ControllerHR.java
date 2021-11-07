@@ -5,7 +5,7 @@ import com.kfet.core.CoreController;
 import java.util.ArrayList;
 import java.util.HashMap;
 
-public class ControllerHR extends CoreController {
+public class ControllerHR extends WaitingList {
 
     private int nbCashier, nbCooks, nbkfetiers;
 
@@ -81,13 +81,12 @@ public class ControllerHR extends CoreController {
 
         if(freeKfetier.get("Cashier") > 0){
             cashier.get(0).setFree(false);
-            notFree("Cashier");
             time += customer.getPaymentDuration();
 
             //Attendre time secondes puis appeler fin de paiement
         }
         else {
-            //getPreOrder().add(customer);
+            getPreOrder().add(customer);
         }
     }
 }
