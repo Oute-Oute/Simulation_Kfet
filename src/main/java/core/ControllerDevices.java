@@ -104,4 +104,58 @@ public class ControllerDevices {
         return freeDevices;
     }
 
+
+
+    //Coffee Methods
+    public void coffeePrep(){
+        //TODO everything
+    }
+
+    public void coffeeEnd(){
+        //TODO everything
+    }
+    //Chocolate Methods
+    public void chocolatePrep(){
+        //TODO everything
+    }
+
+    public void chocolateEnd(){
+        //TODO everything
+    }
+
+    //Ramen Methods
+    public void boilingWaterStart(){
+        //TODO everything
+    }
+
+    public void boilingWaterEnd(){
+        //TODO everything
+    }
+
+    public void ramenEnd(){
+        //TODO everything
+    }
+
+    //PizzaMethods
+    public void picardPrep(){
+        //TODO everything
+    }
+    public void picardCooking(){
+        //TODO everything
+    }
+    public void picardEnd(){
+        //TODO everything
+    }
+
+    //PizzaMethods
+    public void pizzaPrep(){
+        //TODO everything
+    }
+    public void pizzaCooking(){
+        //TODO everything
+    }
+    public void pizzaEnd(){
+        //TODO everything
+    }
 }
+
