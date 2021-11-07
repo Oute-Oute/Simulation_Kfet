@@ -7,8 +7,8 @@ public class WaitingList {
     private ArrayList<Customer> postOrder;
 
     public WaitingList() {
-        preOrder = new ArrayList<Customer>();
-        postOrder = new ArrayList<Customer>();
+        preOrder = new ArrayList<>();
+        postOrder = new ArrayList<>();
     }
 
     public ArrayList<Customer> getPreOrder() {
@@ -46,9 +46,6 @@ public class WaitingList {
                 found = true;
                 //TODO: appeler debut commande avec paramètre client
             }
-        }
-        else {
-
         }
     }
 

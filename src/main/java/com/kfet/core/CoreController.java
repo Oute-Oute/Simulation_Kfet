@@ -1,5 +1,6 @@
 package com.kfet.core;
 
+import core.ControllerHR;
 import javafx.fxml.FXML;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
@@ -7,12 +8,10 @@ import javafx.scene.shape.Circle;
 import java.util.HashMap;
 import java.util.Map;
 
-import java.util.HashMap;
-
-public class CoreController {
+public class CoreController extends ControllerHR {
 
     @FXML
-    private Circle Cashier, Oven_1, Oven_2, Oven_3, Oven_4, Oven_5, Oven_6, Oven_7, Oven_8, MO_1, MO_2, MO_3, Coffee_1, Coffee_2, Chocolate, Kettle_1, Kettle_2;
+    private Circle Cashier_1, Cashier_2, Oven_1, Oven_2, Oven_3, Oven_4, Oven_5, Oven_6, Oven_7, Oven_8, MO_1, MO_2, MO_3, Coffee_1, Coffee_2, Chocolate, Kettle_1, Kettle_2;
 
     @FXML
     private Map<Integer, Circle> Circles = new HashMap<>();
@@ -35,7 +34,10 @@ public class CoreController {
         Circles.put(13, Kettle_1);
         Circles.put(14, Kettle_2);
         Circles.put(15,Chocolate);
-        //Circles.put("Cashier", Cashier);
+        Circles.put(getCashier().get(0).getId(), Cashier_1);
+        if (getCashier().size() == 2){
+            Circles.put(getCashier().get(1).getId(), Cashier_2);
+        }
     }
 
     @FXML

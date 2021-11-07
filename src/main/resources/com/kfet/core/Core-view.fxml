@@ -1,41 +1,27 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.Menu?>
-<?import javafx.scene.control.MenuBar?>
-<?import javafx.scene.control.MenuItem?>
-<?import javafx.scene.image.Image?>
-<?import javafx.scene.image.ImageView?>
-<?import javafx.scene.layout.Pane?>
-<?import javafx.scene.shape.Circle?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.shape.*?>
 
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="584.0" prefWidth="895.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.kfet.core.CoreController">
-   <children>
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="584.0" prefWidth="895.0" xmlns="http://javafx.com/javafx/11.0.2" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.kfet.core.CoreController">
       <MenuBar prefHeight="25.0" prefWidth="895.0">
-        <menus>
           <Menu mnemonicParsing="false" text="File">
-            <items>
               <MenuItem mnemonicParsing="false" text="Close" />
-            </items>
           </Menu>
           <Menu mnemonicParsing="false" text="Edit">
-            <items>
               <MenuItem mnemonicParsing="false" text="Delete" />
-            </items>
           </Menu>
           <Menu mnemonicParsing="false" text="Help">
-            <items>
               <MenuItem mnemonicParsing="false" text="About" />
-            </items>
           </Menu>
-        </menus>
       </MenuBar>
       <ImageView fitHeight="595.0" fitWidth="897.0" layoutY="26.0" pickOnBounds="true" preserveRatio="true">
-         <image>
             <Image url="@background.png" />
-         </image>
       </ImageView>
 
-      <Circle fx:id="Cashier" fill="#51c637" layoutX="434.0" layoutY="265.0" radius="7.0" stroke="#277235" strokeType="INSIDE" />
+      <Circle fx:id="Cashier_1" fill="#51c637" layoutX="434.0" layoutY="265.0" radius="7.0" stroke="#277235" strokeType="INSIDE" />
       <Circle fx:id="Oven_1" fill="#51c637" layoutX="477.0" layoutY="552.0" radius="7.0" stroke="#277235" strokeType="INSIDE" />
       <Circle fx:id="Oven_2" fill="#51c637" layoutX="477.0" layoutY="489.0" radius="7.0" stroke="#277235" strokeType="INSIDE" />
       <Circle fx:id="Oven_3" fill="#51c637" layoutX="477.0" layoutY="427.0" radius="7.0" stroke="#277235" strokeType="INSIDE" />
@@ -52,6 +38,5 @@
       <Circle fx:id="MO_3" fill="#51c637" layoutX="850.0" layoutY="65.0" radius="7.0" stroke="#277235" strokeType="INSIDE" />
       <Circle fx:id="Kettle_1" fill="#51c637" layoutX="809.0" layoutY="72.0" radius="7.0" stroke="#277235" strokeType="INSIDE" />
       <Circle fx:id="Kettle_2" fill="#51c637" layoutX="759.0" layoutY="72.0" radius="7.0" stroke="#277235" strokeType="INSIDE" />
-
-   </children>
+      <Circle fx:id="Cashier_2" fill="#51c637" layoutX="433.0" layoutY="201.0" radius="7.0" stroke="#277235" strokeType="INSIDE" />
 </Pane>

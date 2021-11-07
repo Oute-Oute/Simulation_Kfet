@@ -15,24 +15,24 @@ public class ControllerHR extends WaitingList {
     private HashMap<String, Integer> freeKfetier;
 
     public ControllerHR(){
-        int id = 0;
+        int id = 20; //TODO: vérifier si y a pas un pb
 
         //Cashier
-        cashier = new ArrayList<Kfetier>(nbCashier);
-        for(int i = 0; i < nbCashier; i++){
+        cashier = new ArrayList<>(nbCashier);
+        for(int i = id; i < nbCashier; i++){
             cashier.add(new Kfetier(i, "Cashier"));
         }
-        id = nbCashier;
+        id += nbCashier;
 
         //Cooks
-        cooks = new ArrayList<Kfetier>(nbCooks);
+        cooks = new ArrayList<>(nbCooks);
         for(int i = id ; i < nbCooks + id; i++){
             cooks.add(new Kfetier(i, "Cook"));
         }
         id += nbCooks;
 
         //Kfetier
-        kfetiers = new ArrayList<Kfetier>(nbkfetiers);
+        kfetiers = new ArrayList<>(nbkfetiers);
         for(int i = id ; i < nbkfetiers + id; i++){
             kfetiers.add(new Kfetier(i, "Kfetier"));
         }
@@ -74,19 +74,69 @@ public class ControllerHR extends WaitingList {
 
     /**
      * Event arrivée d'un client
-     * @param customer
+     * @param customer client
      */
     public void newCustomer(Customer customer){
         int time = 60;
+        int i = 0;
+        boolean found = false;
 
-        if(freeKfetier.get("Cashier") > 0){
-            cashier.get(0).setFree(false);
+        //S'il y a un caissier de libre
+        if(freeKfetier.get("Cashier") > 0) {
+
+            //On cherche quel caissier est libre
+            while (i < cashier.size() && !found) {
+                if (cashier.get(i).getFree()) {
+                    //On passe le caissier à occupé
+                    cashier.get(i).setFree(false);
+                    found = true;
+                } else {
+                    i++;
+                }
+            }
+            freeKfetier.replace("Cashier", freeKfetier.get("Cashier") - 1);
+
+            //On set le temps à attendre
             time += customer.getPaymentDuration();
 
-            //Attendre time secondes puis appeler fin de paiement
+            //TODO: Attendre time secondes puis appeler fin de paiement
         }
         else {
+            //Le client est ajouté à la liste d'attente pré order
             getPreOrder().add(customer);
         }
+    }
+
+    /**
+     * Event fin du paiement
+     * @param customer client en train de payer
+     * @param cashier caissier encaissant le client
+     */
+    public void endPayment(Customer customer, Kfetier cashier ){
+
+        //Libère le caissier
+        cashier.setFree(true);
+        freeKfetier.replace("Cashier", freeKfetier.get("Cashier") + 1);
+
+        //Lance la préparation de commande
+        preparationOrder(customer);
+
+        //Retire le client de la pré order
+        getPreOrder().remove(customer);
+
+        //Si la liste Pré Order n'est pas vide, on appelle le client suivant
+        if( !getPreOrder().isEmpty() ){
+            newCustomer(getPreOrder().get(0));
+        }
+
+    }
+
+    public void preparationOrder(Customer customer){
+        //On ajoute le client à la liste d'attente post order
+        getPostOrder().add(customer);
+
+        //on cherche si quelque chose est dispo pour lancer sa commande, sinon l'algo le trouvera plus tard
+        searchGlobal(customer);
+        searchPizza(customer);
     }
 }
