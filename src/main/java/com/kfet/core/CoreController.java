@@ -4,14 +4,43 @@ import javafx.fxml.FXML;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
 
+import java.util.HashMap;
+import java.util.Map;
+
 public class CoreController {
 
     @FXML
     private Circle Cashier, Oven_1, Oven_2, Oven_3, Oven_4, Oven_5, Oven_6, Oven_7, Oven_8, MO_1, MO_2, MO_3, Coffee_1, Coffee_2, Chocolate, Kettle_1, Kettle_2;
 
     @FXML
+    private Map<String, Circle> Circles = new HashMap<>();
+
+    @FXML
+    private void initialize() {
+        Circles.put("Cashier", Cashier);
+        Circles.put("Oven_1", Oven_1);
+        Circles.put("Oven_2", Oven_2);
+        Circles.put("Oven_3", Oven_3);
+        Circles.put("Oven_4", Oven_4);
+        Circles.put("Oven_5", Oven_5);
+        Circles.put("Oven_6", Oven_6);
+        Circles.put("Oven_7", Oven_7);
+        Circles.put("Oven_8", Oven_8);
+        Circles.put("MO_1", MO_1);
+        Circles.put("MO_2", MO_2);
+        Circles.put("MO_3", MO_3);
+        Circles.put("Coffee_1", Coffee_1);
+        Circles.put("Coffee_2", Coffee_2);
+        Circles.put("Chocolate",Chocolate);
+        Circles.put("Kettle_1", Kettle_1);
+        Circles.put("kettle_2", Kettle_2);
+
+    }
+    @FXML
     protected void notFree(String name){
-        switch (name){
+        Circles.get(name).setFill(Color.rgb(196,55,55));
+        Circles.get(name).setStroke(Color.rgb(112,39,39));
+        /*switch (name){
             case "Cashier":
                 Cashier.setFill(Color.rgb(196,55,55));
                 Cashier.setStroke(Color.rgb(112,39,39));
@@ -97,12 +126,14 @@ public class CoreController {
                 Kettle_2.setStroke(Color.rgb(112,39,39));
                 break;
 
-        }
+        }*/
     }
 
     @FXML
     protected void free(String name){
-        switch (name){
+        Circles.get(name).setFill(Color.rgb(81,198,55));
+        Circles.get(name).setStroke(Color.rgb(39,114,53));
+        /*switch (name){
             case "Cashier":
                 Cashier.setFill(Color.rgb(81,198,55));
                 Cashier.setStroke(Color.rgb(39,114,53));
@@ -187,7 +218,7 @@ public class CoreController {
                 Kettle_2.setFill(Color.rgb(81,198,55));
                 Kettle_2.setStroke(Color.rgb(39,114,53));
                 break;
-        }
+        }*/
     }
 
 }
