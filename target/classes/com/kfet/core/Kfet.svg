@@ -1,0 +1,148 @@
+<?xml version="1.0" encoding="utf-8"?>
+<svg viewBox="101.173 -0.777 806.508 504.277" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <filter id="filter" filterUnits="userSpaceOnUse">
+      <feOffset result="offset" dx="0.819" dy="0.574" in="SourceAlpha"/>
+      <feGaussianBlur result="blur"/>
+      <feFlood result="flood" flood-color="#b0afaf"/>
+      <feComposite result="composite" operator="in" in2="blur"/>
+      <feBlend result="blend" in="SourceGraphic"/>
+    </filter>
+  </defs>
+  <rect id="Sol" class="cls-1" x="101.173" y="-0.777" width="806.508" height="504.277" style="fill: rgb(202, 202, 202);"/>
+  <path fill-rule="evenodd" stroke="rgb(50, 50, 50)" stroke-width="0.66px" stroke-linecap="butt" stroke-linejoin="miter" fill="rgb(116, 116, 116)" d="M 493.358 287.333 L 493.358 502.829 L 489.368 502.829 L 489.368 287.333 L 489.368 283.433 L 493.358 283.433 L 788.637 283.433 L 788.637 287.333 L 493.358 287.333 Z" style=""/>
+  <path fill-rule="evenodd" stroke="rgb(69, 52, 35)" stroke-width="0.66px" stroke-linecap="butt" stroke-linejoin="miter" fill="rgb(106, 77, 48)" d="M 643.095 283.349 L 549.2 283.349 L 493.262 283.349 L 489.267 283.349 L 489.466 -0.58 L 549.134 -0.597 L 549.2 235.781 L 643.095 235.781 L 643.095 283.349 Z" style=""/>
+  <path fill-rule="evenodd" stroke="rgb(57, 56, 68)" stroke-width="0.88px" stroke-linecap="round" stroke-linejoin="round" fill="rgb(69, 67, 80)" d="M 857.238 186.694 L 857.238 49.694 L 757.238 49.694 L 757.238 -0.306 L 857.238 -0.306 L 907.238 -0.306 L 907.238 49.694 L 907.238 186.694 L 857.238 186.694 Z"/>
+  <rect id="Caisse" class="cls-5" x="389" y="191" width="46" height="44" rx="10" ry="10" transform="matrix(1, 0, 0, 1, 107.172852, -0.499992)" style="fill: rgb(137, 101, 64); stroke: rgb(123, 92, 59); stroke-linecap: round; stroke-linejoin: round; stroke-width: 0.88px;"/>
+  <rect id="LA_PréCommande" data-name="LA PréCommande" class="cls-6" x="316" y="189" width="54" height="302" transform="matrix(1, 0, 0, 1, 107.172852, -0.499992)" style="fill: none; stroke: rgb(50, 50, 50); stroke-width: 0.66px;"/>
+  <path id="LA_PostCommande" data-name="LA PostCommande" class="cls-7" d="M11,10H370V64H11V10Zm0,58H370v54H11V68Z" transform="matrix(1, 0, 0, 1, 107.172852, -0.499992)" style="fill: none; fill-rule: evenodd; stroke: rgb(50, 50, 50); stroke-width: 0.66px;"/>
+  <g id="_1" data-name="1" transform="matrix(1, 0, 0, 1, 107.172852, -0.499992)">
+    <rect id="Ext" class="cls-8" x="394" y="445" width="30" height="50" rx="5" ry="5" style="fill: rgb(116, 116, 116); stroke: rgb(98, 98, 98); stroke-linecap: round; stroke-linejoin: round; stroke-width: 0.88px;"/>
+    <rect id="Int" class="cls-9" x="399" y="450" width="20" height="40" style="fill: rgb(86, 86, 86); stroke: rgb(71, 71, 71); stroke-linecap: round; stroke-linejoin: round; stroke-width: 0.66px;"/>
+    <g id="Les_potites_vagues" data-name="Les potites vagues">
+      <path id="d" class="cls-10" d="M401.559,465.017s3.4,2.386,6.653,0,6.726,0,6.726,0" style="fill: none; fill-rule: evenodd; stroke: rgb(255, 255, 255); stroke-linecap: round; stroke-linejoin: round; stroke-width: 0.88px;"/>
+      <path id="m" class="cls-10" d="M401.559,469.91s3.4,2.386,6.653,0,6.726,0,6.726,0" style="fill: none; fill-rule: evenodd; stroke: rgb(255, 255, 255); stroke-linecap: round; stroke-linejoin: round; stroke-width: 0.88px;"/>
+      <path id="g" class="cls-10" d="M401.559,474.8s3.4,2.386,6.653,0,6.726,0,6.726,0" style="fill: none; fill-rule: evenodd; stroke: rgb(255, 255, 255); stroke-linecap: round; stroke-linejoin: round; stroke-width: 0.88px;"/>
+      <path id="Barre" class="cls-11" d="M416.727,463.371v14.258" style="fill: none; fill-rule: evenodd; stroke: rgb(255, 255, 255); stroke-linecap: round; stroke-linejoin: round; stroke-width: 0.66px;"/>
+    </g>
+  </g>
+  <g id="_2" data-name="2" transform="matrix(1, 0, 0, 1, 107.172852, -0.499992)">
+    <rect id="Ext-2" data-name="Ext" class="cls-8" x="394" y="389" width="30" height="50" rx="5" ry="5" style="fill: rgb(116, 116, 116); stroke: rgb(98, 98, 98); stroke-linecap: round; stroke-linejoin: round; stroke-width: 0.88px;"/>
+    <rect id="Int-2" data-name="Int" class="cls-9" x="399" y="394" width="20" height="40" style="fill: rgb(86, 86, 86); stroke: rgb(71, 71, 71); stroke-linecap: round; stroke-linejoin: round; stroke-width: 0.66px;"/>
+    <g id="Les_potites_vagues-2" data-name="Les potites vagues">
+      <path id="d-2" data-name="d" class="cls-10" d="M401.559,409.017s3.4,2.386,6.653,0,6.726,0,6.726,0" style="fill: none; fill-rule: evenodd; stroke: rgb(255, 255, 255); stroke-linecap: round; stroke-linejoin: round; stroke-width: 0.88px;"/>
+      <path id="m-2" data-name="m" class="cls-10" d="M401.559,413.91s3.4,2.386,6.653,0,6.726,0,6.726,0" style="fill: none; fill-rule: evenodd; stroke: rgb(255, 255, 255); stroke-linecap: round; stroke-linejoin: round; stroke-width: 0.88px;"/>
+      <path id="g-2" data-name="g" class="cls-10" d="M401.559,418.8s3.4,2.386,6.653,0,6.726,0,6.726,0" style="fill: none; fill-rule: evenodd; stroke: rgb(255, 255, 255); stroke-linecap: round; stroke-linejoin: round; stroke-width: 0.88px;"/>
+      <path id="Barre-2" data-name="Barre" class="cls-11" d="M416.727,407.371v14.258" style="fill: none; fill-rule: evenodd; stroke: rgb(255, 255, 255); stroke-linecap: round; stroke-linejoin: round; stroke-width: 0.66px;"/>
+    </g>
+  </g>
+  <g id="_3" data-name="3" transform="matrix(1, 0, 0, 1, 107.172852, -0.499992)">
+    <rect id="Ext-3" data-name="Ext" class="cls-8" x="394" y="332" width="30" height="50" rx="5" ry="5" style="fill: rgb(116, 116, 116); stroke: rgb(98, 98, 98); stroke-linecap: round; stroke-linejoin: round; stroke-width: 0.88px;"/>
+    <rect id="Int-3" data-name="Int" class="cls-9" x="399" y="337" width="20" height="40" style="fill: rgb(86, 86, 86); stroke: rgb(71, 71, 71); stroke-linecap: round; stroke-linejoin: round; stroke-width: 0.66px;"/>
+    <g id="Les_potites_vagues-3" data-name="Les potites vagues">
+      <path id="d-3" data-name="d" class="cls-10" d="M401.559,352.017s3.4,2.386,6.653,0,6.726,0,6.726,0" style="fill: none; fill-rule: evenodd; stroke: rgb(255, 255, 255); stroke-linecap: round; stroke-linejoin: round; stroke-width: 0.88px;"/>
+      <path id="m-3" data-name="m" class="cls-10" d="M401.559,356.91s3.4,2.386,6.653,0,6.726,0,6.726,0" style="fill: none; fill-rule: evenodd; stroke: rgb(255, 255, 255); stroke-linecap: round; stroke-linejoin: round; stroke-width: 0.88px;"/>
+      <path id="g-3" data-name="g" class="cls-10" d="M401.559,361.8s3.4,2.386,6.653,0,6.726,0,6.726,0" style="fill: none; fill-rule: evenodd; stroke: rgb(255, 255, 255); stroke-linecap: round; stroke-linejoin: round; stroke-width: 0.88px;"/>
+      <path id="Barre-3" data-name="Barre" class="cls-11" d="M416.727,350.371v14.258" style="fill: none; fill-rule: evenodd; stroke: rgb(255, 255, 255); stroke-linecap: round; stroke-linejoin: round; stroke-width: 0.66px;"/>
+    </g>
+  </g>
+  <g id="_4" data-name="4" transform="matrix(1, 0, 0, 1, 107.172852, -0.499992)">
+    <path id="Ext-4" data-name="Ext" class="cls-12" d="M399,294.007H439a5,5,0,0,1,5,5v19.986a5,5,0,0,1-5,5H399a5,5,0,0,1-5-5V299.007A5,5,0,0,1,399,294.007Z" style="fill: rgb(116, 116, 116); fill-rule: evenodd; stroke: rgb(98, 98, 98); stroke-linecap: round; stroke-linejoin: round; stroke-width: 0.88px;"/>
+    <path id="Int-4" data-name="Int" class="cls-13" d="M399,299.006H439v19.988H399V299.006Z" style="fill: rgb(86, 86, 86); fill-rule: evenodd; stroke: rgb(71, 71, 71); stroke-linecap: round; stroke-linejoin: round; stroke-width: 0.66px;"/>
+    <g id="Les_potites_vagues-4" data-name="Les potites vagues">
+      <path id="d-4" data-name="d" class="cls-10" d="M423.986,301.56s-2.388,3.4,0,6.654,0,6.726,0,6.726" style="fill: none; fill-rule: evenodd; stroke: rgb(255, 255, 255); stroke-linecap: round; stroke-linejoin: round; stroke-width: 0.88px;"/>
+      <path id="m-4" data-name="m" class="cls-10" d="M419.093,301.559s-2.388,3.4,0,6.653,0,6.726,0,6.726" style="fill: none; fill-rule: evenodd; stroke: rgb(255, 255, 255); stroke-linecap: round; stroke-linejoin: round; stroke-width: 0.88px;"/>
+      <path id="g-4" data-name="g" class="cls-10" d="M414.2,301.557s-2.388,3.4,0,6.654,0,6.726,0,6.726" style="fill: none; fill-rule: evenodd; stroke: rgb(255, 255, 255); stroke-linecap: round; stroke-linejoin: round; stroke-width: 0.88px;"/>
+      <path id="Barre-4" data-name="Barre" class="cls-11" d="M425.626,316.729l-14.257,0" style="fill: none; fill-rule: evenodd; stroke: rgb(255, 255, 255); stroke-linecap: round; stroke-linejoin: round; stroke-width: 0.66px;"/>
+    </g>
+  </g>
+  <g id="_5" data-name="5" transform="matrix(1, 0, 0, 1, 107.172852, -0.499992)">
+    <path id="Ext-5" data-name="Ext" class="cls-12" d="M455,294.007H495a5,5,0,0,1,5,5v19.986a5,5,0,0,1-5,5H455a5,5,0,0,1-5-5V299.007A5,5,0,0,1,455,294.007Z" style="fill: rgb(116, 116, 116); fill-rule: evenodd; stroke: rgb(98, 98, 98); stroke-linecap: round; stroke-linejoin: round; stroke-width: 0.88px;"/>
+    <path id="Int-5" data-name="Int" class="cls-13" d="M455,299.006H495v19.988H455V299.006Z" style="fill: rgb(86, 86, 86); fill-rule: evenodd; stroke: rgb(71, 71, 71); stroke-linecap: round; stroke-linejoin: round; stroke-width: 0.66px;"/>
+    <g id="Les_potites_vagues-5" data-name="Les potites vagues">
+      <path id="d-5" data-name="d" class="cls-10" d="M479.986,301.56s-2.388,3.4,0,6.654,0,6.726,0,6.726" style="fill: none; fill-rule: evenodd; stroke: rgb(255, 255, 255); stroke-linecap: round; stroke-linejoin: round; stroke-width: 0.88px;"/>
+      <path id="m-5" data-name="m" class="cls-10" d="M475.093,301.559s-2.388,3.4,0,6.653,0,6.726,0,6.726" style="fill: none; fill-rule: evenodd; stroke: rgb(255, 255, 255); stroke-linecap: round; stroke-linejoin: round; stroke-width: 0.88px;"/>
+      <path id="g-5" data-name="g" class="cls-10" d="M470.2,301.557s-2.388,3.4,0,6.654,0,6.726,0,6.726" style="fill: none; fill-rule: evenodd; stroke: rgb(255, 255, 255); stroke-linecap: round; stroke-linejoin: round; stroke-width: 0.88px;"/>
+      <path id="Barre-5" data-name="Barre" class="cls-11" d="M481.626,316.729l-14.257,0" style="fill: none; fill-rule: evenodd; stroke: rgb(255, 255, 255); stroke-linecap: round; stroke-linejoin: round; stroke-width: 0.66px;"/>
+    </g>
+  </g>
+  <g id="_6" data-name="6" transform="matrix(1, 0, 0, 1, 107.172852, -0.499992)">
+    <path id="Ext-6" data-name="Ext" class="cls-12" d="M512,294.007H552a5,5,0,0,1,5,5v19.986a5,5,0,0,1-5,5H512a5,5,0,0,1-5-5V299.007A5,5,0,0,1,512,294.007Z" style="fill: rgb(116, 116, 116); fill-rule: evenodd; stroke: rgb(98, 98, 98); stroke-linecap: round; stroke-linejoin: round; stroke-width: 0.88px;"/>
+    <path id="Int-6" data-name="Int" class="cls-13" d="M512,299.006H552v19.988H512V299.006Z" style="fill: rgb(86, 86, 86); fill-rule: evenodd; stroke: rgb(71, 71, 71); stroke-linecap: round; stroke-linejoin: round; stroke-width: 0.66px;"/>
+    <g id="Les_potites_vagues-6" data-name="Les potites vagues">
+      <path id="d-6" data-name="d" class="cls-10" d="M536.986,301.56s-2.388,3.4,0,6.654,0,6.726,0,6.726" style="fill: none; fill-rule: evenodd; stroke: rgb(255, 255, 255); stroke-linecap: round; stroke-linejoin: round; stroke-width: 0.88px;"/>
+      <path id="m-6" data-name="m" class="cls-10" d="M532.093,301.559s-2.388,3.4,0,6.653,0,6.726,0,6.726" style="fill: none; fill-rule: evenodd; stroke: rgb(255, 255, 255); stroke-linecap: round; stroke-linejoin: round; stroke-width: 0.88px;"/>
+      <path id="g-6" data-name="g" class="cls-10" d="M527.2,301.557s-2.388,3.4,0,6.654,0,6.726,0,6.726" style="fill: none; fill-rule: evenodd; stroke: rgb(255, 255, 255); stroke-linecap: round; stroke-linejoin: round; stroke-width: 0.88px;"/>
+      <path id="Barre-6" data-name="Barre" class="cls-11" d="M538.626,316.729l-14.257,0" style="fill: none; fill-rule: evenodd; stroke: rgb(255, 255, 255); stroke-linecap: round; stroke-linejoin: round; stroke-width: 0.66px;"/>
+    </g>
+  </g>
+  <g id="_7" data-name="7" transform="matrix(1, 0, 0, 1, 107.172852, -0.499992)">
+    <path id="Ext-7" data-name="Ext" class="cls-12" d="M570,294.007H610a5,5,0,0,1,5,5v19.986a5,5,0,0,1-5,5H570a5,5,0,0,1-5-5V299.007A5,5,0,0,1,570,294.007Z" style="fill: rgb(116, 116, 116); fill-rule: evenodd; stroke: rgb(98, 98, 98); stroke-linecap: round; stroke-linejoin: round; stroke-width: 0.88px;"/>
+    <path id="Int-7" data-name="Int" class="cls-13" d="M570,299.006H610v19.988H570V299.006Z" style="fill: rgb(86, 86, 86); fill-rule: evenodd; stroke: rgb(71, 71, 71); stroke-linecap: round; stroke-linejoin: round; stroke-width: 0.66px;"/>
+    <g id="Les_potites_vagues-7" data-name="Les potites vagues">
+      <path id="d-7" data-name="d" class="cls-10" d="M594.986,301.56s-2.388,3.4,0,6.654,0,6.726,0,6.726" style="fill: none; fill-rule: evenodd; stroke: rgb(255, 255, 255); stroke-linecap: round; stroke-linejoin: round; stroke-width: 0.88px;"/>
+      <path id="m-7" data-name="m" class="cls-10" d="M590.093,301.559s-2.388,3.4,0,6.653,0,6.726,0,6.726" style="fill: none; fill-rule: evenodd; stroke: rgb(255, 255, 255); stroke-linecap: round; stroke-linejoin: round; stroke-width: 0.88px;"/>
+      <path id="g-7" data-name="g" class="cls-10" d="M585.2,301.557s-2.388,3.4,0,6.654,0,6.726,0,6.726" style="fill: none; fill-rule: evenodd; stroke: rgb(255, 255, 255); stroke-linecap: round; stroke-linejoin: round; stroke-width: 0.88px;"/>
+      <path id="Barre-7" data-name="Barre" class="cls-11" d="M596.626,316.729l-14.257,0" style="fill: none; fill-rule: evenodd; stroke: rgb(255, 255, 255); stroke-linecap: round; stroke-linejoin: round; stroke-width: 0.66px;"/>
+    </g>
+  </g>
+  <g id="_8" data-name="8" transform="matrix(1, 0, 0, 1, 107.172852, -0.499992)">
+    <path id="Ext-8" data-name="Ext" class="cls-12" d="M628,294.007H668a5,5,0,0,1,5,5v19.986a5,5,0,0,1-5,5H628a5,5,0,0,1-5-5V299.007A5,5,0,0,1,628,294.007Z" style="fill: rgb(116, 116, 116); fill-rule: evenodd; stroke: rgb(98, 98, 98); stroke-linecap: round; stroke-linejoin: round; stroke-width: 0.88px;"/>
+    <path id="Int-8" data-name="Int" class="cls-13" d="M628,299.006H668v19.988H628V299.006Z" style="fill: rgb(86, 86, 86); fill-rule: evenodd; stroke: rgb(71, 71, 71); stroke-linecap: round; stroke-linejoin: round; stroke-width: 0.66px;"/>
+    <g id="Les_potites_vagues-8" data-name="Les potites vagues">
+      <path id="d-8" data-name="d" class="cls-10" d="M652.986,301.56s-2.388,3.4,0,6.654,0,6.726,0,6.726" style="fill: none; fill-rule: evenodd; stroke: rgb(255, 255, 255); stroke-linecap: round; stroke-linejoin: round; stroke-width: 0.88px;"/>
+      <path id="m-8" data-name="m" class="cls-10" d="M648.093,301.559s-2.388,3.4,0,6.653,0,6.726,0,6.726" style="fill: none; fill-rule: evenodd; stroke: rgb(255, 255, 255); stroke-linecap: round; stroke-linejoin: round; stroke-width: 0.88px;"/>
+      <path id="g-8" data-name="g" class="cls-10" d="M643.2,301.557s-2.388,3.4,0,6.654,0,6.726,0,6.726" style="fill: none; fill-rule: evenodd; stroke: rgb(255, 255, 255); stroke-linecap: round; stroke-linejoin: round; stroke-width: 0.88px;"/>
+      <path id="Barre-8" data-name="Barre" class="cls-11" d="M654.626,316.729l-14.257,0" style="fill: none; fill-rule: evenodd; stroke: rgb(255, 255, 255); stroke-linecap: round; stroke-linejoin: round; stroke-width: 0.66px;"/>
+    </g>
+  </g>
+  <g id="_1-2" data-name="1" transform="matrix(1, 0, 0, 1, 107.172852, -0.499992)">
+    <path id="Ext-9" data-name="Ext" class="cls-12" d="M765.011,132.993h19.978a5,5,0,0,1,5,5v40.014a5,5,0,0,1-5,5H765.011a5,5,0,0,1-5-5V137.993A5,5,0,0,1,765.011,132.993Z" style="fill: rgb(116, 116, 116); fill-rule: evenodd; stroke: rgb(98, 98, 98); stroke-linecap: round; stroke-linejoin: round; stroke-width: 0.88px;"/>
+    <path id="Int-9" data-name="Int" class="cls-13" d="M765,137.99h19.98v35H765v-35Z" style="fill: rgb(86, 86, 86); fill-rule: evenodd; stroke: rgb(71, 71, 71); stroke-linecap: round; stroke-linejoin: round; stroke-width: 0.66px;"/>
+    <g id="Les_potites_vagues-9" data-name="Les potites vagues">
+      <path id="d-9" data-name="d" class="cls-10" d="M769.071,165.751s2.657-5.158.006-10.1,0.006-10.21.006-10.21" style="fill: none; fill-rule: evenodd; stroke: rgb(255, 255, 255); stroke-linecap: round; stroke-linejoin: round; stroke-width: 0.88px;"/>
+      <path id="m-9" data-name="m" class="cls-10" d="M774.512,165.754s2.657-5.159.006-10.1,0.006-10.211.006-10.211" style="fill: none; fill-rule: evenodd; stroke: rgb(255, 255, 255); stroke-linecap: round; stroke-linejoin: round; stroke-width: 0.88px;"/>
+      <path id="g-9" data-name="g" class="cls-10" d="M779.952,165.757s2.657-5.159.006-10.1,0.006-10.21.006-10.21" style="fill: none; fill-rule: evenodd; stroke: rgb(255, 255, 255); stroke-linecap: round; stroke-linejoin: round; stroke-width: 0.88px;"/>
+    </g>
+    <path id="Les_potits_ronds" data-name="Les potits ronds" class="cls-14" d="M767,176a2,2,0,1,1-2,2A2,2,0,0,1,767,176Zm0,0a2,2,0,1,1-2,2A2,2,0,0,1,767,176Zm8,0a2,2,0,1,1-2,2A2,2,0,0,1,775,176Zm0,0a2,2,0,1,1-2,2A2,2,0,0,1,775,176Zm8,0a2,2,0,1,1-2,2A2,2,0,0,1,783,176Zm0,0a2,2,0,1,1-2,2A2,2,0,0,1,783,176Z" style="fill: rgb(86, 86, 86); fill-rule: evenodd; stroke: rgb(76, 76, 76); stroke-linecap: round; stroke-linejoin: round; stroke-width: 0.88px;"/>
+  </g>
+  <g id="_2-2" data-name="2" transform="matrix(1, 0, 0, 1, 107.172852, -0.499992)">
+    <path id="Ext-10" data-name="Ext" class="cls-12" d="M765.011,70.994h19.978a5,5,0,0,1,5,5v40.014a5,5,0,0,1-5,5H765.011a5,5,0,0,1-5-5V75.994A5,5,0,0,1,765.011,70.994Z" style="fill: rgb(116, 116, 116); fill-rule: evenodd; stroke: rgb(98, 98, 98); stroke-linecap: round; stroke-linejoin: round; stroke-width: 0.88px;"/>
+    <path id="Int-10" data-name="Int" class="cls-13" d="M765,75.99h19.98v35H765v-35Z" style="fill: rgb(86, 86, 86); fill-rule: evenodd; stroke: rgb(71, 71, 71); stroke-linecap: round; stroke-linejoin: round; stroke-width: 0.66px;"/>
+    <g id="Les_potites_vagues-10" data-name="Les potites vagues">
+      <path id="d-10" data-name="d" class="cls-10" d="M769.071,103.751s2.657-5.158.006-10.1,0.006-10.21.006-10.21" style="fill: none; fill-rule: evenodd; stroke: rgb(255, 255, 255); stroke-linecap: round; stroke-linejoin: round; stroke-width: 0.88px;"/>
+      <path id="m-10" data-name="m" class="cls-10" d="M774.512,103.754s2.657-5.159.006-10.1,0.006-10.21.006-10.21" style="fill: none; fill-rule: evenodd; stroke: rgb(255, 255, 255); stroke-linecap: round; stroke-linejoin: round; stroke-width: 0.88px;"/>
+      <path id="g-10" data-name="g" class="cls-10" d="M779.952,103.757s2.657-5.159.006-10.1,0.006-10.21.006-10.21" style="fill: none; fill-rule: evenodd; stroke: rgb(255, 255, 255); stroke-linecap: round; stroke-linejoin: round; stroke-width: 0.88px;"/>
+    </g>
+    <path id="Les_potits_ronds-2" data-name="Les potits ronds" class="cls-14" d="M767,114a2,2,0,1,1-2,2A2,2,0,0,1,767,114Zm0,0a2,2,0,1,1-2,2A2,2,0,0,1,767,114Zm8,0a2,2,0,1,1-2,2A2,2,0,0,1,775,114Zm0,0a2,2,0,1,1-2,2A2,2,0,0,1,775,114Zm8,0a2,2,0,1,1-2,2A2,2,0,0,1,783,114Zm0,0a2,2,0,1,1-2,2A2,2,0,0,1,783,114Z" style="fill: rgb(86, 86, 86); fill-rule: evenodd; stroke: rgb(76, 76, 76); stroke-linecap: round; stroke-linejoin: round; stroke-width: 0.88px;"/>
+  </g>
+  <path fill-rule="evenodd" stroke="rgb(66, 129, 44)" stroke-width="1px" stroke-linecap="round" stroke-linejoin="round" fill="rgb(84, 166, 55)" d="M 866.996 100.449 C 864.235 100.449 861.996 98.21 861.996 95.449 C 861.996 92.688 864.235 90.449 866.996 90.449 C 869.757 90.449 871.996 92.688 871.996 95.449 C 871.996 98.21 869.757 100.449 866.996 100.449 Z"/>
+  <g id="_3-2" data-name="3" transform="matrix(1, 0, 0, 1, 107.172852, -0.499992)">
+    <path id="Ext-11" data-name="Ext" class="cls-12" d="M765.011,10.994h19.978a5,5,0,0,1,5,5V56.007a5,5,0,0,1-5,5H765.011a5,5,0,0,1-5-5V15.994A5,5,0,0,1,765.011,10.994Z" style="fill: rgb(116, 116, 116); fill-rule: evenodd; stroke: rgb(98, 98, 98); stroke-linecap: round; stroke-linejoin: round; stroke-width: 0.88px;"/>
+    <path id="Int-11" data-name="Int" class="cls-13" d="M765,15.99h19.98v35H765v-35Z" style="fill: rgb(86, 86, 86); fill-rule: evenodd; stroke: rgb(71, 71, 71); stroke-linecap: round; stroke-linejoin: round; stroke-width: 0.66px;"/>
+    <g id="Les_potites_vagues-11" data-name="Les potites vagues">
+      <path id="d-11" data-name="d" class="cls-10" d="M769.071,43.751s2.657-5.159.006-10.1,0.006-10.21.006-10.21" style="fill: none; fill-rule: evenodd; stroke: rgb(255, 255, 255); stroke-linecap: round; stroke-linejoin: round; stroke-width: 0.88px;"/>
+      <path id="m-11" data-name="m" class="cls-10" d="M774.512,43.754s2.657-5.159.006-10.1,0.006-10.21.006-10.21" style="fill: none; fill-rule: evenodd; stroke: rgb(255, 255, 255); stroke-linecap: round; stroke-linejoin: round; stroke-width: 0.88px;"/>
+      <path id="g-11" data-name="g" class="cls-10" d="M779.952,43.757s2.657-5.159.006-10.1,0.006-10.21.006-10.21" style="fill: none; fill-rule: evenodd; stroke: rgb(255, 255, 255); stroke-linecap: round; stroke-linejoin: round; stroke-width: 0.88px;"/>
+    </g>
+    <path id="Les_potits_ronds-3" data-name="Les potits ronds" class="cls-14" d="M767,54a2,2,0,1,1-2,2A2,2,0,0,1,767,54Zm0,0a2,2,0,1,1-2,2A2,2,0,0,1,767,54Zm8,0a2,2,0,1,1-2,2A2,2,0,0,1,775,54Zm0,0a2,2,0,1,1-2,2A2,2,0,0,1,775,54Zm8,0a2,2,0,1,1-2,2A2,2,0,0,1,783,54Zm0,0a2,2,0,1,1-2,2A2,2,0,0,1,783,54Z" style="fill: rgb(86, 86, 86); fill-rule: evenodd; stroke: rgb(76, 76, 76); stroke-linecap: round; stroke-linejoin: round; stroke-width: 0.88px;"/>
+  </g>
+  <g id="Bouilloires" class="cls-15" transform="matrix(1, 0, 0, 1, 107.172852, -0.499992)" style="filter: url(#filter);">
+    <path id="_1-3" data-name="1" class="cls-16" d="M728.986,11.146c3.87-.124,5.457.375,6.39,1.743,0.653,0.959,2.415,12.776,1.355,16.265-0.556,1.646-2.371,2.693-3.872,3.679a12.511,12.511,0,0,1,0-1.743c1.113-.46,2.809-2,2.9-2.9,0.15-1.429-.352-13.773-2.13-15.3-0.678-.581-4.113-0.421-4.066-0.387A6.128,6.128,0,0,0,728.986,11.146Zm-21.687.194c3.9-.134,21.88-0.194,21.88-0.194s2.3,2.653,3.467,14.2c0.466,6.721,1.132,14.166-.368,15.231s-8.16.183-12.475,0.568c-6.19-.375-9.745.642-11.536-0.762-1.888-.533-0.581-13.512.968-23.623C707.872,13.926,707.409,12.989,707.3,11.339Z" style="fill: rgb(116, 116, 116); fill-rule: evenodd; stroke: rgb(76, 76, 76); stroke-linecap: round; stroke-linejoin: round; stroke-width: 0.88px;"/>
+    <path id="_2-3" data-name="2" class="cls-16" d="M684.986,11.146c3.87-.124,5.457.375,6.39,1.743,0.653,0.959,2.415,12.776,1.355,16.265-0.556,1.646-2.371,2.693-3.872,3.679a12.511,12.511,0,0,1,0-1.743c1.113-.46,2.809-2,2.9-2.9,0.15-1.429-.352-13.773-2.13-15.3-0.678-.581-4.113-0.421-4.066-0.387A6.128,6.128,0,0,0,684.986,11.146Zm-21.687.194c3.9-.134,21.88-0.194,21.88-0.194s2.3,2.653,3.467,14.2c0.466,6.721,1.132,14.166-.368,15.231s-8.16.183-12.475,0.568c-6.19-.375-9.745.642-11.536-0.762-1.888-.533-0.581-13.512.968-23.623C663.872,13.926,663.409,12.989,663.3,11.339Z" style="fill: rgb(116, 116, 116); fill-rule: evenodd; stroke: rgb(76, 76, 76); stroke-linecap: round; stroke-linejoin: round; stroke-width: 0.88px;"/>
+  </g>
+  <path fill-rule="evenodd" stroke="rgb(66, 129, 44)" stroke-width="1px" stroke-linecap="round" stroke-linejoin="round" fill="rgb(84, 166, 55)" d="M 784.198 45.567 C 781.437 45.567 779.198 43.328 779.198 40.567 C 779.198 37.806 781.437 35.567 784.198 35.567 C 786.959 35.567 789.198 37.806 789.198 40.567 C 789.198 43.328 786.959 45.567 784.198 45.567 Z"/>
+  <circle id="Four_1" data-name="Four 1" class="cls-17" cx="531.173" cy="469.5" r="5" style="fill: rgb(84, 166, 55); stroke: rgb(66, 129, 44); stroke-linecap: round; stroke-linejoin: round;"/>
+  <circle id="Four_2" data-name="Four 2" class="cls-17" cx="531.173" cy="413.5" r="5" style="fill: rgb(84, 166, 55); stroke: rgb(66, 129, 44); stroke-linecap: round; stroke-linejoin: round;"/>
+  <circle id="Four_3" data-name="Four 3" class="cls-17" cx="531.173" cy="356.5" r="5" style="fill: rgb(84, 166, 55); stroke: rgb(66, 129, 44); stroke-linecap: round; stroke-linejoin: round;"/>
+  <circle id="Four_4" data-name="Four 4" class="cls-17" cx="526.173" cy="323.5" r="5" style="fill: rgb(84, 166, 55); stroke: rgb(66, 129, 44); stroke-linecap: round; stroke-linejoin: round;"/>
+  <circle id="Four_5" data-name="Four 5" class="cls-17" cx="582.173" cy="323.5" r="5" style="fill: rgb(84, 166, 55); stroke: rgb(66, 129, 44); stroke-linecap: round; stroke-linejoin: round;"/>
+  <circle id="Four_6" data-name="Four 6" class="cls-17" cx="639.173" cy="323.5" r="5" style="fill: rgb(84, 166, 55); stroke: rgb(66, 129, 44); stroke-linecap: round; stroke-linejoin: round;"/>
+  <circle id="Four_7" data-name="Four 7" class="cls-17" cx="697.173" cy="323.5" r="5" style="fill: rgb(84, 166, 55); stroke: rgb(66, 129, 44); stroke-linecap: round; stroke-linejoin: round;"/>
+  <path id="Four_8" data-name="Four 8" class="cls-18" d="M 755.173 318.5 C 759.022 318.5 761.427 322.667 759.503 326 C 757.578 329.333 752.767 329.333 750.843 326 C 750.404 325.24 750.173 324.378 750.173 323.5 C 750.173 320.739 752.411 318.5 755.173 318.5 Z M 755.173 318.5 C 759.022 318.5 761.427 322.667 759.503 326 C 757.578 329.333 752.767 329.333 750.843 326 C 750.404 325.24 750.173 324.378 750.173 323.5 C 750.173 320.739 752.411 318.5 755.173 318.5 Z" style="fill: rgb(84, 166, 55); fill-rule: evenodd; stroke: rgb(66, 129, 44); stroke-linecap: round; stroke-linejoin: round;"/>
+  <path fill-rule="evenodd" stroke="rgb(66, 129, 44)" stroke-width="1px" stroke-linecap="round" stroke-linejoin="round" fill="rgb(84, 166, 55)" d="M 494.078 217.735 C 491.317 217.735 489.078 215.496 489.078 212.735 C 489.078 209.974 491.317 207.735 494.078 207.735 C 496.839 207.735 499.078 209.974 499.078 212.735 C 499.078 215.496 496.839 217.735 494.078 217.735 Z"/>
+  <path fill-rule="evenodd" stroke="rgb(66, 129, 44)" stroke-width="1px" stroke-linecap="round" stroke-linejoin="round" fill="rgb(84, 166, 55)" d="M 867.422 38.073 C 864.661 38.073 862.422 35.834 862.422 33.073 C 862.422 30.312 864.661 28.073 867.422 28.073 C 870.183 28.073 872.422 30.312 872.422 33.073 C 872.422 35.834 870.183 38.073 867.422 38.073 Z"/>
+  <path fill-rule="evenodd" stroke="rgb(66, 129, 44)" stroke-width="1px" stroke-linecap="round" stroke-linejoin="round" fill="rgb(84, 166, 55)" d="M 866.996 162.541 C 864.235 162.541 861.996 160.302 861.996 157.541 C 861.996 154.78 864.235 152.541 866.996 152.541 C 869.757 152.541 871.996 154.78 871.996 157.541 C 871.996 160.302 869.757 162.541 866.996 162.541 Z"/>
+  <path fill-rule="evenodd" stroke="rgb(66, 129, 44)" stroke-width="1px" stroke-linecap="round" stroke-linejoin="round" fill="rgb(84, 166, 55)" d="M 827.216 45.618 C 824.455 45.618 822.216 43.379 822.216 40.618 C 822.216 37.857 824.455 35.618 827.216 35.618 C 829.977 35.618 832.216 37.857 832.216 40.618 C 832.216 43.379 829.977 45.618 827.216 45.618 Z"/>
+  <path fill-rule="evenodd" stroke="rgb(66, 129, 44)" stroke-width="1px" stroke-linecap="round" stroke-linejoin="round" fill="rgb(84, 166, 55)" d="M 755.322 328.655 C 752.561 328.655 750.322 326.416 750.322 323.655 C 750.322 320.894 752.561 318.655 755.322 318.655 C 758.083 318.655 760.322 320.894 760.322 323.655 C 760.322 326.416 758.083 328.655 755.322 328.655 Z"/>
+</svg>

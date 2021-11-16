@@ -34,10 +34,10 @@ public class CoreController extends ControllerHR {
         Circles.put(13, Kettle_1);
         Circles.put(14, Kettle_2);
         Circles.put(15,Chocolate);
-        Circles.put(getCashier().get(0).getId(), Cashier_1);
-        if (getCashier().size() == 2){
+        //Circles.put(getCashier().get(0).getId(), Cashier_1);
+        /*if (getCashier().size() == 2){
             Circles.put(getCashier().get(1).getId(), Cashier_2);
-        }
+        }*/
     }
 
     @FXML
