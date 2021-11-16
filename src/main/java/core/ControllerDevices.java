@@ -136,7 +136,7 @@ public class ControllerDevices {
         //TODO everything
     }
 
-    //PizzaMethods
+    //PicardMethods
     public void picardPrep(){
         //TODO everything
     }
