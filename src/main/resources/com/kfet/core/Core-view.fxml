@@ -11,7 +11,7 @@
               <MenuItem mnemonicParsing="false" text="Close" />
           </Menu>
           <Menu mnemonicParsing="false" text="Edit">
-              <MenuItem mnemonicParsing="false" text="Delete" />
+              <MenuItem mnemonicParsing="false" onAction="#transition" text="Delete" />
           </Menu>
           <Menu mnemonicParsing="false" text="Help">
               <MenuItem mnemonicParsing="false" text="About" />
@@ -39,4 +39,8 @@
       <Circle fx:id="Kettle_1" fill="#51c637" layoutX="809.0" layoutY="72.0" radius="7.0" stroke="#277235" strokeType="INSIDE" />
       <Circle fx:id="Kettle_2" fill="#51c637" layoutX="759.0" layoutY="72.0" radius="7.0" stroke="#277235" strokeType="INSIDE" />
       <Circle fx:id="Cashier_2" fill="#51c637" layoutX="433.0" layoutY="201.0" radius="7.0" stroke="#277235" strokeType="INSIDE" />
+    <ImageView fx:id="oute" fitHeight="50.0" fitWidth="68.0" layoutX="816.0" layoutY="530.0" pickOnBounds="true"
+               preserveRatio="true">
+        <Image url="@Sprites/outecuisine.png"/>
+    </ImageView>
 </Pane>

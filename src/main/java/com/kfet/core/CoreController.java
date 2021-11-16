@@ -1,9 +1,13 @@
 package com.kfet.core;
 
 import core.ControllerHR;
+import javafx.animation.Transition;
+import javafx.animation.TranslateTransition;
 import javafx.fxml.FXML;
+import javafx.scene.image.ImageView;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
+import javafx.util.Duration;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -15,6 +19,12 @@ public class CoreController extends ControllerHR {
 
     @FXML
     private Map<Integer, Circle> Circles = new HashMap<>();
+
+    @FXML
+    private ImageView oute = new ImageView();
+
+    @FXML
+    private TranslateTransition transition = new TranslateTransition();
 
     @FXML
     private void initialize() {
@@ -34,10 +44,10 @@ public class CoreController extends ControllerHR {
         Circles.put(13, Kettle_1);
         Circles.put(14, Kettle_2);
         Circles.put(15,Chocolate);
-        Circles.put(getCashier().get(0).getId(), Cashier_1);
+        /*Circles.put(getCashier().get(0).getId(), Cashier_1);
         if (getCashier().size() == 2){
             Circles.put(getCashier().get(1).getId(), Cashier_2);
-        }
+        }*/
     }
 
     @FXML
@@ -223,6 +233,23 @@ public class CoreController extends ControllerHR {
                 Kettle_2.setStroke(Color.rgb(39,114,53));
                 break;
         }*/
+    }
+
+    @FXML
+    protected  void transition(){
+        transition(oute,-125,-100, 7);
+
+    }
+
+    @FXML
+    protected  void transition(ImageView sprite, int X, int Y, int device){
+        transition.setDuration(Duration.seconds(1.5));
+        transition.setToX(X);
+        transition.setToY(Y);
+        transition.setNode(sprite);
+        transition.playFromStart();
+        transition.setOnFinished(event -> notFree(device));
+
     }
 
 }
