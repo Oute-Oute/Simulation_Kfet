@@ -19,6 +19,10 @@ public class WaitingList {
         return postOrder;
     }
 
+    /**
+     * Search what part of the customer's order can be prepared depending on the different free devices
+     * @param customer
+     */
     public void searchGlobal(Customer customer){
         ControllerDevices devices = new ControllerDevices();
         boolean found = false;
@@ -49,6 +53,10 @@ public class WaitingList {
         }
     }
 
+    /**
+     * Search if the customer ordered a pizza and if an oven is free to start the preparation
+     * @param customer
+     */
     public void searchPizza(Customer customer) {
         ControllerDevices devices = new ControllerDevices();
 

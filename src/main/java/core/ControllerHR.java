@@ -1,7 +1,6 @@
 package core;
 
-import com.kfet.core.CoreController;
-
+import java.lang.reflect.Method;
 import java.util.ArrayList;
 import java.util.HashMap;
 
@@ -76,8 +75,8 @@ public class ControllerHR extends WaitingList {
      * Event arrivée d'un client
      * @param customer client
      */
-    public void newCustomer(Customer customer){
-        int time = 60;
+    public void newCustomer(Customer customer) throws ClassNotFoundException, NoSuchMethodException {
+        int time = 60; //le temps que met cet event à se réaliser
         int i = 0;
         boolean found = false;
 
@@ -99,7 +98,27 @@ public class ControllerHR extends WaitingList {
             //On set le temps à attendre
             time += customer.getPaymentDuration();
 
-            //TODO: Attendre time secondes puis appeler fin de paiement
+
+            //on définit les différents éléments de la méthode à appeler pour créer l'event
+            //Nom de la méthode et type de ses arguments
+            String name = "endPayment";
+            String param1 = "Customer";
+            String param2 = "core.Kfetier";
+
+            //mettre les types des arguments dans un array de type Class
+            Class[] args = new Class[2];
+            args[1] = Class.forName(param1);
+            args[2] = Class.forName(param2);
+
+            //sauvegarder les paramètres à donner à la méthode quand on l'appelera
+            ArrayList<Object> parameters = new ArrayList<>();
+            parameters.add(customer);
+            parameters.add(cashier.get(i));
+
+            //Créer la méthode et créer l'event pour l'ajouter à la liste d'event à lancer
+            Method method = getClass().getMethod(name, args);
+            new Event(Event.getCurrentTime()+time, method, parameters).addEvent();
+
         }
         else {
             //Le client est ajouté à la liste d'attente pré order
@@ -112,7 +131,7 @@ public class ControllerHR extends WaitingList {
      * @param customer client en train de payer
      * @param cashier caissier encaissant le client
      */
-    public void endPayment(Customer customer, Kfetier cashier ){
+    public void endPayment(Customer customer, Kfetier cashier ) throws ClassNotFoundException, NoSuchMethodException {
 
         //Libère le caissier
         cashier.setFree(true);
