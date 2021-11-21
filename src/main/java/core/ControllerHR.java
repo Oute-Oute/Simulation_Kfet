@@ -4,16 +4,17 @@ import java.lang.reflect.Method;
 import java.util.ArrayList;
 import java.util.HashMap;
 
-public class ControllerHR extends WaitingList {
+public final class ControllerHR{
 
     private int nbCashier, nbCooks, nbkfetiers;
+    private static ControllerHR controllerHRInstance = new ControllerHR();
 
     private ArrayList<Kfetier> cashier;
     private ArrayList<Kfetier> cooks;
     private ArrayList<Kfetier> kfetiers;
     private HashMap<String, Integer> freeKfetier;
 
-    public ControllerHR(){
+    private ControllerHR(){
         int id = 20; //TODO: vérifier si y a pas un pb
 
         //Cashier
@@ -41,6 +42,14 @@ public class ControllerHR extends WaitingList {
         freeKfetier.put("Cashier", nbCashier);
         freeKfetier.put("Cook", nbCooks);
         freeKfetier.put("Kfetier", nbkfetiers);
+    }
+
+    public static ControllerHR getInstance(){
+        if (controllerHRInstance == null){
+            controllerHRInstance = new ControllerHR();
+        }
+
+        return controllerHRInstance;
     }
 
     public ArrayList<Kfetier> getCashier() {
@@ -99,30 +108,25 @@ public class ControllerHR extends WaitingList {
             time += customer.getPaymentDuration();
 
 
-            //on définit les différents éléments de la méthode à appeler pour créer l'event
-            //Nom de la méthode et type de ses arguments
-            String name = "endPayment";
-            String param1 = "Customer";
-            String param2 = "core.Kfetier";
-
+            //On définit les différents éléments de la méthode à appeler pour créer l'event
             //mettre les types des arguments dans un array de type Class
             Class[] args = new Class[2];
-            args[1] = Class.forName(param1);
-            args[2] = Class.forName(param2);
+            args[1] = Class.forName("Customer");
+            args[2] = Class.forName("core.Kfetier");
 
             //sauvegarder les paramètres à donner à la méthode quand on l'appelera
             ArrayList<Object> parameters = new ArrayList<>();
-            parameters.add(customer);
-            parameters.add(cashier.get(i));
+            parameters.add(customer);           //Bien du type dans args[1]
+            parameters.add(cashier.get(i));     //Bien du type dans args[2]
 
             //Créer la méthode et créer l'event pour l'ajouter à la liste d'event à lancer
-            Method method = getClass().getMethod(name, args);
+            Method method = getClass().getMethod("endPayment", args);
             new Event(Event.getCurrentTime()+time, method, parameters).addEvent();
 
         }
         else {
             //Le client est ajouté à la liste d'attente pré order
-            getPreOrder().add(customer);
+            WaitingList.getInstance().getPreOrder().add(customer);
         }
     }
 
@@ -141,21 +145,21 @@ public class ControllerHR extends WaitingList {
         preparationOrder(customer);
 
         //Retire le client de la pré order
-        getPreOrder().remove(customer);
+        WaitingList.getInstance().getPreOrder().remove(customer);
 
         //Si la liste Pré Order n'est pas vide, on appelle le client suivant
-        if( !getPreOrder().isEmpty() ){
-            newCustomer(getPreOrder().get(0));
+        if( !WaitingList.getInstance().getPreOrder().isEmpty() ){
+            newCustomer(WaitingList.getInstance().getPreOrder().get(0));
         }
 
     }
 
     public void preparationOrder(Customer customer){
         //On ajoute le client à la liste d'attente post order
-        getPostOrder().add(customer);
+        WaitingList.getInstance().getPostOrder().add(customer);
 
         //on cherche si quelque chose est dispo pour lancer sa commande, sinon l'algo le trouvera plus tard
-        searchGlobal(customer);
-        searchPizza(customer);
+        WaitingList.getInstance().searchGlobal(customer);
+        WaitingList.getInstance().searchPizza(customer);
     }
 }

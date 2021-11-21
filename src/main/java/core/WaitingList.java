@@ -2,15 +2,24 @@ package core;
 
 import java.util.ArrayList;
 
-public class WaitingList {
+public final class WaitingList {
+
+    private static WaitingList waitingListInstance = new WaitingList();
     private ArrayList<Customer> preOrder;
     private ArrayList<Customer> postOrder;
 
-    public WaitingList() {
+    private WaitingList() {
         preOrder = new ArrayList<>();
         postOrder = new ArrayList<>();
     }
 
+    public static WaitingList getInstance(){
+        if(waitingListInstance == null){
+            waitingListInstance = new WaitingList();
+        }
+
+        return waitingListInstance;
+    }
     public ArrayList<Customer> getPreOrder() {
         return preOrder;
     }
@@ -24,29 +33,29 @@ public class WaitingList {
      * @param customer
      */
     public void searchGlobal(Customer customer){
-        ControllerDevices devices = new ControllerDevices();
+        ControllerDevices devicesInstance = ControllerDevices.getInstance();
         boolean found = false;
 
         if(customer.getOrder().getPicard() > 0){
-            if (devices.getFreeDevices().get("Microwave") > 0){
+            if (devicesInstance.getFreeDevices().get("Microwave") > 0){
                 found = true;
                 //TODO: appeler debut commande avec paramètre client
             }
         }
         else if(customer.getOrder().getRamen() > 0 && !found){
-            if (devices.getFreeDevices().get("Kettle") > 0){
+            if (devicesInstance.getFreeDevices().get("Kettle") > 0){
                 found = true;
                 //TODO: appeler debut commande avec paramètre client
             }
         }
         else if(customer.getOrder().getCoffee() > 0 && !found){
-            if (devices.getFreeDevices().get("Cafetiere") > 0){
+            if (devicesInstance.getFreeDevices().get("Cafetiere") > 0){
                 found = true;
                 //TODO: appeler debut commande avec paramètre client
             }
         }
         else if(customer.getOrder().getChocolate() > 0 && !found){
-            if (devices.getFreeDevices().get("Cocoa") > 0){
+            if (devicesInstance.getFreeDevices().get("Cocoa") > 0){
                 found = true;
                 //TODO: appeler debut commande avec paramètre client
             }
@@ -58,10 +67,10 @@ public class WaitingList {
      * @param customer
      */
     public void searchPizza(Customer customer) {
-        ControllerDevices devices = new ControllerDevices();
+        ControllerDevices devicesInstance = ControllerDevices.getInstance();
 
         if(customer.getOrder().getNbPizza() > 0){
-            if(devices.getFreeDevices().get("Oven") > 0){
+            if(devicesInstance.getFreeDevices().get("Oven") > 0){
                 //TODO: appeler debut commande avec paramètre client
             }
         }

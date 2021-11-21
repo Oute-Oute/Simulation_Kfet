@@ -65,13 +65,12 @@ public class Event {
         while(incomingEvent.get(i).startingTime <= currentTime){
             Event evenement = incomingEvent.get(i);
             evenement.event.invoke(evenement.getClass(),evenement.parameters);
-            //TODO: appeler la methode dans evenement avec comme arguments les trucs dans parameters
             i++;
         }
 
     }
 
-    public void passingTime(){
+    public void passingTime() throws InvocationTargetException, IllegalAccessException {
         Duration tick_Duration = Duration.ofMillis(84);     // Une seconde dans la simulation = 0.084 secondes IRL pour que le service de 2h soit simulé en 10 minutes
         Clock clock = Clock.systemUTC();
         Clock newClock = Clock.tick(clock, tick_Duration);
@@ -79,8 +78,8 @@ public class Event {
         while(currentTime != 7200)
         if (!clock.equals(newClock)){
             clock = newClock;
+            startingEvent(currentTime);
             currentTime += 1;
-            //lancer algo recherche
         }
     }
 

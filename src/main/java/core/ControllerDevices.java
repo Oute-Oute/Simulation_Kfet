@@ -3,9 +3,10 @@ package core;
 import java.util.ArrayList;
 import java.util.HashMap;
 
-public class ControllerDevices {
+public final class ControllerDevices {
 
     private static int NB_OVEN = 8, NB_MICROWAVE = 3, NB_CAFETIERE = 1, NB_KETTLE = 1, NB_COCOA = 1;
+    private static ControllerDevices controllerDevicesInstance = new ControllerDevices();
 
     private ArrayList<Device> oven;
     private ArrayList<Device> microwave;
@@ -14,7 +15,7 @@ public class ControllerDevices {
     private ArrayList<Device> cocoa;
     private HashMap<String, Integer> freeDevices;
 
-    public ControllerDevices(){
+    private ControllerDevices(){
         int id = 0;
 
         //Oven
@@ -58,6 +59,13 @@ public class ControllerDevices {
         freeDevices.put("Cafetiere",NB_CAFETIERE);
         freeDevices.put("Kettle",NB_KETTLE);
         freeDevices.put("Cocoa",NB_COCOA);
+    }
+
+    public static ControllerDevices getInstance(){
+        if (controllerDevicesInstance == null){
+            controllerDevicesInstance = new ControllerDevices();
+        }
+        return controllerDevicesInstance;
     }
 
     public ArrayList<Device> getOven() {

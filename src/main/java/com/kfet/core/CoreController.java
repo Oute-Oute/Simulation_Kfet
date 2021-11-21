@@ -12,7 +12,7 @@ import javafx.util.Duration;
 import java.util.HashMap;
 import java.util.Map;
 
-public class CoreController extends ControllerHR {
+public class CoreController {
 
     @FXML
     private Circle Cashier_1, Cashier_2, Oven_1, Oven_2, Oven_3, Oven_4, Oven_5, Oven_6, Oven_7, Oven_8, MO_1, MO_2, MO_3, Coffee_1, Coffee_2, Chocolate, Kettle_1, Kettle_2;
