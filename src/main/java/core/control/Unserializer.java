@@ -1,4 +1,4 @@
-package core;
+package core.control;
 
 import java.io.EOFException;
 import java.io.File;  // Import the File class

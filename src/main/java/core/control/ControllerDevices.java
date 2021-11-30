@@ -1,4 +1,6 @@
-package core;
+package core.control;
+
+import core.Device;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -112,58 +114,28 @@ public final class ControllerDevices {
         return freeDevices;
     }
 
-
-
-    //Coffee Methods
-    public void coffeePrep(){
-        //TODO everything
+    /**
+     * Cherche quel four est actuellement libre
+     * Cette méthode ne doit être lancée qu'après s'être assuré qu'il y avait un four de libre
+     * TODO: ptetre une exception du coup
+     * @return la position du four libre dans son arraylist
+     */
+    public int whichOven(){
+        int i = 0;
+        boolean found = false;
+        //On cherche quel four est libre
+        while (i < oven.size() && !found) {
+            if (oven.get(i).getFree()) {
+                //On passe le four à occupé et on change le nb de fours libres
+                oven.get(i).setFree(false);
+                freeDevices.replace("Oven", freeDevices.get("Oven") - 1);
+                found = true;
+            } else {
+                i++;
+            }
+        }
+        return i;
     }
 
-    public void coffeeEnd(){
-        //TODO everything
-    }
-    //Chocolate Methods
-    public void chocolatePrep(){
-        //TODO everything
-    }
-
-    public void chocolateEnd(){
-        //TODO everything
-    }
-
-    //Ramen Methods
-    public void boilingWaterStart(){
-        //TODO everything
-    }
-
-    public void boilingWaterEnd(){
-        //TODO everything
-    }
-
-    public void ramenEnd(){
-        //TODO everything
-    }
-
-    //PicardMethods
-    public void picardPrep(){
-        //TODO everything
-    }
-    public void picardCooking(){
-        //TODO everything
-    }
-    public void picardEnd(){
-        //TODO everything
-    }
-
-    //PizzaMethods
-    public void pizzaPrep(){
-        //TODO everything
-    }
-    public void pizzaCooking(){
-        //TODO everything
-    }
-    public void pizzaEnd(){
-        //TODO everything
-    }
 }
 

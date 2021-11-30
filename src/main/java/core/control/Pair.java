@@ -1,5 +1,5 @@
 
-package core;
+package core.control;
 
 /**
  * The Class Pair.

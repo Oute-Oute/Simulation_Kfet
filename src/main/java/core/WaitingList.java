@@ -1,5 +1,9 @@
 package core;
 
+import core.control.ControllerDevices;
+import core.control.scheduler;
+import core.pizza.preparationPizza;
+
 import java.util.ArrayList;
 
 public final class WaitingList {
@@ -63,7 +67,7 @@ public final class WaitingList {
     }
 
     /**
-     * Search if the customer ordered a pizza and if an oven is free to start the preparation
+     * Search if the customer ordered a pizza and if an oven is free to start the preparationPizza
      * @param customer
      */
     public void searchPizza(Customer customer) {
@@ -71,7 +75,7 @@ public final class WaitingList {
 
         if(customer.getOrder().getNbPizza() > 0){
             if(devicesInstance.getFreeDevices().get("Oven") > 0){
-                //TODO: appeler debut commande avec paramètre client
+                scheduler.getInstance().addEvent(new preparationPizza(customer, scheduler.getInstance().getCurrentTime()));
             }
         }
     }
