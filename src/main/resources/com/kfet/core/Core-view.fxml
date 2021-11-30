@@ -1,11 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.*?>
-<?import javafx.scene.image.*?>
-<?import javafx.scene.layout.*?>
-<?import javafx.scene.shape.*?>
+<?import javafx.scene.control.Menu?>
+<?import javafx.scene.control.MenuBar?>
+<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.shape.Circle?>
 
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="584.0" prefWidth="895.0" xmlns="http://javafx.com/javafx/11.0.2" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.kfet.core.CoreController">
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="584.0" prefWidth="895.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.kfet.core.CoreController">
       <MenuBar prefHeight="25.0" prefWidth="895.0">
           <Menu mnemonicParsing="false" text="File">
               <MenuItem mnemonicParsing="false" text="Close" />
@@ -18,7 +21,7 @@
           </Menu>
       </MenuBar>
       <ImageView fitHeight="595.0" fitWidth="897.0" layoutY="26.0" pickOnBounds="true" preserveRatio="true">
-            <Image url="@background.png" />
+            <Image url="@Sprites/background.png" />
       </ImageView>
 
       <Circle fx:id="Cashier_1" fill="#51c637" layoutX="434.0" layoutY="265.0" radius="7.0" stroke="#277235" strokeType="INSIDE" />
@@ -38,9 +41,33 @@
       <Circle fx:id="MO_3" fill="#51c637" layoutX="850.0" layoutY="65.0" radius="7.0" stroke="#277235" strokeType="INSIDE" />
       <Circle fx:id="Kettle_1" fill="#51c637" layoutX="809.0" layoutY="72.0" radius="7.0" stroke="#277235" strokeType="INSIDE" />
       <Circle fx:id="Kettle_2" fill="#51c637" layoutX="759.0" layoutY="72.0" radius="7.0" stroke="#277235" strokeType="INSIDE" />
-      <Circle fx:id="Cashier_2" fill="#51c637" layoutX="433.0" layoutY="201.0" radius="7.0" stroke="#277235" strokeType="INSIDE" />
-    <ImageView fx:id="oute" fitHeight="50.0" fitWidth="68.0" layoutX="816.0" layoutY="530.0" pickOnBounds="true"
-               preserveRatio="true">
-        <Image url="@Sprites/outecuisine.png"/>
+    <ImageView fx:id="Cooker1" fitHeight="68.0" fitWidth="68.0" layoutX="809.0" layoutY="502.0" pickOnBounds="true" preserveRatio="true">
+        <Image url="@Sprites/Marcorentin.png" />
     </ImageView>
+      <Circle fx:id="Cashier_2" fill="#51c637" layoutX="433.0" layoutY="201.0" radius="7.0" stroke="#277235" strokeType="INSIDE" />
+   <ImageView fx:id="Cooker2" fitHeight="68.0" fitWidth="68.0" layoutX="734.0" layoutY="502.0" pickOnBounds="true" preserveRatio="true">
+      <image>
+         <Image url="@Sprites/Marcorentin.png" />
+      </image>
+   </ImageView>
+   <ImageView fx:id="CoffeeMaker1" fitHeight="68.0" fitWidth="68.0" layoutX="656.0" layoutY="24.0" pickOnBounds="true" preserveRatio="true">
+      <image>
+         <Image url="@Sprites/Pepene.png" />
+      </image>
+   </ImageView>
+   <ImageView fx:id="CoffeeMaker2" fitHeight="68.0" fitWidth="68.0" layoutX="589.0" layoutY="24.0" pickOnBounds="true" preserveRatio="true">
+      <image>
+         <Image url="@Sprites/Pepene.png" />
+      </image>
+   </ImageView>
+   <ImageView fx:id="CoffeeMaker21" fitHeight="68.0" fitWidth="68.0" layoutX="486.0" layoutY="231.0" pickOnBounds="true" preserveRatio="true">
+      <image>
+         <Image url="@Sprites/Hogan.png" />
+      </image>
+   </ImageView>
+   <ImageView fx:id="CoffeeMaker211" fitHeight="68.0" fitWidth="68.0" layoutX="486.0" layoutY="167.0" pickOnBounds="true" preserveRatio="true">
+      <image>
+         <Image url="@Sprites/Hogan.png" />
+      </image>
+   </ImageView>
 </Pane>

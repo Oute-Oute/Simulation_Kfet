@@ -19,6 +19,7 @@ public class CoreApplication extends Application {
         stage.setTitle("Simulation");
         stage.getIcons().add(new Image(GeneratorApplication.class.getResourceAsStream("icon.png")));
         stage.setScene(scene);
+        stage.setResizable(false);
         stage.show();
     }
 

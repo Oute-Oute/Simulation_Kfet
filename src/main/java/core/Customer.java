@@ -16,14 +16,14 @@ public class Customer implements Serializable {
     private int paymentDuration; //Cpt = 3s, Lydia rapide = 7s, Liquide = 15s, Lydia lent = 20s
     private int arrivalTime;
 
-    public Customer(double proba,int fast,int cash, int slow, int cpt, int ArrivalTime){
+    public Customer(double probaKfetier,int fast,int cash, int slow, int cpt, int ArrivalTime){
         fastLydiaPayement=fast;
         cashPayement=cash;
         slowLydiaPayement=slow;
         cptPayement=cpt;
         Random r = new Random();
 
-        kfetier = !(r.nextDouble() > proba);
+        kfetier = !(r.nextDouble() > probaKfetier);
 
         if (kfetier){
             paymentDuration = cptPayement;
@@ -32,7 +32,7 @@ public class Customer implements Serializable {
         }
         order = new Order();
 
-        //TODO: Initialiser arrivalTime
+
     }
 
     public Boolean getKfetier() {

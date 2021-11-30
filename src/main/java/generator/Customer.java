@@ -14,7 +14,9 @@ public class Customer implements Serializable {
     private Boolean kfetier;
     private Order order;
     private int paymentDuration; //Cpt = 3s, Lydia rapide = 7s, Liquide = 15s, Lydia lent = 20s
-    private int arrivalTime;
+    private int arrivalTick; //tick de l'heure d'arrivée
+    private int arrivalTime; //minute de l'heure d'arrivée (on considère 12h30 =0)
+    private int tpm = 60;//ticks par minutes pour la génération temporelle
 
     public Customer(double proba,int fast,int cash, int slow, int cpt, int ArrivalTime){
         fastLydiaPayement=fast;
@@ -31,8 +33,11 @@ public class Customer implements Serializable {
             paymentDuration = payement.get(r.nextInt(payement.size()));
         }
         order = new Order();
+        arrivalTick = Math.abs((int) (2000*r.nextGaussian()));
+        arrivalTime = arrivalTick/tpm;
+        System.out.println(arrivalTime);
+        //TODO gerer client tard
 
-        //TODO: Initialiser arrivalTime
     }
 
     public Boolean getKfetier() {

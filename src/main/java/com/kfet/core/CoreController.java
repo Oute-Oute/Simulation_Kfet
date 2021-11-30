@@ -1,6 +1,9 @@
 package com.kfet.core;
 
 import core.ControllerHR;
+import core.Device;
+import core.Pair;
+import javafx.animation.PauseTransition;
 import javafx.animation.Transition;
 import javafx.animation.TranslateTransition;
 import javafx.fxml.FXML;
@@ -19,12 +22,14 @@ public class CoreController {
 
     @FXML
     private Map<Integer, Circle> Circles = new HashMap<>();
+    private Map<Integer, Pair<Double, Double>> Coordinates=new HashMap<Integer, Pair<Double, Double>>();
 
     @FXML
-    private ImageView oute = new ImageView();
+    private ImageView Cooker2 = new ImageView();
 
     @FXML
     private TranslateTransition transition = new TranslateTransition();
+
 
     @FXML
     private void initialize() {
@@ -48,204 +53,53 @@ public class CoreController {
         if (getCashier().size() == 2){
             Circles.put(getCashier().get(1).getId(), Cashier_2);
         }*/
+        Coordinates.put(0,new Pair(475.0,520.0));
+        Coordinates.put(1,new Pair(475.0,455.0));
+        Coordinates.put(2,new Pair(475.0,400.0));
+        Coordinates.put(3,new Pair(475.0,400.0));
+        Coordinates.put(4,new Pair(500.0,400.0));
+        Coordinates.put(5,new Pair(565.0,400.0));
+        Coordinates.put(6,new Pair(630.0,400.0));
+        Coordinates.put(7,new Pair(695.0,400.0));
+        Coordinates.put(8,new Pair(775.0,170.0));
+        Coordinates.put(9,new Pair(775.0,110.0));
+        Coordinates.put(10,new Pair(775.0,90.0));
+        Coordinates.put(11,new Pair(600.0,280.0));
+        Coordinates.put(12,new Pair(600.0,280.0));
+        Coordinates.put(13,new Pair(775.0,90.0));
+        Coordinates.put(14,new Pair(725.0,90.0));
+        Coordinates.put(15,new Pair(600.0,280.0));
+
+    //TODO verifier que tout les emplacements ont leur coords
     }
 
     @FXML
     protected void notFree(int id){
         Circles.get(id).setFill(Color.rgb(196,55,55));
         Circles.get(id).setStroke(Color.rgb(112,39,39));
-        /* switch (name){
-            case "Cashier":
-                Cashier.setFill(Color.rgb(196,55,55));
-                Cashier.setStroke(Color.rgb(112,39,39));
-                break;
 
-            case "Oven_1":
-                Oven_1.setFill(Color.rgb(196,55,55));
-                Oven_1.setStroke(Color.rgb(112,39,39));
-                break;
-
-            case "Oven_2":
-                Oven_2.setFill(Color.rgb(196,55,55));
-                Oven_2.setStroke(Color.rgb(112,39,39));
-                break;
-
-            case "Oven_3":
-                Oven_3.setFill(Color.rgb(196,55,55));
-                Oven_3.setStroke(Color.rgb(112,39,39));
-                break;
-
-            case "Oven_4":
-                Oven_4.setFill(Color.rgb(196,55,55));
-                Oven_4.setStroke(Color.rgb(112,39,39));
-                break;
-
-            case "Oven_5":
-                Oven_5.setFill(Color.rgb(196,55,55));
-                Oven_5.setStroke(Color.rgb(112,39,39));
-                break;
-
-            case "Oven_6":
-                Oven_6.setFill(Color.rgb(196,55,55));
-                Oven_6.setStroke(Color.rgb(112,39,39));
-                break;
-
-            case "Oven_7":
-                Oven_7.setFill(Color.rgb(196,55,55));
-                Oven_7.setStroke(Color.rgb(112,39,39));
-                break;
-
-            case "Oven_8":
-                Oven_8.setFill(Color.rgb(196,55,55));
-                Oven_8.setStroke(Color.rgb(112,39,39));
-                break;
-
-            case "MO_1":
-                MO_1.setFill(Color.rgb(196,55,55));
-                MO_1.setStroke(Color.rgb(112,39,39));
-                break;
-
-            case "MO_2":
-                MO_2.setFill(Color.rgb(196,55,55));
-                MO_2.setStroke(Color.rgb(112,39,39));
-                break;
-
-            case "MO_3":
-                MO_3.setFill(Color.rgb(196,55,55));
-                MO_3.setStroke(Color.rgb(112,39,39));
-                break;
-
-            case "Coffee_1":
-                Coffee_1.setFill(Color.rgb(196,55,55));
-                Coffee_1.setStroke(Color.rgb(112,39,39));
-                break;
-
-            case "Coffee_2":
-                Coffee_2.setFill(Color.rgb(196,55,55));
-                Coffee_2.setStroke(Color.rgb(112,39,39));
-                break;
-
-            case "Chocolate":
-                Chocolate.setFill(Color.rgb(196,55,55));
-                Chocolate.setStroke(Color.rgb(112,39,39));
-                break;
-
-            case "Kettle_1":
-                Kettle_1.setFill(Color.rgb(196,55,55));
-                Kettle_1.setStroke(Color.rgb(112,39,39));
-                break;
-
-            case "Kettle_2":
-                Kettle_2.setFill(Color.rgb(196,55,55));
-                Kettle_2.setStroke(Color.rgb(112,39,39));
-                break;
-
-        }*/
     }
 
     @FXML
     protected void free(int id){
         Circles.get(id).setFill(Color.rgb(81,198,55));
         Circles.get(id).setStroke(Color.rgb(39,114,53));
-        /* switch (name){
-            case "Cashier":
-                Cashier.setFill(Color.rgb(81,198,55));
-                Cashier.setStroke(Color.rgb(39,114,53));
-                break;
 
-            case "Oven_1":
-                Oven_1.setFill(Color.rgb(81,198,55));
-                Oven_1.setStroke(Color.rgb(39,114,53));
-                break;
-
-            case "Oven_2":
-                Oven_2.setFill(Color.rgb(81,198,55));
-                Oven_2.setStroke(Color.rgb(39,114,53));
-                break;
-
-            case "Oven_3":
-                Oven_3.setFill(Color.rgb(81,198,55));
-                Oven_3.setStroke(Color.rgb(39,114,53));
-                break;
-
-            case "Oven_4":
-                Oven_4.setFill(Color.rgb(81,198,55));
-                Oven_4.setStroke(Color.rgb(39,114,53));
-                break;
-
-            case "Oven_5":
-                Oven_5.setFill(Color.rgb(81,198,55));
-                Oven_5.setStroke(Color.rgb(39,114,53));
-                break;
-
-            case "Oven_6":
-                Oven_6.setFill(Color.rgb(81,198,55));
-                Oven_6.setStroke(Color.rgb(39,114,53));
-                break;
-
-            case "Oven_7":
-                Oven_7.setFill(Color.rgb(81,198,55));
-                Oven_7.setStroke(Color.rgb(39,114,53));
-                break;
-
-            case "Oven_8":
-                Oven_8.setFill(Color.rgb(81,198,55));
-                Oven_8.setStroke(Color.rgb(39,114,53));
-                break;
-
-            case "MO_1":
-                MO_1.setFill(Color.rgb(81,198,55));
-                MO_1.setStroke(Color.rgb(39,114,53));
-                break;
-
-            case "MO_2":
-                MO_2.setFill(Color.rgb(81,198,55));
-                MO_2.setStroke(Color.rgb(39,114,53));
-                break;
-
-            case "MO_3":
-                MO_3.setFill(Color.rgb(81,198,55));
-                MO_3.setStroke(Color.rgb(39,114,53));
-                break;
-
-            case "Coffee_1":
-                Coffee_1.setFill(Color.rgb(81,198,55));
-                Coffee_1.setStroke(Color.rgb(39,114,53));
-                break;
-
-            case "Coffee_2":
-                Coffee_2.setFill(Color.rgb(81,198,55));
-                Coffee_2.setStroke(Color.rgb(39,114,53));
-                break;
-
-            case "Chocolate":
-                Chocolate.setFill(Color.rgb(81,198,55));
-                Chocolate.setStroke(Color.rgb(39,114,53));
-                break;
-
-            case "Kettle_1":
-                Kettle_1.setFill(Color.rgb(81,198,55));
-                Kettle_1.setStroke(Color.rgb(39,114,53));
-                break;
-
-            case "Kettle_2":
-                Kettle_2.setFill(Color.rgb(81,198,55));
-                Kettle_2.setStroke(Color.rgb(39,114,53));
-                break;
-        }*/
     }
 
     @FXML
     protected  void transition(){
-        transition(oute,-125,-100, 7);
+        transition(Cooker2,15);
+
 
     }
 
     @FXML
-    protected  void transition(ImageView sprite, int X, int Y, int device){
+    protected  void transition(ImageView sprite, int device){
+        Pair<Double,Double> Coords=Coordinates.get(device);
         transition.setDuration(Duration.seconds(1.5));
-        transition.setToX(X);
-        transition.setToY(Y);
+        transition.setToX(Coords.getL()-sprite.getLayoutX());
+        transition.setToY(Coords.getR()-sprite.getLayoutY());
         transition.setNode(sprite);
         transition.playFromStart();
         transition.setOnFinished(event -> notFree(device));
