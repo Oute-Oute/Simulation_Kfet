@@ -160,5 +160,28 @@ public final class ControllerDevices {
         return i;
     }
 
+    /**
+     * Cherche quelle cafetiere est actuellement libre
+     * Cette méthode ne doit être lancée qu'après s'être assuré qu'il y avait une cafetiere de libre
+     * TODO: ptetre une exception du coup
+     * @return la position de la cafetiere libre dans son arraylist
+     */
+    public int whichCafetiere(){
+        int i = 0;
+        boolean found = false;
+        //On cherche quelle cafetiere est libre
+        while (i < cafetiere.size() && !found) {
+            if (cafetiere.get(i).getFree()) {
+                //On passe la cafetiere à occupée et on change le nb de cafetiere libres
+                cafetiere.get(i).setFree(false);
+                freeDevices.replace("Cafetiere", freeDevices.get("Cafetiere") - 1);
+                found = true;
+            } else {
+                i++;
+            }
+        }
+        return i;
+    }
+
 }
 

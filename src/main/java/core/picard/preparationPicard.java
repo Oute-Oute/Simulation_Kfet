@@ -6,7 +6,7 @@ import core.Event;
 import core.Kfetier;
 import core.control.ControllerDevices;
 import core.control.ControllerHR;
-import core.control.scheduler;
+import core.control.Scheduler;
 
 public class preparationPicard extends Event {
     private Customer customer;
@@ -30,10 +30,10 @@ public class preparationPicard extends Event {
         customer.getOrder().setPicard(customer.getOrder().getPicard() - 1);
 
         //On set le temps à attendre
-        time += scheduler.getInstance().getCurrentTime();
+        time += Scheduler.getInstance().getCurrentTime();
 
-        //On ajoute au scheduler
-        scheduler.getInstance().addEvent(new cookingPicard(customer, kfetier, microwave, time));
+        //On ajoute au Scheduler
+        Scheduler.getInstance().addEvent(new cookingPicard(customer, kfetier, microwave, 0, time));
 
     }
 }

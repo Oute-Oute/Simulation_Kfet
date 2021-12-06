@@ -5,20 +5,20 @@ import java.time.Clock;
 import java.time.Duration;
 import java.util.ArrayList;
 
-public final class scheduler {
-    private static scheduler SchedulerInstance = new scheduler();
+public final class Scheduler {
+    private static Scheduler SchedulerInstance = new Scheduler();
 
     private ArrayList<Event> incomingEvent;
     private int currentTime; //Temps en secondes => simulation se finit au bout de 2h donc 7200 secondes
 
-    private scheduler(){
+    private Scheduler(){
         currentTime = 0;
         incomingEvent = new ArrayList<Event>();
     }
 
-    public static scheduler getInstance() {
+    public static Scheduler getInstance() {
         if (SchedulerInstance == null){
-            SchedulerInstance = new scheduler();
+            SchedulerInstance = new Scheduler();
         }
         return SchedulerInstance;
     }

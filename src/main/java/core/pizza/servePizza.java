@@ -1,7 +1,7 @@
 package core.pizza;
 
 import core.*;
-import core.control.scheduler;
+import core.control.Scheduler;
 import core.payment.serveCustomer;
 
 public class servePizza extends Event {
@@ -18,7 +18,7 @@ public class servePizza extends Event {
     public void run(){
         oven.setFree(true);
         WaitingList.getInstance().searchPizza(customer);
-        scheduler.getInstance().addEvent(new serveCustomer(customer, getStartingTime()));
+        Scheduler.getInstance().addEvent(new serveCustomer(customer, getStartingTime()));
     }
 
 }

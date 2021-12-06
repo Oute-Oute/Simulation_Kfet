@@ -5,7 +5,7 @@ import core.Event;
 import core.Kfetier;
 import core.WaitingList;
 import core.control.ControllerHR;
-import core.control.scheduler;
+import core.control.Scheduler;
 
 public class newCustomer extends Event {
 
@@ -30,7 +30,7 @@ public class newCustomer extends Event {
             time += customer.getPaymentDuration();
 
             //On ajoute au Scheduler
-            scheduler.getInstance().addEvent(new endPayment(customer, cashier, time));
+            Scheduler.getInstance().addEvent(new endPayment(customer, cashier, time));
 
         }
         else {

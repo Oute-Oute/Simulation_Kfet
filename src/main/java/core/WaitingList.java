@@ -1,7 +1,7 @@
 package core;
 
 import core.control.ControllerDevices;
-import core.control.scheduler;
+import core.control.Scheduler;
 import core.pizza.preparationPizza;
 
 import java.util.ArrayList;
@@ -75,7 +75,7 @@ public final class WaitingList {
 
         if(customer.getOrder().getNbPizza() > 0){
             if(devicesInstance.getFreeDevices().get("Oven") > 0){
-                scheduler.getInstance().addEvent(new preparationPizza(customer, scheduler.getInstance().getCurrentTime()));
+                Scheduler.getInstance().addEvent(new preparationPizza(customer, Scheduler.getInstance().getCurrentTime()));
             }
         }
     }

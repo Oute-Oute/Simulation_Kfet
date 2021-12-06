@@ -5,7 +5,7 @@ import core.Event;
 import core.Kfetier;
 import core.WaitingList;
 import core.control.ControllerHR;
-import core.control.scheduler;
+import core.control.Scheduler;
 
 public class endPayment extends Event {
 
@@ -25,14 +25,14 @@ public class endPayment extends Event {
         ControllerHR.getInstance().getFreeKfetier().replace("Cashier", ControllerHR.getInstance().getFreeKfetier().get("Cashier") + 1);
 
         //Lance la préparation de commande
-        scheduler.getInstance().addEvent(new preparationOrder(customer, scheduler.getInstance().getCurrentTime()));
+        Scheduler.getInstance().addEvent(new preparationOrder(customer, Scheduler.getInstance().getCurrentTime()));
 
         //Retire le client de la pré order
         WaitingList.getInstance().getPreOrder().remove(customer);
 
         //Si la liste Pré Order n'est pas vide, on appelle le client suivant
         if( !WaitingList.getInstance().getPreOrder().isEmpty() ){
-            scheduler.getInstance().addEvent(new newCustomer(WaitingList.getInstance().getPreOrder().get(0), scheduler.getInstance().getCurrentTime()));
+            Scheduler.getInstance().addEvent(new newCustomer(WaitingList.getInstance().getPreOrder().get(0), Scheduler.getInstance().getCurrentTime()));
         }
     }
 }

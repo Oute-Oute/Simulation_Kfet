@@ -1,7 +1,7 @@
 package core.pizza;
 
 import core.*;
-import core.control.scheduler;
+import core.control.Scheduler;
 
 public class cookingPizza extends Event {
 
@@ -20,7 +20,7 @@ public class cookingPizza extends Event {
         cook.setFree(true);
         int time = customer.getOrder().getPizza().get(0) + getStartingTime();
         WaitingList.getInstance().searchPizza(customer);
-        scheduler.getInstance().addEvent(new servePizza(customer, oven, time));
+        Scheduler.getInstance().addEvent(new servePizza(customer, oven, time));
     }
 
 }
