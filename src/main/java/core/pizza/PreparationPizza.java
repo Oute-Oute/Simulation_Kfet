@@ -8,10 +8,10 @@ import core.control.ControllerDevices;
 import core.control.ControllerHR;
 import core.control.Scheduler;
 
-public class preparationPizza extends Event {
+public class PreparationPizza extends Event {
     private Customer customer;
 
-    public preparationPizza(Customer customer, int startingTime){
+    public PreparationPizza(Customer customer, int startingTime){
         super(startingTime);
         this.customer = customer;
     }
@@ -33,7 +33,7 @@ public class preparationPizza extends Event {
         time += Scheduler.getInstance().getCurrentTime();
 
         //On ajoute au Scheduler
-        Scheduler.getInstance().addEvent(new cookingPizza(customer, cook, oven, time));
+        Scheduler.getInstance().addEvent(new CookingPizza(customer, cook, oven, time));
 
     }
 }

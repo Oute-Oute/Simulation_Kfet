@@ -1,8 +1,12 @@
 package core;
 
+import core.chocolate.PreparationChocolate;
+import core.coffee.PreparationCoffee;
 import core.control.ControllerDevices;
 import core.control.Scheduler;
-import core.pizza.preparationPizza;
+import core.picard.PreparationPicard;
+import core.pizza.PreparationPizza;
+import core.ramen.StartBoilingWater;
 
 import java.util.ArrayList;
 
@@ -43,31 +47,31 @@ public final class WaitingList {
         if(customer.getOrder().getPicard() > 0){
             if (devicesInstance.getFreeDevices().get("Microwave") > 0){
                 found = true;
-                //TODO: appeler debut commande avec paramètre client
+                Scheduler.getInstance().addEvent(new PreparationPicard(customer, Scheduler.getInstance().getCurrentTime()));
             }
         }
         else if(customer.getOrder().getRamen() > 0 && !found){
-            if (devicesInstance.getFreeDevices().get("Kettle") > 0){
+            if (devicesInstance.getFreeDevices().get("Kettle") > 0){    //TODO: gérer le fait qu'une bouilloire peut cuire 3 ramen
                 found = true;
-                //TODO: appeler debut commande avec paramètre client
+                Scheduler.getInstance().addEvent(new StartBoilingWater(customer, Scheduler.getInstance().getCurrentTime()));
             }
         }
         else if(customer.getOrder().getCoffee() > 0 && !found){
             if (devicesInstance.getFreeDevices().get("Cafetiere") > 0){
                 found = true;
-                //TODO: appeler debut commande avec paramètre client
+                Scheduler.getInstance().addEvent(new PreparationCoffee(customer, Scheduler.getInstance().getCurrentTime()));
             }
         }
         else if(customer.getOrder().getChocolate() > 0 && !found){
             if (devicesInstance.getFreeDevices().get("Cocoa") > 0){
                 found = true;
-                //TODO: appeler debut commande avec paramètre client
+                Scheduler.getInstance().addEvent(new PreparationChocolate(customer, Scheduler.getInstance().getCurrentTime()));
             }
         }
     }
 
     /**
-     * Search if the customer ordered a pizza and if an oven is free to start the preparationPizza
+     * Search if the customer ordered a pizza and if an oven is free to start the PreparationPizza
      * @param customer
      */
     public void searchPizza(Customer customer) {
@@ -75,7 +79,7 @@ public final class WaitingList {
 
         if(customer.getOrder().getNbPizza() > 0){
             if(devicesInstance.getFreeDevices().get("Oven") > 0){
-                Scheduler.getInstance().addEvent(new preparationPizza(customer, Scheduler.getInstance().getCurrentTime()));
+                Scheduler.getInstance().addEvent(new PreparationPizza(customer, Scheduler.getInstance().getCurrentTime()));
             }
         }
     }

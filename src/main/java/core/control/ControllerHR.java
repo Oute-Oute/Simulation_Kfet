@@ -1,9 +1,6 @@
 package core.control;
 
-import core.Customer;
 import core.Kfetier;
-import core.WaitingList;
-import core.payment.newCustomer;
 
 import java.util.ArrayList;
 import java.util.HashMap;

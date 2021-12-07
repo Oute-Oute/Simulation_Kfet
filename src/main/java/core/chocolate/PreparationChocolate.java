@@ -1,4 +1,4 @@
-package core.coffee;
+package core.chocolate;
 
 import core.Customer;
 import core.Device;
@@ -8,11 +8,11 @@ import core.control.ControllerDevices;
 import core.control.ControllerHR;
 import core.control.Scheduler;
 
-public class preparationCoffee extends Event {
+public class PreparationChocolate extends Event {
 
     private Customer customer;
 
-    public preparationCoffee(Customer customer, int startingTime){
+    public PreparationChocolate(Customer customer, int startingTime){
         super(startingTime);
         this.customer = customer;
     }
@@ -21,12 +21,12 @@ public class preparationCoffee extends Event {
     public void run() {
         int position = ControllerHR.getInstance().whichKfetier();
         Kfetier kfetier = ControllerHR.getInstance().getKfetiers().get(position);
-        position = ControllerDevices.getInstance().whichCafetiere();
-        Device cafetiere = ControllerDevices.getInstance().getCafetiere().get(position);
+        position = ControllerDevices.getInstance().whichCocoa();
+        Device cocoa = ControllerDevices.getInstance().getCocoa().get(position);
 
-        customer.getOrder().setCoffee(customer.getOrder().getCoffee() - 1);
+        customer.getOrder().setChocolate(customer.getOrder().getChocolate() - 1);
 
-        Scheduler.getInstance().addEvent(new ServeCoffee(customer, cafetiere, kfetier, getStartingTime() + 30 ));
+        Scheduler.getInstance().addEvent(new ServeChocolate(customer, cocoa, kfetier, getStartingTime() + 30 ));
 
     }
 }

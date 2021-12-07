@@ -4,11 +4,11 @@ import core.Customer;
 import core.Event;
 import core.WaitingList;
 
-public class serveCustomer extends Event {
+public class ServeCustomer extends Event {
 
     private Customer customer;
 
-    public serveCustomer(Customer customer, int startingTime){
+    public ServeCustomer(Customer customer, int startingTime){
         super(startingTime);
         this.customer = customer;
     }

@@ -3,13 +3,13 @@ package core.pizza;
 import core.*;
 import core.control.Scheduler;
 
-public class cookingPizza extends Event {
+public class CookingPizza extends Event {
 
     private Kfetier cook;
     private Device oven;
     private Customer customer;
 
-    public cookingPizza(Customer customer, Kfetier cook, Device oven, int startingTime){
+    public CookingPizza(Customer customer, Kfetier cook, Device oven, int startingTime){
         super(startingTime);
         this.cook= cook;
         this.oven = oven;
@@ -20,7 +20,7 @@ public class cookingPizza extends Event {
         cook.setFree(true);
         int time = customer.getOrder().getPizza().get(0) + getStartingTime();
         WaitingList.getInstance().searchPizza(customer);
-        Scheduler.getInstance().addEvent(new servePizza(customer, oven, time));
+        Scheduler.getInstance().addEvent(new ServePizza(customer, oven, time));
     }
 
 }

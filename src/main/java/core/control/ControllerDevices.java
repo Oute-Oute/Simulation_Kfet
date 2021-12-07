@@ -183,5 +183,50 @@ public final class ControllerDevices {
         return i;
     }
 
+    /**
+     * Cherche quelle machine à choco est actuellement libre
+     * Cette méthode ne doit être lancée qu'après s'être assuré qu'il y avait une machine à choco de libre
+     * TODO: ptetre une exception du coup
+     * @return la position de la machine à choco libre dans son arraylist
+     */
+    public int whichCocoa(){
+        int i = 0;
+        boolean found = false;
+        //On cherche quelle machine à choco est libre
+        while (i < cocoa.size() && !found) {
+            if (cocoa.get(i).getFree()) {
+                //On passe la machine à choco à occupée et on change le nb de machine à choco libres
+                cocoa.get(i).setFree(false);
+                freeDevices.replace("Cocoa", freeDevices.get("Cocoa") - 1);
+                found = true;
+            } else {
+                i++;
+            }
+        }
+        return i;
+    }
+
+    /**
+     * Cherche quelle bouilloire est actuellement libre
+     * Cette méthode ne doit être lancée qu'après s'être assuré qu'il y avait une bouilloire de libre
+     * TODO: ptetre une exception du coup
+     * @return la position de la machine à chocobouilloire libre dans son arraylist
+     */
+    public int whichKettle(){
+        int i = 0;
+        boolean found = false;
+        //On cherche quelle bouilloire est libre
+        while (i < kettle.size() && !found) {
+            if (kettle.get(i).getFree()) {
+                //On passe la bouilloire à occupée et on change le nb de bouilloire libres
+                kettle.get(i).setFree(false);
+                freeDevices.replace("Kettle", freeDevices.get("Kettle") - 1);
+                found = true;
+            } else {
+                i++;
+            }
+        }
+        return i;
+    }
 }
 
