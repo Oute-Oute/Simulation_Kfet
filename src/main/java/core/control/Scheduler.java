@@ -1,6 +1,8 @@
 package core.control;
 
 import core.Event;
+
+import java.io.PrintStream;
 import java.time.Clock;
 import java.time.Duration;
 import java.util.ArrayList;
@@ -13,7 +15,7 @@ public final class Scheduler {
 
     private Scheduler(){
         currentTime = 0;
-        incomingEvent = new ArrayList<Event>();
+        incomingEvent = new ArrayList<>();
     }
 
     public static Scheduler getInstance() {
@@ -52,7 +54,7 @@ public final class Scheduler {
 
     /**
      * execute les méthodes de tous les events censés commencer à l'heure actuelle
-     * @param currentTime
+     * @param currentTime the current time
      */
     public void startingEvent(int currentTime) {
         int i = 0;
@@ -64,15 +66,25 @@ public final class Scheduler {
     }
 
     public void passingTime(){
-        Duration tick_Duration = Duration.ofMillis(84);     // Une seconde dans la simulation = 0.084 secondes IRL pour que le service de 2h soit simulé en 10 minutes
+        Duration tick_Duration = Duration.ofMillis(1200);     // Une seconde dans la simulation = 0.084 secondes IRL pour que le service de 2h soit simulé en 10 minutes
         Clock clock = Clock.systemUTC();
         Clock newClock = Clock.tick(clock, tick_Duration);
+        System.out.println(newClock);
+        System.out.println(clock);
+        System.out.println(currentTime);
+        while(currentTime <= 7200)
 
-        while(currentTime != 7200)
-            if (!clock.equals(newClock)){
-                clock = newClock;
-                startingEvent(currentTime);
-                currentTime += 1;
-            }
+            if (clock.equals(newClock)) {
+            System.out.print("test");
+            clock = newClock;
+            //startingEvent(currentTime);
+            currentTime += 1;
+            System.out.println(currentTime);
+            newClock = Clock.tick(clock, tick_Duration);
+        }
+    }
+    public static void main(String[] args){
+        Scheduler sch=new Scheduler();
+        sch.passingTime();
     }
 }

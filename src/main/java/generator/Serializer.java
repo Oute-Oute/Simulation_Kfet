@@ -1,6 +1,8 @@
 package generator;
 
 import java.io.*;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 
 /**
@@ -25,16 +27,17 @@ public class Serializer {
     /**
      * Open a file and create it if it doesn't exist
      *
-     * @param fileName the name of the file to open or create and open
      * @return a File object with the file open
      */
-    public File createOpenFile(String fileName) {
+    public File createOpenFile() {
 
         File nameFile = null;
 
         //create a file
         try {
-            nameFile = new File(fileName);
+            Date date = new Date() ;
+            SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH-mm-ss") ;
+            nameFile = new File(dateFormat.format(date)+".dat");
             if (nameFile.createNewFile()) {
                 System.out.println("File created: " + nameFile.getName());
             } else {
@@ -62,7 +65,7 @@ public class Serializer {
             directory.mkdir();
         }
 
-        File compFile = createOpenFile("GeneratorData" + File.separator + "CustomersFile.dat");
+        File compFile = createOpenFile();
         try {
             oS = new ObjectOutputStream(new FileOutputStream(compFile));
             oS.writeObject(customers);
@@ -84,7 +87,7 @@ public class Serializer {
             directory.mkdir();
         }
 
-        File dataFile = createOpenFile("GeneratorData" + File.separator + "CustomersFile.dat");
+        File dataFile = createOpenFile();
         Customers customers = null;
         try {
             iS = new ObjectInputStream(new FileInputStream(dataFile));
@@ -93,12 +96,10 @@ public class Serializer {
         } catch (EOFException e) {
             System.out.println("Empty file");
 
-        } catch (ClassNotFoundException e) {
+        } catch (ClassNotFoundException | IOException e) {
             //this could happen if the file has been modified, or if there was some difference between the classes version
             e.printStackTrace();
 
-        } catch (IOException e) {
-            e.printStackTrace();
         }
 
         return customers;

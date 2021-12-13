@@ -10,11 +10,11 @@
 
 <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="584.0" prefWidth="895.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.kfet.core.CoreController">
       <MenuBar prefHeight="25.0" prefWidth="895.0">
-          <Menu mnemonicParsing="false" text="File">
-              <MenuItem mnemonicParsing="false" text="Close" />
+          <Menu mnemonicParsing="false" text="Generator">
+              <MenuItem mnemonicParsing="false" onAction="#openGenerator" text="Open Generator" />
           </Menu>
-          <Menu mnemonicParsing="false" text="Edit">
-              <MenuItem mnemonicParsing="false" onAction="#transition" text="Delete" />
+          <Menu mnemonicParsing="false" text="Settings">
+              <MenuItem mnemonicParsing="false" onAction="#openSettings" text="Simulator Settings" />
           </Menu>
           <Menu mnemonicParsing="false" text="Help">
               <MenuItem mnemonicParsing="false" text="About" />

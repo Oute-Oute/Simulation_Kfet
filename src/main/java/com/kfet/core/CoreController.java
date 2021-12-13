@@ -1,13 +1,17 @@
 package com.kfet.core;
 
+import com.kfet.core.settings.SettingsApplication;
+import com.kfet.generator.GeneratorApplication;
 import core.control.Pair;
 import javafx.animation.TranslateTransition;
 import javafx.fxml.FXML;
 import javafx.scene.image.ImageView;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
+import javafx.stage.Stage;
 import javafx.util.Duration;
 
+import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -18,7 +22,7 @@ public class CoreController {
 
     @FXML
     private Map<Integer, Circle> Circles = new HashMap<>();
-    private Map<Integer, Pair<Double, Double>> Coordinates=new HashMap<Integer, Pair<Double, Double>>();
+    private Map<Integer, Pair<Double, Double>> Coordinates= new HashMap<>();
 
     @FXML
     private ImageView Cooker2 = new ImageView();
@@ -49,22 +53,22 @@ public class CoreController {
         if (getCashier().size() == 2){
             Circles.put(getCashier().get(1).getId(), Cashier_2);
         }*/
-        Coordinates.put(0,new Pair(475.0,520.0));
-        Coordinates.put(1,new Pair(475.0,455.0));
-        Coordinates.put(2,new Pair(475.0,400.0));
-        Coordinates.put(3,new Pair(475.0,400.0));
-        Coordinates.put(4,new Pair(500.0,400.0));
-        Coordinates.put(5,new Pair(565.0,400.0));
-        Coordinates.put(6,new Pair(630.0,400.0));
-        Coordinates.put(7,new Pair(695.0,400.0));
-        Coordinates.put(8,new Pair(775.0,170.0));
-        Coordinates.put(9,new Pair(775.0,110.0));
-        Coordinates.put(10,new Pair(775.0,90.0));
-        Coordinates.put(11,new Pair(600.0,280.0));
-        Coordinates.put(12,new Pair(600.0,280.0));
-        Coordinates.put(13,new Pair(775.0,90.0));
-        Coordinates.put(14,new Pair(725.0,90.0));
-        Coordinates.put(15,new Pair(600.0,280.0));
+        Coordinates.put(0,new Pair<>(475.0,520.0));
+        Coordinates.put(1,new Pair<>(475.0,455.0));
+        Coordinates.put(2,new Pair<>(475.0,400.0));
+        Coordinates.put(3,new Pair<>(475.0,400.0));
+        Coordinates.put(4,new Pair<>(500.0,400.0));
+        Coordinates.put(5,new Pair<>(565.0,400.0));
+        Coordinates.put(6,new Pair<>(630.0,400.0));
+        Coordinates.put(7,new Pair<>(695.0,400.0));
+        Coordinates.put(8,new Pair<>(775.0,170.0));
+        Coordinates.put(9,new Pair<>(775.0,110.0));
+        Coordinates.put(10,new Pair<>(775.0,90.0));
+        Coordinates.put(11,new Pair<>(600.0,280.0));
+        Coordinates.put(12,new Pair<>(600.0,280.0));
+        Coordinates.put(13,new Pair<>(775.0,90.0));
+        Coordinates.put(14,new Pair<>(725.0,90.0));
+        Coordinates.put(15,new Pair<>(600.0,280.0));
 
     //TODO verifier que tout les emplacements ont leur coords
     }
@@ -102,4 +106,12 @@ public class CoreController {
 
     }
 
+    @FXML
+    protected void openGenerator() throws IOException {
+        new GeneratorApplication().start(new Stage());
+    }
+    @FXML
+    protected void openSettings() throws IOException {
+        new SettingsApplication().start(new Stage());
+    }
 }
