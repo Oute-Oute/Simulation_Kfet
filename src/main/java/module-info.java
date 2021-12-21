@@ -1,6 +1,9 @@
 module com.example.simulationkfet {
     requires javafx.controls;
     requires javafx.fxml;
+    requires poi.ooxml;
+    requires poi;
+    requires poi.ooxml.schemas;
 
     opens com.kfet.core to javafx.fxml;
     exports com.kfet.core;
