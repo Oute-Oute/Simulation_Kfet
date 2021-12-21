@@ -15,6 +15,7 @@ public class Customer implements Serializable {
     private Order order;
     private int paymentDuration; //Cpt = 3s, Lydia rapide = 7s, Liquide = 15s, Lydia lent = 20s
     private int arrivalTime;
+    private int departureTime;
 
     public Customer(double probaKfetier,int fast,int cash, int slow, int cpt, int ArrivalTime){
         fastLydiaPayement=fast;
@@ -45,5 +46,9 @@ public class Customer implements Serializable {
 
     public int getPaymentDuration() {
         return paymentDuration;
+    }
+
+    public void setDepartureTime(int time){
+        this.departureTime = time;
     }
 }

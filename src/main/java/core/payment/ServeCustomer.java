@@ -3,6 +3,7 @@ package core.payment;
 import core.Customer;
 import core.Event;
 import core.WaitingList;
+import core.control.Scheduler;
 
 public class ServeCustomer extends Event {
 
@@ -21,6 +22,7 @@ public class ServeCustomer extends Event {
                 customer.getOrder().getCoffee() +
                 customer.getOrder().getRamen();
         if( nbOrder == 0){
+            customer.setDepartureTime(Scheduler.getInstance().getCurrentTime());
             WaitingList.getInstance().getPostOrder().remove(customer);
         }
 
