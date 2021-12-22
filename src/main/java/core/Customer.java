@@ -51,4 +51,12 @@ public class Customer implements Serializable {
     public void setDepartureTime(int time){
         this.departureTime = time;
     }
+
+    public int getArrivalTime() {
+        return arrivalTime;
+    }
+
+    public int getDepartureTime() {
+        return departureTime;
+    }
 }

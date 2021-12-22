@@ -5,7 +5,8 @@ import java.util.ArrayList;
 import java.util.Random;
 
 public class Customers implements Serializable {
-    private ArrayList<Customer> customers;
+
+    private static ArrayList<Customer> customers;
     private float customerFrequency;
 
     public Customers(int nbMaxCustomer, double proba,int fast,int cash, int slow, int cpt, int customerFrequency) {
@@ -18,7 +19,7 @@ public class Customers implements Serializable {
         }
     }
 
-    public ArrayList<Customer> getCustomers() {
+    public static ArrayList<Customer> getCustomers() {
         return customers;
     }
 

@@ -1,16 +1,21 @@
 package core;
 
 import com.kfet.core.CoreController;
+import core.control.Scheduler;
 
 public class Device extends CoreController {
+
     private int id;
     private String type;
     private Boolean isFree;
+    private int occupationTime, startOccupated, endOccupated;
+    private int nbUsed;
 
     public Device(int id, String type) {
         this.id = id;
         this.type = type;
         isFree = true;
+        nbUsed = 0;
     }
 
     public int getId() {
@@ -32,9 +37,21 @@ public class Device extends CoreController {
     public void setFree(Boolean free) {
         isFree = free;
         if(free){
+            endOccupated = Scheduler.getInstance().getCurrentTime();
+            occupationTime += (endOccupated - startOccupated);
             free(this.id);
         } else {
+            startOccupated = Scheduler.getInstance().getCurrentTime();
+            nbUsed++;
             notFree(this.id);
         }
+    }
+
+    public int getNbUsed() {
+        return nbUsed;
+    }
+
+    public int getOccupationTime() {
+        return occupationTime;
     }
 }

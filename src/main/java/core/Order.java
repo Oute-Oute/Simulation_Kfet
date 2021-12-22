@@ -8,6 +8,7 @@ public class Order implements Serializable {
 
     private static final int MAX_ORDER = 5, MIN_COOKINGTIME_PIZZA = 900, MAX_COOKINGTIME_PIZZA = 1200, AVERAGE_COOKINGTIME_PIZZA = 1020;
 
+    private final int nbArticles;
     private int coffee;
     private int chocolate;
     private int ramen;
@@ -23,7 +24,8 @@ public class Order implements Serializable {
         picard = r.nextInt(MAX_ORDER);
         nbPizza = r.nextInt(MAX_ORDER);
 
-        pizza = new ArrayList<Integer>();
+        nbArticles = coffee + chocolate + ramen + picard + nbPizza;
+        pizza = new ArrayList<>();
 
         for(int i=0; i<nbPizza; i++){
             pizza.add( ((MAX_COOKINGTIME_PIZZA-MIN_COOKINGTIME_PIZZA)/2) * (int)r.nextGaussian() + AVERAGE_COOKINGTIME_PIZZA );
@@ -74,4 +76,7 @@ public class Order implements Serializable {
         return pizza;
     }
 
+    public int getNbArticles() {
+        return nbArticles;
+    }
 }
