@@ -5,6 +5,8 @@ import core.Event;
 import java.io.PrintStream;
 import java.time.Clock;
 import java.time.Duration;
+import java.time.ZoneId;
+import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
 
 public final class Scheduler {
@@ -65,22 +67,19 @@ public final class Scheduler {
         }
     }
 
-    public void passingTime(){
+    public void passingTime() {
         Duration tick_Duration = Duration.ofMillis(1200);     // Une seconde dans la simulation = 0.084 secondes IRL pour que le service de 2h soit simulé en 10 minutes
-        Clock clock = Clock.systemUTC();
-        Clock newClock = Clock.tick(clock, tick_Duration);
-        System.out.println(newClock);
-        System.out.println(clock);
-        System.out.println(currentTime);
-        while(currentTime <= 7200)
+        Clock baseClock = Clock.systemUTC();
+        Clock newClock = Clock.systemUTC();
 
-            if (clock.equals(newClock)) {
-            System.out.print("test");
-            clock = newClock;
-            //startingEvent(currentTime);
-            currentTime += 1;
-            System.out.println(currentTime);
-            newClock = Clock.tick(clock, tick_Duration);
+        while (currentTime <= 7200) {
+
+            if (baseClock.instant().truncatedTo(ChronoUnit.SECONDS).equals(newClock.instant().truncatedTo(ChronoUnit.SECONDS))) {
+                baseClock = newClock;
+                startingEvent(currentTime);
+                currentTime += 1;
+                newClock = Clock.tickSeconds(ZoneId.systemDefault());
+            }
         }
     }
     public static void main(String[] args){

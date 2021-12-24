@@ -15,6 +15,7 @@ import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import javafx.util.Duration;
 
+import java.io.File;
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
@@ -22,34 +23,38 @@ import java.util.Map;
 public class SettingsController {
 
     @FXML
-    Slider CookSelector,coffeeSelector,cashierSelector =new Slider();
+    Slider CookSelector, coffeeSelector, cashierSelector = new Slider();
     @FXML
     TextField dataSelector;
-@FXML
-    protected void done(){
-    if((CookSelector.getValue()+coffeeSelector.getValue()+cashierSelector.getValue())!=4){
-        Alert alert = new Alert(Alert.AlertType.ERROR);
 
-        alert.setTitle("Error");
-        alert.setHeaderText("Number of Kfetier must be 4");
-        alert.setContentText("Select differents value to have 4 Kfetier.");
-        alert.showAndWait();
+    @FXML
+    protected void done() {
+        if ((CookSelector.getValue() + coffeeSelector.getValue() + cashierSelector.getValue()) != 4) {
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+
+            alert.setTitle("Error");
+            alert.setHeaderText("Number of Kfetier must be 4");
+            alert.setContentText("Select differents value to have 4 Kfetier.");
+            alert.showAndWait();
+        } else if (dataSelector.getText().isEmpty()) {
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+
+            alert.setTitle("Error");
+            alert.setHeaderText("No data file selected");
+            alert.setContentText("You must select a data file");
+            alert.showAndWait();
+        }
+        //TODO: Unserialize file chosen in open method and start simulation
     }
-    else if(dataSelector.getText().isEmpty()){
-        Alert alert = new Alert(Alert.AlertType.ERROR);
 
-        alert.setTitle("Error");
-        alert.setHeaderText("No data file selected");
-        alert.setContentText("You must select a data file");
-        alert.showAndWait();
+    @FXML
+    protected void open() {
+        FileChooser fileChooser = new FileChooser();
+        fileChooser.setTitle("Choose a data file");
+        fileChooser.getExtensionFilters().addAll(
+                new FileChooser.ExtensionFilter("DAT", "*.dat"),
+                new FileChooser.ExtensionFilter("All Files", "*.*"));
+        File file = fileChooser.showOpenDialog(new Stage());
+        dataSelector.setText(file.getPath());
     }
-}
-@FXML
-    protected void open(){
-    FileChooser fileChooser =new FileChooser();
-    fileChooser.setTitle("Choose a data file");
-    fileChooser.getExtensionFilters().add(new FileChooser.ExtensionFilter("data",".dat"));
-        fileChooser.showOpenDialog(new Stage());
-
-}
 }

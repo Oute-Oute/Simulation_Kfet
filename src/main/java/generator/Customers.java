@@ -8,7 +8,7 @@ public class Customers implements Serializable {
     private ArrayList<Customer> customers;
     private float customerFrequency;
 
-    public Customers(int nbMaxCustomer, double proba,int fast,int cash, int slow, int cpt, int customerFrequency) {
+    public Customers(int nbMaxCustomer, double proba,int fast,int cash, int slow, int cpt, double customerFrequency) {
         customers = new ArrayList<>();
 
         ArrayList<Integer> arrivalTime = arrivalTimeGenerator(nbMaxCustomer, customerFrequency);
@@ -26,7 +26,7 @@ public class Customers implements Serializable {
         customers.add(customer);
     }
 
-    public ArrayList<Integer> arrivalTimeGenerator (int nbMaxCustomer, int customerFrequency){
+    public ArrayList<Integer> arrivalTimeGenerator (int nbMaxCustomer, double customerFrequency){
         ArrayList<Integer> arrivalTimeCustomers = new ArrayList<>();
 
        int globalTime = 0;

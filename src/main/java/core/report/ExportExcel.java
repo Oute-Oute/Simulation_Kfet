@@ -3,6 +3,10 @@ package core.report;
 import core.Customer;
 import core.Customers;
 import core.control.ControllerDevices;
+import org.apache.poi.ss.usermodel.CellStyle;
+import org.apache.poi.ss.usermodel.FillPatternType;
+import org.apache.poi.ss.usermodel.IndexedColors;
+import org.apache.poi.ss.usermodel.Workbook;
 import org.apache.poi.xssf.usermodel.*;
 import org.openxmlformats.schemas.spreadsheetml.x2006.main.*;
 
@@ -34,8 +38,8 @@ public class ExportExcel {
             XSSFSheet sheet = workbook.createSheet("Results_from_" + dateFormat.format(date));
 
             //Ensemble de méthodes pour remplir le rapport ici
-            tableCustomer(sheet);
-            tableDevice(sheet);
+            tableCustomer(workbook, sheet);
+            tableDevice(workbook, sheet);
             //
             //
 
@@ -54,7 +58,7 @@ public class ExportExcel {
      * Créé une table remplie avec les clients, leur heure d'arrivée, leur heure de départ et leur nb d'articles commandés
      * @param sheet feuille à écrire
      */
-    public static void tableCustomer(XSSFSheet sheet){
+    public static void tableCustomer(XSSFWorkbook workbook, XSSFSheet sheet){
         int nbLine = Customers.getCustomers().size() + 1;
 
         //On créé notre table
@@ -101,6 +105,16 @@ public class ExportExcel {
             }
         }
 
+        XSSFRow row = sheet.createRow(nbLine);
+        XSSFCell cell = row.createCell(4);
+        cell.setCellValue("Temps d'attente moyen:");
+        XSSFCell cell1 = row.createCell(5);
+        cell1.setCellFormula("MOYENNE(E2:E"+(nbLine-1)+")");
+
+        CellStyle style = workbook.createCellStyle();
+        style.setFillBackgroundColor(IndexedColors.LIGHT_ORANGE.getIndex());
+        style.setFillPattern(FillPatternType.SOLID_FOREGROUND);
+
         //TODO: faire graphique https://cdn.discordapp.com/attachments/513074388011188227/923220084523159602/unknown.png
     }
 
@@ -108,7 +122,7 @@ public class ExportExcel {
      * Créé une table remplie avec les appareils, leur taux d'occupation et leur nb d'utilisation
      * @param sheet feuille à écrire
      */
-    public static void tableDevice(XSSFSheet sheet){
+    public static void tableDevice(XSSFWorkbook workbook, XSSFSheet sheet){
         //On créé notre table
         XSSFTable table = sheet.createTable(null);
         CTTable cttable = table.getCTTable();

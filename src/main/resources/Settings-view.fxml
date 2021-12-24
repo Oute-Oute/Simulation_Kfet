@@ -4,17 +4,24 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="277.0" xmlns="http://javafx.com/javafx/11.0.2" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.kfet.core.settings.SettingsController">
-   <children>
-      <TextField fx:id="dataSelector" layoutX="29.0" layoutY="303.0" />
-      <Text layoutX="31.0" layoutY="281.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Select a data file" wrappingWidth="144.44140625" y="12.0" />
-      <Button layoutX="208.0" layoutY="303.0" mnemonicParsing="false" onAction="#open" text="Open" />
-      <Slider fx:id="cashierSelector" blockIncrement="1.0" layoutX="68.0" layoutY="59.0" majorTickUnit="1.0" max="2.0" min="1.0" minorTickCount="0" showTickLabels="true" showTickMarks="true" snapToTicks="true" value="1.0" />
-      <Text layoutX="60.0" layoutY="34.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Select a number of Cashiers" wrappingWidth="158.13671875" y="12.0" />
-      <Slider fx:id="CookSelector" blockIncrement="1.0" layoutX="68.0" layoutY="227.0" majorTickUnit="1.0" max="2.0" min="1.0" minorTickCount="0" showTickLabels="true" showTickMarks="true" snapToTicks="true" value="1.0" />
-      <Text layoutX="37.0" layoutY="116.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Select a number of CoffeeMaker" wrappingWidth="178.13671875" x="12.0" y="12.0" />
-      <Slider fx:id="coffeeSelector" blockIncrement="1.0" layoutX="68.0" layoutY="151.0" majorTickUnit="1.0" max="2.0" min="1.0" minorTickCount="0" showTickLabels="true" showTickMarks="true" snapToTicks="true" value="1.0" />
-      <Text layoutX="60.0" layoutY="210.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Select a number of Cookers" wrappingWidth="158.13671875" />
-      <Button layoutX="117.0" layoutY="357.0" mnemonicParsing="false" onAction="#done" text="Done" />
-   </children>
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0"
+      prefWidth="277.0" xmlns="http://javafx.com/javafx/11.0.2" xmlns:fx="http://javafx.com/fxml/1"
+      fx:controller="com.kfet.core.settings.SettingsController">
+    <TextField fx:id="dataSelector" editable="false" layoutX="29.0" layoutY="303.0"/>
+    <Text layoutX="31.0" layoutY="281.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Select a data file"
+          wrappingWidth="144.44140625" y="12.0"/>
+    <Button layoutX="208.0" layoutY="303.0" mnemonicParsing="false" onAction="#open" text="Open"/>
+    <Slider fx:id="cashierSelector" blockIncrement="1.0" layoutX="68.0" layoutY="59.0" majorTickUnit="1.0" max="2.0"
+            min="1.0" minorTickCount="0" showTickLabels="true" showTickMarks="true" snapToTicks="true" value="1.0"/>
+    <Text layoutX="60.0" layoutY="34.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Select a number of Cashiers"
+          wrappingWidth="158.13671875" y="12.0"/>
+    <Slider fx:id="CookSelector" blockIncrement="1.0" layoutX="68.0" layoutY="227.0" majorTickUnit="1.0" max="2.0"
+            min="1.0" minorTickCount="0" showTickLabels="true" showTickMarks="true" snapToTicks="true" value="1.0"/>
+    <Text layoutX="37.0" layoutY="116.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Select a number of CoffeeMaker"
+          wrappingWidth="178.13671875" x="12.0" y="12.0"/>
+    <Slider fx:id="coffeeSelector" blockIncrement="1.0" layoutX="68.0" layoutY="151.0" majorTickUnit="1.0" max="2.0"
+            min="1.0" minorTickCount="0" showTickLabels="true" showTickMarks="true" snapToTicks="true" value="1.0"/>
+    <Text layoutX="60.0" layoutY="210.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Select a number of Cookers"
+          wrappingWidth="158.13671875"/>
+    <Button layoutX="117.0" layoutY="357.0" mnemonicParsing="false" onAction="#done" text="Done"/>
 </Pane>
