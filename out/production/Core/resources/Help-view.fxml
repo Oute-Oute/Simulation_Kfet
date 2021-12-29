@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Accordion?>
+<?import javafx.scene.control.TitledPane?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="292.0" prefWidth="371.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <Accordion prefHeight="292.0" prefWidth="371.0">
+        <panes>
+          <TitledPane animated="false" prefHeight="260.0" prefWidth="371.0" text="First step:">
+            <content>
+              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="216.0" prefWidth="369.0">
+                     <children>
+                        <Text layoutX="14.0" layoutY="27.0" text="Set Customers settings." wrappingWidth="359.13671875">
+                           <font>
+                              <Font name="System Bold" size="12.0" />
+                           </font>
+                        </Text>
+                        <Text layoutX="11.0" layoutY="77.0" strokeType="OUTSIDE" strokeWidth="0.0" text="To do that, you need to open the generator in the File Menu. " wrappingWidth="347.27734375" />
+                        <Text layoutX="12.0" layoutY="96.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Set a number of customer (must be greater than 0) and a frequency, then set the different parameters in the two other tabs." textAlignment="JUSTIFY" wrappingWidth="351.5390625" />
+                        <Text layoutX="12.0" layoutY="132.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Once you setted all these parameters, you need to go in the Generation Menu and click Generate. This will create a .DAT file with all the necessary informations to start the simulation." textAlignment="JUSTIFY" wrappingWidth="351.5390625" />
+                        <Text layoutX="14.0" layoutY="186.0" strokeType="OUTSIDE" strokeWidth="0.0" text="You can then close the Generator window." />
+                        <Text layoutX="14.0" layoutY="42.0" strokeType="OUTSIDE" strokeWidth="0.0" text="If you already have a .DAT file, you can go to the second step">
+                           <font>
+                              <Font name="System Italic" size="10.0" />
+                           </font>
+                        </Text>
+                     </children>
+                  </AnchorPane>
+            </content>
+          </TitledPane>
+          <TitledPane animated="false" text="Second step:">
+            <content>
+              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                     <children>
+                        <Text layoutX="14.0" layoutY="27.0" stroke="BLACK" strokeType="OUTSIDE" strokeWidth="0.0" text="Import file" wrappingWidth="359.13671875">
+                           <font>
+                              <Font name="System Bold" size="12.0" />
+                           </font>
+                        </Text>
+                        <Text layoutX="11.0" layoutY="55.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Still in the File Menu, open the Simulator Settings." wrappingWidth="347.27734375" />
+                        <Text layoutX="11.0" layoutY="75.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Choose the number of each Kfetier, knowing that the total number of Kfetier must be 4. " wrappingWidth="347.27734375" />
+                        <Text layoutX="11.0" layoutY="113.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Then, click on the open button and select the .DAT file containing your Customers informations and click Done." wrappingWidth="347.27734375" />
+                     </children>
+                  </AnchorPane>
+            </content>
+          </TitledPane>
+          <TitledPane animated="false" text="Thirs sted:">
+            <content>
+              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="158.0" prefWidth="369.0">
+                     <children>
+                        <Text layoutX="14.0" layoutY="27.0" stroke="BLACK" strokeType="OUTSIDE" strokeWidth="0.0" text="Start Simulation" wrappingWidth="359.13671875">
+                           <font>
+                              <Font name="System Bold" size="12.0" />
+                           </font>
+                        </Text>
+                        <Text layoutX="11.0" layoutY="55.0" strokeType="OUTSIDE" strokeWidth="0.0" text="In the Option Menu, click Start Simulation. All done!" wrappingWidth="347.27734375" />
+                     </children>
+                  </AnchorPane>
+            </content>
+          </TitledPane>
+        </panes>
+      </Accordion>
+   </children>
+</Pane>
