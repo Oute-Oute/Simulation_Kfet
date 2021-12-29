@@ -6,11 +6,11 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
-        <module name="SimulationKfet" />
+        <module name="Simulation_Kfet" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
-      <module name="SimulationKfet" target="15" />
+      <module name="Simulation_Kfet" target="15" />
     </bytecodeTargetLevel>
   </component>
 </project>

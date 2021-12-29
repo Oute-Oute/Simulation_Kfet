@@ -5,9 +5,9 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>com.example</groupId>
-    <artifactId>SimulationKfet</artifactId>
+    <artifactId>Simulation</artifactId>
     <version>1.0-SNAPSHOT</version>
-    <name>SimulationKfet</name>
+    <name>Simulation</name>
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -19,12 +19,12 @@
         <dependency>
             <groupId>org.apache.poi</groupId>
             <artifactId>poi</artifactId>
-            <version>4.1.1</version>
+            <version>4.1.2</version>
         </dependency>
         <dependency>
             <groupId>org.apache.poi</groupId>
             <artifactId>poi-ooxml</artifactId>
-            <version>4.1.1</version>
+            <version>4.1.2</version>
         </dependency>
 
         <dependency>
@@ -78,7 +78,7 @@
                         <!-- Default configuration for running with: mvn clean javafx:run -->
                         <id>default-cli</id>
                         <configuration>
-                            <mainClass>com.example.simulationkfet/com.kfet.generator.GeneratorApplication
+                            <mainClass>com.example.simulationkfet/com.kfet.GeneratorApplication
                             </mainClass>
                         </configuration>
                     </execution>

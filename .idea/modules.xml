@@ -2,7 +2,10 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/SimulationKfet.iml" filepath="$PROJECT_DIR$/SimulationKfet.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Common/Common.iml" filepath="$PROJECT_DIR$/Common/Common.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Core/Core.iml" filepath="$PROJECT_DIR$/Core/Core.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Generator/Generator.iml" filepath="$PROJECT_DIR$/Generator/Generator.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Simulation_Kfet.iml" filepath="$PROJECT_DIR$/Simulation_Kfet.iml" />
     </modules>
   </component>
 </project>
