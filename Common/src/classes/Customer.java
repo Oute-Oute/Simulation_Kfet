@@ -1,5 +1,6 @@
 package classes;
 
+import java.io.Serial;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Random;
@@ -7,7 +8,8 @@ import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 public class Customer implements Serializable {
-
+    @Serial
+    private static final long serialVersionUID =1L;
     private static int cptPayement = 3, fastLydiaPayement = 7, cashPayement = 15, slowLydiaPayement = 20;
     private static ArrayList<Integer> payement = new ArrayList<>(Stream.of(cptPayement, fastLydiaPayement, cashPayement,slowLydiaPayement).collect(Collectors.toList()));
 
@@ -38,7 +40,6 @@ public class Customer implements Serializable {
 
         arrivalTick = Math.abs((int) (2000*r.nextGaussian()));
         arrivalTime = arrivalTick/tpm;
-        System.out.println(arrivalTime);
         //TODO gerer client tard
 
     }

@@ -18,6 +18,7 @@
           <Menu mnemonicParsing="false" text="Options">
          <items>
             <MenuItem mnemonicParsing="false" onAction="#startSimulation" text="Start" />
+            <MenuItem mnemonicParsing="false" onAction="#startSimulation" text="Stop" />
             <SeparatorMenuItem mnemonicParsing="false" />
             <MenuItem mnemonicParsing="false" text="Play" />
             <MenuItem mnemonicParsing="false" text="Pause" />

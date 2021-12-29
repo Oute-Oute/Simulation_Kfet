@@ -1,11 +1,14 @@
 package classes;
 
+import java.io.Serial;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Random;
 
 public class Customers implements Serializable {
-    private static ArrayList<Customer> customers;
+    @Serial
+    private static final long serialVersionUID =1L;
+    private ArrayList<Customer> customers;
     private float customerFrequency;
 
     public Customers(){
@@ -22,7 +25,7 @@ public class Customers implements Serializable {
         }
     }
 
-    public static ArrayList<Customer> getCustomers() {
+    public ArrayList<Customer> getCustomers() {
         return customers;
     }
 

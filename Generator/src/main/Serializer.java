@@ -83,34 +83,5 @@ public class Serializer {
         return path;
     }
 
-    /**
-     * Read from a file to create a company and all its data
-     *
-     * @return a new company with all the department, employee and data on them
-     */
-    public Customers unserialiseCustomers() {
 
-        File directory = new File("GeneratorData");
-        if (!directory.exists()) {
-            directory.mkdir();
-        }
-
-        File dataFile = createOpenFile();
-        Customers customers = null;
-        try {
-            iS = new ObjectInputStream(new FileInputStream(dataFile));
-            customers = (Customers) iS.readObject();
-            iS.close();
-        } catch (EOFException e) {
-            System.out.println("Empty file");
-
-        } catch (ClassNotFoundException | IOException e) {
-            //this could happen if the file has been modified, or if there was some difference between the classes version
-            e.printStackTrace();
-
-        }
-
-        return customers;
-
-    }
 }

@@ -35,14 +35,14 @@ public final class Scheduler {
      * @param event Evenement a ajouter
      */
     public void addEvent(Event event){
-        if (incomingEvent.isEmpty()){   //Si la liste est vide on ajoute juste l'élément
-            incomingEvent.add(event);
+        if (SchedulerInstance.incomingEvent.isEmpty()){   //Si la liste est vide on ajoute juste l'élément
+            SchedulerInstance.incomingEvent.add(event);
         } else {                        //Si elle n'est pas vide on doit ajouter à la bonne place
             boolean found = false;
             int i = 0;
-            while(i < incomingEvent.size() && !found){
-                if(event.getStartingTime() < incomingEvent.get(i).getStartingTime()){  //On cherche le premier event de la liste au temps superieur a celui qu'on ajoute
-                    incomingEvent.add(i, event);
+            while(i < SchedulerInstance.incomingEvent.size() && !found){
+                if(event.getStartingTime() < SchedulerInstance.incomingEvent.get(i).getStartingTime()){  //On cherche le premier event de la liste au temps superieur a celui qu'on ajoute
+                    SchedulerInstance.incomingEvent.add(i, event);
                     found = true;
                 }
                 i++;
@@ -60,8 +60,8 @@ public final class Scheduler {
     public void startingEvent(int currentTime) {
         int i = 0;
 
-        while(incomingEvent.get(i).getStartingTime() <= currentTime){
-            incomingEvent.get(i).run();
+        while(SchedulerInstance.incomingEvent.get(i).getStartingTime() <= currentTime){
+            SchedulerInstance.incomingEvent.get(i).run();
             i++;
         }
     }

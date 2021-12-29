@@ -8,14 +8,17 @@ import java.util.HashMap;
 public final class ControllerHR{
 
     private int nbCashier, nbCooks, nbkfetiers;
-    private static ControllerHR controllerHRInstance = new ControllerHR();
+    private static ControllerHR controllerHRInstance;
 
     private ArrayList<Kfetier> cashier;
     private ArrayList<Kfetier> cooks;
     private ArrayList<Kfetier> kfetiers;
     private HashMap<String, Integer> freeKfetier;
 
-    private ControllerHR(){
+    public ControllerHR(int nbCooks, int nbCashier, int nbkfetiers){
+        this.nbkfetiers=nbkfetiers;
+        this.nbCooks=nbCooks;
+        this.nbCashier=nbCashier;
         int id = 20; //TODO: vérifier si y a pas un pb
 
         //Cashier
@@ -46,11 +49,10 @@ public final class ControllerHR{
     }
 
     public static ControllerHR getInstance(){
-        if (controllerHRInstance == null){
-            controllerHRInstance = new ControllerHR();
-        }
-
         return controllerHRInstance;
+    }
+    public static void setInstance(int nbCooks, int nbCashier, int nbkfetiers){
+        controllerHRInstance=new ControllerHR(nbCooks,nbCashier,nbkfetiers);
     }
 
     public ArrayList<Kfetier> getCashier() {
@@ -150,4 +152,15 @@ public final class ControllerHR{
         return i;
     }
 
+    public void setNbCashier(int nbCashier) {
+        this.nbCashier = nbCashier;
+    }
+
+    public void setNbCooks(int nbCooks) {
+        this.nbCooks = nbCooks;
+    }
+
+    public void setNbkfetiers(int nbkfetiers) {
+        this.nbkfetiers = nbkfetiers;
+    }
 }

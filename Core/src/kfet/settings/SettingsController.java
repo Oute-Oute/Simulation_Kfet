@@ -1,5 +1,6 @@
 package kfet.settings;
 
+import classes.Customers;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
@@ -8,12 +9,16 @@ import javafx.scene.control.TextField;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 
+import kfet.CoreController;
+import main.java.control.ControllerHR;
+import main.java.control.Scheduler;
 import main.java.control.Unserializer;
+import main.java.payment.NewCustomer;
 
 import java.io.File;
 
 
-public class SettingsController {
+public class SettingsController extends CoreController{
 
     @FXML
     Slider CookSelector, coffeeSelector, cashierSelector = new Slider();
@@ -39,8 +44,13 @@ public class SettingsController {
             alert.setContentText("You must select a data file");
             alert.showAndWait();
         }
+        ControllerHR.setInstance((int)CookSelector.getValue(),(int)cashierSelector.getValue(),(int)coffeeSelector.getValue());
         Unserializer unserializer = new Unserializer();
-        unserializer.unserialiseCustomers(dataSelector.getText());
+        customers = unserializer.unserialiseCustomers(dataSelector.getText());
+
+        for (int i=0; i<customers.getCustomers().size();i++){
+            Scheduler.getInstance().addEvent(new NewCustomer(customers.getCustomers().get(i),customers.getCustomers().get(i).getArrivalTime()));
+        }
 
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
 
