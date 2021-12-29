@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="420.0" prefWidth="275.0" xmlns="http://javafx.com/javafx/11.0.2" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.kfet.GeneratorController">
+   <children>
+      <MenuBar layoutY="2.0" prefHeight="25.0" prefWidth="275.0">
+         <menus>
+            <Menu mnemonicParsing="false" text="Generation">
+               <items>
+                  <MenuItem mnemonicParsing="false" onAction="#onGenerateClick" text="Generate" />
+               </items></Menu>
+            <Menu mnemonicParsing="false" onAction="#onGenerateClick" text="Help" />
+         </menus>
+      </MenuBar>
+      <TabPane layoutY="27.0" prefHeight="393.0" prefWidth="275.0" tabClosingPolicy="UNAVAILABLE">
+         <tabs>
+            <Tab text="Customers">
+               <content>
+                  <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="355.0" prefWidth="262.0">
+                     <children>
+                        <Label layoutX="77.0" layoutY="73.0" prefHeight="24.0" prefWidth="124.0" text="How many customers?" />
+                        <Label layoutX="24.0" layoutY="158.0" text="At which time interval will they be coming?" />
+                        <Spinner fx:id="nbCustomersSpin" editable="true" layoutX="63.0" layoutY="97.0" max="500" min="0" />
+                        <Slider fx:id="customerFrequencySlider" blockIncrement="0.0" layoutX="20.0" layoutY="191.0" majorTickUnit="1.0" max="2.0" minorTickCount="5" prefHeight="38.0" prefWidth="232.0" showTickLabels="true" showTickMarks="true" />
+                        <Label layoutX="87.0" layoutY="239.0" text="A shift last 2 hours" />
+                     </children>
+                  </AnchorPane>
+               </content>
+            </Tab>
+            <Tab text="Customer">
+               <content>
+                  <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                     <children>
+                        <Label contentDisplay="CENTER" layoutX="59.0" layoutY="14.0" prefHeight="36.0" prefWidth="160.0" text="What is the % of chance that a customer is a Kfetier?" textAlignment="CENTER" wrapText="true" />
+                        <Label layoutX="164.0" layoutY="61.0" text="\%" />
+                        <Label layoutX="46.0" layoutY="91.0" prefHeight="41.0" prefWidth="186.0" text="How much time will it take to pay? From 0 to 120 seconds" textAlignment="CENTER" wrapText="true" />
+                        <Label layoutX="117.0" layoutY="144.0" text="Account" textAlignment="CENTER" />
+                        <Slider fx:id="cptSlider" blockIncrement="5.0" layoutX="67.0" layoutY="161.0" majorTickUnit="60.0" max="120.0" showTickLabels="true" showTickMarks="true" value="3.0" />
+                        <Label layoutX="113.0" layoutY="197.0" text="Lydia Fast" textAlignment="CENTER" />
+                        <Slider fx:id="fastSlider" blockIncrement="5.0" layoutX="68.0" layoutY="213.0" majorTickUnit="60.0" max="120.0" showTickLabels="true" showTickMarks="true" value="7.0" />
+                        <Label layoutX="124.0" layoutY="248.0" text="Cash" textAlignment="CENTER" />
+                        <Slider fx:id="cashSlider" blockIncrement="5.0" layoutX="67.0" layoutY="262.0" majorTickUnit="60.0" max="120.0" showTickLabels="true" showTickMarks="true" value="15.0" />
+                        <Label layoutX="111.0" layoutY="297.0" text="Lydia Slow" textAlignment="CENTER" />
+                        <Slider fx:id="slowSlider" blockIncrement="5.0" layoutX="68.0" layoutY="312.0" majorTickUnit="60.0" max="120.0" showTickLabels="true" showTickMarks="true" value="20.0" />
+                        <Spinner fx:id="probaKfetierSpin" initialValue="6" layoutX="98.0" layoutY="57.0" max="100" min="0" prefHeight="25.0" prefWidth="58.0" />
+                     </children>
+                  </AnchorPane>
+               </content>
+            </Tab>
+            <Tab text="Order">
+               <content>
+                  <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                     <children>
+                        <Accordion layoutX="1.0" layoutY="121.0" prefHeight="253.0" prefWidth="275.0">
+                           <panes>
+                              <TitledPane animated="false" prefHeight="305.0" prefWidth="275.0" text="Pizza">
+                                 <content>
+                                    <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="261.0" prefWidth="273.0">
+                                       <children>
+                                          <Label layoutX="18.0" layoutY="14.0" prefHeight="42.0" prefWidth="237.0" text="How much time will it take to cook a pizza? In minutes" textAlignment="CENTER" wrapText="true" />
+                                          <TextField layoutX="63.0" layoutY="56.0" prefHeight="25.0" prefWidth="39.0" text="Min" />
+                                          <TextField layoutX="171.0" layoutY="56.0" prefHeight="25.0" prefWidth="39.0" text="Max" />
+                                          <TextField layoutX="107.0" layoutY="56.0" prefHeight="25.0" prefWidth="59.0" text="Average" />
+                                       </children>
+                                    </AnchorPane>
+                                 </content>
+                              </TitledPane>
+                           </panes>
+                        </Accordion>
+                        <Label layoutX="19.0" layoutY="8.0" prefHeight="39.0" prefWidth="237.0" text="How much of each article can one customer order?" textAlignment="CENTER" wrapText="true" />
+                        <Slider blockIncrement="1.0" layoutX="68.0" layoutY="50.0" majorTickUnit="1.0" max="10.0" min="1.0" minorTickCount="0" showTickLabels="true" showTickMarks="true" snapToTicks="true" value="5.0" />
+                     </children>
+                  </AnchorPane>
+               </content>
+            </Tab>
+         </tabs>
+      </TabPane>
+   </children>
+</Pane>
