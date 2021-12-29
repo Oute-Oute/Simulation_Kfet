@@ -1,6 +1,7 @@
 package kfet;
 
 import com.kfet.GeneratorApplication;
+import kfet.help.HelpApplication;
 import kfet.settings.SettingsApplication;
 
 import javafx.animation.TranslateTransition;
@@ -12,6 +13,7 @@ import javafx.stage.Stage;
 import javafx.util.Duration;
 
 import main.java.control.Pair;
+import main.java.control.Scheduler;
 
 import java.io.IOException;
 import java.util.HashMap;
@@ -79,21 +81,17 @@ public class CoreController {
     protected void notFree(int id){
         Circles.get(id).setFill(Color.rgb(196,55,55));
         Circles.get(id).setStroke(Color.rgb(112,39,39));
-
     }
 
     @FXML
     protected void free(int id){
         Circles.get(id).setFill(Color.rgb(81,198,55));
         Circles.get(id).setStroke(Color.rgb(39,114,53));
-
     }
 
     @FXML
     protected  void transition(){
         transition(Cooker2,15);
-
-
     }
 
     @FXML
@@ -105,7 +103,6 @@ public class CoreController {
         transition.setNode(sprite);
         transition.playFromStart();
         transition.setOnFinished(event -> notFree(device));
-
     }
 
     @FXML
@@ -115,5 +112,15 @@ public class CoreController {
     @FXML
     protected void openSettings() throws IOException {
         new SettingsApplication().start(new Stage());
+    }
+
+    @FXML
+    protected void openHelp() throws IOException {
+        new HelpApplication().start(new Stage());
+    }
+
+    @FXML
+    protected void startSimulation(){
+        Scheduler.start();
     }
 }

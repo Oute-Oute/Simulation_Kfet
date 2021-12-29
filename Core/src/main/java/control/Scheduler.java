@@ -81,8 +81,14 @@ public final class Scheduler {
             }
         }
     }
+
+    public static void start(){
+        Scheduler sch = new Scheduler();
+        sch.passingTime();
+    }
+
     public static void main(String[] args){
-        Scheduler sch=new Scheduler();
+        Scheduler sch = new Scheduler();
         sch.passingTime();
     }
 }

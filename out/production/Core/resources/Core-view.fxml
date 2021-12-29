@@ -3,6 +3,7 @@
 <?import javafx.scene.control.Menu?>
 <?import javafx.scene.control.MenuBar?>
 <?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.control.SeparatorMenuItem?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.Pane?>
@@ -10,13 +11,20 @@
 
 <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="584.0" prefWidth="895.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="kfet.CoreController">
       <MenuBar prefHeight="25.0" prefWidth="895.0">
-          <Menu mnemonicParsing="false" text="Generator">
-              <MenuItem mnemonicParsing="false" onAction="#openGenerator" text="Open Generator" />
-          </Menu>
-          <Menu mnemonicParsing="false" text="Settings">
+          <Menu mnemonicParsing="false" text="File">
+              <MenuItem mnemonicParsing="false" onAction="#openGenerator" text="Generator" />
               <MenuItem mnemonicParsing="false" onAction="#openSettings" text="Simulator Settings" />
           </Menu>
-          <Menu mnemonicParsing="false" text="Help">
+          <Menu mnemonicParsing="false" text="Options">
+         <items>
+            <MenuItem mnemonicParsing="false" onAction="#startSimulation" text="Start" />
+            <SeparatorMenuItem mnemonicParsing="false" />
+            <MenuItem mnemonicParsing="false" text="Play" />
+            <MenuItem mnemonicParsing="false" text="Pause" />
+         </items>
+          </Menu>
+          <Menu mnemonicParsing="false" text="?">
+         <MenuItem mnemonicParsing="false" onAction="#openHelp" text="How to start the simulation?" />
               <MenuItem mnemonicParsing="false" text="About" />
           </Menu>
       </MenuBar>

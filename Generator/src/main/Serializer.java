@@ -25,6 +25,8 @@ public class Serializer {
      */
     private ObjectOutputStream oS;
 
+    private String path;
+
     /**
      * Open a file and create it if it doesn't exist
      *
@@ -41,6 +43,7 @@ public class Serializer {
             nameFile = new File(dateFormat.format(date)+".dat");
             if (nameFile.createNewFile()) {
                 System.out.println("File created: " + nameFile.getName());
+                path = nameFile.getAbsolutePath();
             } else {
                 System.out.println("File already exists.");
             }
@@ -74,6 +77,10 @@ public class Serializer {
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
+
+    public String getPath(){
+        return path;
     }
 
     /**

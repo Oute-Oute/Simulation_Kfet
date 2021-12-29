@@ -1,8 +1,8 @@
 package kfet.settings;
 
 import javafx.fxml.FXML;
-import javafx.scene.Scene;
 import javafx.scene.control.Alert;
+import javafx.scene.control.Button;
 import javafx.scene.control.Slider;
 import javafx.scene.control.TextField;
 import javafx.stage.FileChooser;
@@ -19,6 +19,8 @@ public class SettingsController {
     Slider CookSelector, coffeeSelector, cashierSelector = new Slider();
     @FXML
     TextField dataSelector;
+    @FXML
+    Button doneButton;
 
     @FXML
     protected void done() {
@@ -39,8 +41,15 @@ public class SettingsController {
         }
         Unserializer unserializer = new Unserializer();
         unserializer.unserialiseCustomers(dataSelector.getText());
-        System.out.println("Unserialization done");
 
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+
+        alert.setTitle("Validation");
+        alert.setHeaderText("You can now start the simulation!");
+        alert.showAndWait();
+
+        Stage stage = (Stage) doneButton.getScene().getWindow();
+        stage.close();
     }
 
     @FXML
