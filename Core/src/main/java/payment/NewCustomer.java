@@ -20,6 +20,7 @@ public class NewCustomer extends Event {
 
     @Override
     public void run() {
+        System.out.println("New Customer");
         int time = 60; //le temps que met cet event à se réaliser
 
         //S'il y a un caissier de libre

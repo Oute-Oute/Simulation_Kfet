@@ -42,6 +42,7 @@ public final class WaitingList {
      * @param customer
      */
     public void searchGlobal(Customer customer){
+        System.out.println("search global");
         ControllerDevices devicesInstance = ControllerDevices.getInstance();
         boolean found = false;
 
@@ -76,6 +77,7 @@ public final class WaitingList {
      * @param customer
      */
     public void searchPizza(Customer customer) {
+        System.out.println("search pizza");
         ControllerDevices devicesInstance = ControllerDevices.getInstance();
 
         if(customer.getOrder().getNbPizza() > 0){

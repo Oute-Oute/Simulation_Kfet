@@ -20,14 +20,18 @@ public final class Scheduler {
     }
 
     public static Scheduler getInstance() {
-        if (SchedulerInstance == null){
+        /*if (SchedulerInstance == null){
             SchedulerInstance = new Scheduler();
-        }
+        }*/
         return SchedulerInstance;
     }
 
     public int getCurrentTime() {
         return currentTime;
+    }
+
+    public int getnbEvent(){
+        return incomingEvent.size();
     }
 
     /**
@@ -60,8 +64,9 @@ public final class Scheduler {
     public void startingEvent(int currentTime) {
         int i = 0;
 
-        while(SchedulerInstance.incomingEvent.get(i).getStartingTime() <= currentTime){
+        while(i < SchedulerInstance.getnbEvent() && SchedulerInstance.incomingEvent.get(i).getStartingTime() <= currentTime){
             SchedulerInstance.incomingEvent.get(i).run();
+            SchedulerInstance.incomingEvent.remove(i);
             i++;
         }
     }
@@ -73,14 +78,17 @@ public final class Scheduler {
 
         while (currentTime <= 7200) {
 
+            System.out.println(currentTime+" /7200");
             if (baseClock.instant().truncatedTo(ChronoUnit.SECONDS).equals(newClock.instant().truncatedTo(ChronoUnit.SECONDS))) {
                 baseClock = newClock;
                 startingEvent(currentTime);
                 currentTime += 1;
-                newClock = Clock.tickSeconds(ZoneId.systemDefault());
+                newClock = Clock.tickSeconds(ZoneId.systemDefault()); //TODO: prends plus en compte le temps des tick
             }
         }
     }
+
+
 
     public static void start(){
         Scheduler sch = new Scheduler();

@@ -48,7 +48,6 @@ public class SettingsController extends CoreController {
 
 
         ControllerHR.setInstance((int) CookSelector.getValue(), (int) cashierSelector.getValue(), (int) coffeeSelector.getValue());
-        ControllerDevices.getInstance();
         Unserializer unserializer = new Unserializer();
         customers = unserializer.unserialiseCustomers(dataSelector.getText());
 

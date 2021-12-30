@@ -16,6 +16,8 @@ public class PreparationOrder extends Event {
 
     @Override
     public void run() {
+        System.out.println("Preparation Order");
+
         //On ajoute le client à la liste d'attente post order
         WaitingList.getInstance().getPostOrder().add(customer);
 

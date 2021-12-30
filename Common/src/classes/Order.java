@@ -8,7 +8,7 @@ import java.util.Random;
 public class Order implements Serializable {
     @Serial
     private static final long serialVersionUID =1L;
-    private static final int MAX_ORDER = 5, MIN_COOKINGTIME_PIZZA = 900, MAX_COOKINGTIME_PIZZA = 1200, AVERAGE_COOKINGTIME_PIZZA = 1020;
+    private static final int MAX_ORDER = 2, MIN_COOKINGTIME_PIZZA = 900, MAX_COOKINGTIME_PIZZA = 1200, AVERAGE_COOKINGTIME_PIZZA = 1020;
 
     private final int nbArticles;
     private int coffee;
