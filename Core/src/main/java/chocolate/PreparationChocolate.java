@@ -21,6 +21,7 @@ public class PreparationChocolate extends Event {
 
     @Override
     public void run() {
+        System.out.println("Preparation Chocolate");
         int position = ControllerHR.getInstance().whichKfetier();
         Kfetier kfetier = ControllerHR.getInstance().getKfetiers().get(position);
         position = ControllerDevices.getInstance().whichCocoa();

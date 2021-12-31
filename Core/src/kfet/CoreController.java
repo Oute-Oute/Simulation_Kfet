@@ -17,8 +17,10 @@ import main.java.control.Scheduler;
 import java.io.IOException;
 import java.util.HashMap;
 
-public class CoreController {
-    public Customers customers = null;
+public final class CoreController {
+
+    private static CoreController CoreControllerInstance = new CoreController();
+    private Customers customers = null;
 
     @FXML
     private Circle Cashier_1, Cashier_2, Oven_1, Oven_2, Oven_3, Oven_4, Oven_5, Oven_6, Oven_7, Oven_8, MO_1, MO_2, MO_3, Coffee_1, Coffee_2, Chocolate, Kettle_1, Kettle_2;
@@ -35,8 +37,23 @@ public class CoreController {
     @FXML
     private TranslateTransition transition = new TranslateTransition();
 
+    public static CoreController getInstance(){
+        if(CoreControllerInstance == null){
+            CoreControllerInstance = new CoreController();
+        }
+        return CoreControllerInstance;
+    }
+
+    public Customers getCustomers() {
+        return customers;
+    }
+
+    public void setCustomers(Customers customers) {
+        this.customers = customers;
+    }
+
     @FXML
-    protected void initialize() {
+    public void initialize() {
         colorCircle.put(0, Oven_1);
         colorCircle.put(1, Oven_2);
         colorCircle.put(2, Oven_3);
@@ -76,7 +93,7 @@ public class CoreController {
     }
 
     @FXML
-    protected void notFree(int id) {
+    public void notFree(int id) {
         Circle circle = colorCircle.get(id);
 
         if (circle != null) {
@@ -88,7 +105,7 @@ public class CoreController {
     }
 
     @FXML
-    protected void free(int id) {
+    public void free(int id) {
         Circle circle = colorCircle.get(id);
 
         if (circle != null) {
@@ -136,6 +153,7 @@ public class CoreController {
         if (Scheduler.getInstance().getnbEvent() == 0) {
             openSettings();
         } else {
+            CoreControllerInstance.initialize();
             Scheduler.start();
         }
     }

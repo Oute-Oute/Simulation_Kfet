@@ -3,7 +3,7 @@ package main.java;
 import kfet.CoreController;
 import main.java.control.Scheduler;
 
-public class Device extends CoreController {
+public class Device{
 
     private int id;
     private String type;
@@ -39,11 +39,11 @@ public class Device extends CoreController {
         if(free){
             endOccupated = Scheduler.getInstance().getCurrentTime();
             occupationTime += (endOccupated - startOccupated);
-            free(this.id);
+            CoreController.getInstance().free(this.id);
         } else {
             startOccupated = Scheduler.getInstance().getCurrentTime();
             nbUsed++;
-            notFree(this.id);
+            CoreController.getInstance().notFree(this.id);
         }
     }
 

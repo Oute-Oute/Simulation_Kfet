@@ -27,6 +27,7 @@ public class StartBoilingWater extends Event {
 
     @Override
     public void run() {
+        System.out.println("Start boiling water");
         if(isCold){
             int position = ControllerHR.getInstance().whichKfetier();
             Kfetier kfetier = ControllerHR.getInstance().getKfetiers().get(position);

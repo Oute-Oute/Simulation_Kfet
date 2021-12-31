@@ -24,6 +24,7 @@ public class ServePicard extends Event {
     }
 
     public void run(){
+        System.out.println("Serve Picard");
         Random r = new Random();
         if(r.nextDouble() < 0.2 && cooked != 2) {
             Scheduler.getInstance().addEvent(new ServePicard(customer, microwave, 2, getStartingTime() + 150));

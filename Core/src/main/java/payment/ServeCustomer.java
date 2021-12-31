@@ -17,7 +17,7 @@ public class ServeCustomer extends Event {
     }
 
     public void run(){
-        System.out.println("ServeCustomer");
+        System.out.println("Serve Customer");
 
         int nbOrder = customer.getOrder().getNbPizza() +
                 customer.getOrder().getPicard() +

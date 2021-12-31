@@ -23,6 +23,7 @@ public class CookingPizza extends Event {
     }
 
     public void run(){
+        System.out.println("Cooking Pizza");
         cook.setFree(true);
         int time = customer.getOrder().getPizza().get(0) + getStartingTime();
         WaitingList.getInstance().searchPizza(customer);

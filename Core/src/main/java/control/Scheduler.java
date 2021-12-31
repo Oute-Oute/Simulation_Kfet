@@ -1,5 +1,6 @@
 package main.java.control;
 
+import kfet.CoreController;
 import main.java.Event;
 
 import java.time.Clock;
@@ -20,9 +21,9 @@ public final class Scheduler {
     }
 
     public static Scheduler getInstance() {
-        /*if (SchedulerInstance == null){
+        if (SchedulerInstance == null) {
             SchedulerInstance = new Scheduler();
-        }*/
+        }
         return SchedulerInstance;
     }
 
@@ -91,12 +92,6 @@ public final class Scheduler {
 
 
     public static void start(){
-        Scheduler sch = new Scheduler();
-        sch.passingTime();
-    }
-
-    public static void main(String[] args){
-        Scheduler sch = new Scheduler();
-        sch.passingTime();
+        getInstance().passingTime();
     }
 }

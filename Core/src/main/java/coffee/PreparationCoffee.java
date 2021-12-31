@@ -20,6 +20,8 @@ public class PreparationCoffee extends Event {
 
     @Override
     public void run() {
+        System.out.println("Preparation Coffee");
+
         int position = ControllerHR.getInstance().whichKfetier();
         Kfetier kfetier = ControllerHR.getInstance().getKfetiers().get(position);
         position = ControllerDevices.getInstance().whichCafetiere();

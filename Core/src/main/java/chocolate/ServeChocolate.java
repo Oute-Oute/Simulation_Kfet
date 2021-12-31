@@ -25,6 +25,7 @@ public class ServeChocolate extends Event {
 
     @Override
     public void run() {
+        System.out.println("Serve chocolate");
         kfetier.setFree(true);
         cocoa.setFree(true);
 

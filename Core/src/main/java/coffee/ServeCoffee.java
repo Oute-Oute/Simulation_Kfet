@@ -25,6 +25,7 @@ public class ServeCoffee extends Event {
 
     @Override
     public void run() {
+        System.out.println("Serve Chocolate");
         kfetier.setFree(true);
         cafetiere.setFree(true);
 
