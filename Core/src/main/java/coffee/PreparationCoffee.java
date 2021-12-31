@@ -29,7 +29,7 @@ public class PreparationCoffee extends Event {
 
         customer.getOrder().setCoffee(customer.getOrder().getCoffee() - 1);
 
-        Scheduler.getInstance().addEvent(new ServeCoffee(customer, cafetiere, kfetier, getStartingTime() + 30 ));
+        Scheduler.getInstance().addEvent(new ServeCoffee(customer, cafetiere, kfetier, getStartingTime() + 15 ));
 
     }
 }

@@ -2,6 +2,7 @@ package main.java.control;
 
 import kfet.CoreController;
 import main.java.Event;
+import main.java.report.ExportExcel;
 
 import java.time.Clock;
 import java.time.Duration;
@@ -66,6 +67,7 @@ public final class Scheduler {
         int i = 0;
 
         while(i < SchedulerInstance.getnbEvent() && SchedulerInstance.incomingEvent.get(i).getStartingTime() <= currentTime){
+            System.out.println(currentTime+" /7200");
             SchedulerInstance.incomingEvent.get(i).run();
             SchedulerInstance.incomingEvent.remove(i);
             i++;
@@ -79,7 +81,6 @@ public final class Scheduler {
 
         while (currentTime <= 7200) {
 
-            System.out.println(currentTime+" /7200");
             if (baseClock.instant().truncatedTo(ChronoUnit.SECONDS).equals(newClock.instant().truncatedTo(ChronoUnit.SECONDS))) {
                 baseClock = newClock;
                 startingEvent(currentTime);
@@ -87,6 +88,7 @@ public final class Scheduler {
                 newClock = Clock.tickSeconds(ZoneId.systemDefault()); //TODO: prends plus en compte le temps des tick
             }
         }
+        ExportExcel.CreateFile(CoreController.getInstance().getCustomers());
     }
 
 

@@ -24,8 +24,10 @@ public class ServeCustomer extends Event {
                 customer.getOrder().getChocolate() +
                 customer.getOrder().getCoffee() +
                 customer.getOrder().getRamen();
+
         if( nbOrder == 0){
             customer.setDepartureTime(Scheduler.getInstance().getCurrentTime());
+            System.out.println("Customer arrived at "+customer.getArrivalTime()+" and departed at "+customer.getDepartureTime());
             WaitingList.getInstance().getPostOrder().remove(customer);
         }
 

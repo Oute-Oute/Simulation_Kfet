@@ -24,7 +24,7 @@ public class ServePizza extends Event {
         System.out.println("Serve Pizza");
         oven.setFree(true);
         WaitingList.getInstance().searchPizza(customer);
-        Scheduler.getInstance().addEvent(new ServeCustomer(customer, getStartingTime()));
+        Scheduler.getInstance().addEvent(new ServeCustomer(customer, getStartingTime() + 1));
     }
 
 }

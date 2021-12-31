@@ -16,7 +16,7 @@ public class ServeChocolate extends Event {
     private Device cocoa;
     private Kfetier kfetier;
 
-    public ServeChocolate(Customer customer, Device cocoa, Kfetier kfetier, int startingTime){
+    public ServeChocolate(Customer customer, Device cocoa, Kfetier kfetier, int startingTime) {
         super(startingTime);
         this.cocoa = cocoa;
         this.customer = customer;
@@ -30,7 +30,7 @@ public class ServeChocolate extends Event {
         cocoa.setFree(true);
 
         WaitingList.getInstance().searchGlobal(customer);
-        Scheduler.getInstance().addEvent(new ServeCustomer(customer, Scheduler.getInstance().getCurrentTime()));
+        Scheduler.getInstance().addEvent(new ServeCustomer(customer, Scheduler.getInstance().getCurrentTime() + 1));
 
 
     }

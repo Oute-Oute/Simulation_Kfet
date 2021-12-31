@@ -29,7 +29,7 @@ public class PreparationChocolate extends Event {
 
         customer.getOrder().setChocolate(customer.getOrder().getChocolate() - 1);
 
-        Scheduler.getInstance().addEvent(new ServeChocolate(customer, cocoa, kfetier, getStartingTime() + 30 ));
+        Scheduler.getInstance().addEvent(new ServeChocolate(customer, cocoa, kfetier, getStartingTime() + 15 ));
 
     }
 }
