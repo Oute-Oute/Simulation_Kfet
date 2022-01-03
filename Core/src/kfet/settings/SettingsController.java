@@ -51,6 +51,7 @@ public class SettingsController {
         Unserializer unserializer = new Unserializer();
 
         CoreController.getInstance().setCustomers(unserializer.unserialiseCustomers(dataSelector.getText()));
+        CoreController.getInstance().actualizeSprites();
 
 
         for (int i = 0; i < CoreController.getInstance().getCustomers().getCustomers().size(); i++) {
@@ -71,6 +72,11 @@ public class SettingsController {
     protected void open() {
         FileChooser fileChooser = new FileChooser();
         fileChooser.setTitle("Choose a data file");
+        File recordsDir = new File(System.getProperty("user.home"), "SimulationKfet/Data");
+        if (! recordsDir.exists()) {
+            recordsDir.mkdirs();
+        }
+        fileChooser.setInitialDirectory(recordsDir);
         fileChooser.getExtensionFilters().addAll(
                 new FileChooser.ExtensionFilter("DAT", "*.dat"),
                 new FileChooser.ExtensionFilter("All Files", "*.*"));

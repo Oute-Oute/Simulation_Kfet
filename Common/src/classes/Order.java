@@ -8,8 +8,8 @@ import java.util.Random;
 public class Order implements Serializable {
     @Serial
     private static final long serialVersionUID =1L;
-    private static final int MAX_ORDER = 2, MIN_COOKINGTIME_PIZZA = 900, MAX_COOKINGTIME_PIZZA = 1200, AVERAGE_COOKINGTIME_PIZZA = 1020;
-
+    private static final int MIN_COOKINGTIME_PIZZA = 900, MAX_COOKINGTIME_PIZZA = 1200, AVERAGE_COOKINGTIME_PIZZA = 1020;
+    private final int max_order;
     private final int nbArticles;
     private int coffee;
     private int chocolate;
@@ -18,13 +18,15 @@ public class Order implements Serializable {
     private int nbPizza;
     private ArrayList<Integer> pizza;
 
-    public Order(){
+    public Order(int max){
         Random r = new Random();
-        coffee = r.nextInt(MAX_ORDER);
-        chocolate = r.nextInt(MAX_ORDER);
-        ramen = r.nextInt(MAX_ORDER);
-        picard = r.nextInt(MAX_ORDER);
-        nbPizza = r.nextInt(MAX_ORDER);
+        max_order=max;
+        coffee = r.nextInt(max_order);
+        chocolate = r.nextInt(max_order);
+        ramen = r.nextInt(max_order);
+        picard = r.nextInt(max_order);
+        nbPizza = r.nextInt(max_order);
+
 
         nbArticles = coffee + chocolate + ramen + picard + nbPizza;
         pizza = new ArrayList<>();

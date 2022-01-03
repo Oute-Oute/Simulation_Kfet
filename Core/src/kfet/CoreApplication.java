@@ -17,6 +17,8 @@ public class CoreApplication extends Application {
     @Override
     public void start(Stage stage) throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/resources/Core-view.fxml"));
+        CoreController controller=new CoreController();
+        fxmlLoader.setController(controller.getInstance());
         Scene scene = new Scene(fxmlLoader.load());
         stage.setTitle("Simulation");
         stage.getIcons().add(new Image(Objects.requireNonNull(GeneratorApplication.class.getResourceAsStream("/icon.png"))));

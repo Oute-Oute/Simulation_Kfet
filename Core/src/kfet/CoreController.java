@@ -4,13 +4,18 @@ import classes.Customers;
 import com.kfet.GeneratorApplication;
 import javafx.animation.TranslateTransition;
 import javafx.fxml.FXML;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
+import javafx.scene.paint.Paint;
 import javafx.scene.shape.Circle;
+import javafx.scene.shape.StrokeType;
 import javafx.stage.Stage;
 import javafx.util.Duration;
 import kfet.help.HelpApplication;
 import kfet.settings.SettingsApplication;
+import main.java.control.ControllerHR;
 import main.java.control.Pair;
 import main.java.control.Scheduler;
 
@@ -19,7 +24,7 @@ import java.util.HashMap;
 
 public final class CoreController {
 
-    private static CoreController CoreControllerInstance = new CoreController();
+    private static CoreController CoreControllerInstance=new CoreController();
     private Customers customers = null;
 
     @FXML
@@ -32,10 +37,12 @@ public final class CoreController {
     private HashMap<Integer, Pair<Double, Double>> coordinates = new HashMap<>();
 
     @FXML
-    private ImageView cooker2 = new ImageView();
+    private ImageView Cashier1,Cashier2,CoffeeMaker1,CoffeeMaker2,Cooker1,Cooker2;
 
     @FXML
     private TranslateTransition transition = new TranslateTransition();
+    @FXML
+    private Pane pane=new Pane();
 
     public static CoreController getInstance(){
         if(CoreControllerInstance == null){
@@ -72,6 +79,7 @@ public final class CoreController {
         colorCircle.put(15, Chocolate);
         colorCircle.put(20, Cashier_1);
 
+
         coordinates.put(0, new Pair<>(475.0, 520.0));
         coordinates.put(1, new Pair<>(475.0, 455.0));
         coordinates.put(2, new Pair<>(475.0, 400.0));
@@ -90,6 +98,37 @@ public final class CoreController {
         coordinates.put(15, new Pair<>(600.0, 280.0));
 
         //TODO verifier que tout les emplacements ont leur coords
+
+    }
+    @FXML
+    public void actualizeSprites(){
+        System.out.println("test");
+        if(ControllerHR.getInstance().getNbCashier()==2){
+            System.out.println("Cash");
+            colorCircle.put(21, Cashier_2);
+            Cashier_2.setVisible(true);
+            Cashier2.setVisible(true);
+            CoffeeMaker2.setVisible(false);
+            Cooker2.setVisible(false);
+
+        }
+        if(ControllerHR.getInstance().getNbCooks()==2){
+            System.out.println("Cook");
+            Cooker2.setVisible(true);
+            Cashier_2.setVisible(false);
+            Cashier2.setVisible(false);
+            CoffeeMaker2.setVisible(false);
+
+
+        }
+        if(ControllerHR.getInstance().getNbKfetiers()==2){
+            System.out.println("Kfetier");
+            CoffeeMaker2.setVisible(true);
+            Cashier_2.setVisible(false);
+            Cashier2.setVisible(false);
+            Cooker2.setVisible(false);
+
+        }
     }
 
     @FXML
@@ -129,7 +168,7 @@ public final class CoreController {
 
     @FXML
     protected void transition() {
-        transition(cooker2, 15);
+        transition(Cooker2, 15);
     }
 
     @FXML

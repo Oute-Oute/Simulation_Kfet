@@ -23,6 +23,8 @@ public class GeneratorController {
     private Slider cashSlider;
     @FXML
     private Slider customerFrequencySlider;
+    @FXML
+    private Slider slider_max_order;
 
     @FXML
     protected void onGenerateClick() {
@@ -32,9 +34,10 @@ public class GeneratorController {
         int fast = (int) fastSlider.getValue();
         int slow = (int) slowSlider.getValue();
         int cash = (int) cashSlider.getValue();
+        int max_order = (int) slider_max_order.getValue();
         double frequency = 3600 * Double.parseDouble(String.valueOf(customerFrequencySlider.getValue()));
 
-        Customers customers = new Customers(nbCustomers, proba, fast, cash, slow, cpt, frequency);
+        Customers customers = new Customers(nbCustomers, proba, fast, cash, slow, cpt, frequency, max_order);
         Serializer serializer = new Serializer();
         serializer.serializeCustomers(customers);
 

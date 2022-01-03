@@ -15,13 +15,13 @@ public class Customers implements Serializable {
         customers = new ArrayList<>();
     }
 
-    public Customers(int nbMaxCustomer, double proba,int fast,int cash, int slow, int cpt, double customerFrequency) {
+    public Customers(int nbMaxCustomer, double proba,int fast,int cash, int slow, int cpt, double customerFrequency, int max_order) {
         customers = new ArrayList<>();
 
         ArrayList<Integer> arrivalTime = arrivalTimeGenerator(nbMaxCustomer, customerFrequency);
 
         for(int i = 0; i< nbMaxCustomer; i++){
-            customers.add(new Customer(proba,fast,cash,slow,cpt,arrivalTime.get(i)));
+            customers.add(new Customer(proba,fast,cash,slow,cpt,arrivalTime.get(i),max_order));
         }
     }
 
