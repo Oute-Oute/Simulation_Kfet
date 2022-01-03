@@ -40,7 +40,7 @@ public class Serializer {
         try {
             Date date = new Date() ;
             SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH-mm-ss") ;
-            nameFile = new File(dateFormat.format(date)+".dat");
+            nameFile = new File(System.getProperty("user.home"), "SimulationKfet/Data/"+dateFormat.format(date)+".dat");
             if (nameFile.createNewFile()) {
                 System.out.println("File created: " + nameFile.getName());
                 path = nameFile.getAbsolutePath();
@@ -63,8 +63,7 @@ public class Serializer {
      * @param customers the company to serialize
      */
     public void serializeCustomers(Customers customers) {
-
-        File directory = new File("GeneratorData");
+        File directory = new File(System.getProperty("user.home"), "SimulationKfet/Data/");
         if (!directory.exists()) {
             directory.mkdir();
         }

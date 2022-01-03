@@ -22,7 +22,7 @@ public class Customer implements Serializable {
 
     private int departureTime;
 
-    public Customer(double probaKfetier,int fast,int cash, int slow, int cpt, int ArrivalTime){
+    public Customer(double probaKfetier,int fast,int cash, int slow, int cpt, int ArrivalTime,int max_order){
         fastLydiaPayement=fast;
         cashPayement=cash;
         slowLydiaPayement=slow;
@@ -36,7 +36,7 @@ public class Customer implements Serializable {
         } else {
             paymentDuration = payement.get(r.nextInt(payement.size()));
         }
-        order = new Order();
+        order = new Order(max_order);
 
         arrivalTick = Math.abs((int) (2000*r.nextGaussian()));
         arrivalTime = arrivalTick/tpm;

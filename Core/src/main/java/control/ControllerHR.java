@@ -30,14 +30,14 @@ public final class ControllerHR{
 
         //Cooks
         cooks = new ArrayList<>(nbCooks);
-        for(int i = id ; i < id+nbCooks + id; i++){
+        for(int i = id ; i < id+nbCooks; i++){
             cooks.add(new Kfetier(i, "Cook"));
         }
         id += nbCooks;
 
         //Kfetier
         kfetiers = new ArrayList<>(nbKfetiers);
-        for(int i = id; i < id+ nbKfetiers + id; i++){
+        for(int i = id; i < id+nbKfetiers; i++){
             kfetiers.add(new Kfetier(i, "Kfetier"));
         }
 
@@ -166,5 +166,17 @@ public final class ControllerHR{
 
     public void setNbKfetiers(int nbKfetiers) {
         this.nbKfetiers = nbKfetiers;
+    }
+
+    public int getNbCashier() {
+        return nbCashier;
+    }
+
+    public int getNbCooks() {
+        return nbCooks;
+    }
+
+    public int getNbKfetiers() {
+        return nbKfetiers;
     }
 }
