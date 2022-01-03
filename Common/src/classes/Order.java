@@ -11,6 +11,7 @@ public class Order implements Serializable {
     private static final int MIN_COOKINGTIME_PIZZA = 900, MAX_COOKINGTIME_PIZZA = 1200, AVERAGE_COOKINGTIME_PIZZA = 1020;
     private final int max_order;
     private final int nbArticles;
+    private int nbServed;
     private int coffee;
     private int chocolate;
     private int ramen;
@@ -82,5 +83,13 @@ public class Order implements Serializable {
 
     public int getNbArticles() {
         return nbArticles;
+    }
+
+    public int getNbServed() {
+        return nbServed;
+    }
+
+    public void setNbServed(int nbServed) {
+        this.nbServed = nbServed;
     }
 }

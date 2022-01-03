@@ -1,9 +1,20 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
+<?import javafx.scene.control.Accordion?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Menu?>
+<?import javafx.scene.control.MenuBar?>
+<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.control.Slider?>
+<?import javafx.scene.control.Spinner?>
+<?import javafx.scene.control.Tab?>
+<?import javafx.scene.control.TabPane?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.TitledPane?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
 
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="420.0" prefWidth="275.0" xmlns="http://javafx.com/javafx/11.0.2" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.kfet.GeneratorController">
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="420.0" prefWidth="275.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.kfet.GeneratorController">
    <children>
       <MenuBar layoutY="2.0" prefHeight="25.0" prefWidth="275.0">
          <menus>
@@ -70,7 +81,7 @@
                            </panes>
                         </Accordion>
                         <Label layoutX="19.0" layoutY="8.0" prefHeight="39.0" prefWidth="237.0" text="How much of each article can one customer order?" textAlignment="CENTER" wrapText="true" />
-                        <Slider blockIncrement="1.0" layoutX="68.0" layoutY="50.0" majorTickUnit="1.0" max="10.0" min="1.0" minorTickCount="0" showTickLabels="true" showTickMarks="true" snapToTicks="true" value="2.0" />
+                        <Slider fx:id="slider_max_order" blockIncrement="1.0" layoutX="68.0" layoutY="50.0" majorTickUnit="1.0" max="5.0" min="1.0" minorTickCount="0" showTickLabels="true" showTickMarks="true" snapToTicks="true" value="2.0" />
                      </children>
                   </AnchorPane>
                </content>
