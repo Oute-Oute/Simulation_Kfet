@@ -1,8 +1,9 @@
 package main.java;
 
+
 import kfet.CoreController;
 
-public class Kfetier extends CoreController {
+public class Kfetier {
     private int id;
     private String type;
     private Boolean isFree;
@@ -32,9 +33,9 @@ public class Kfetier extends CoreController {
     public void setFree(Boolean free) {
         isFree = free;
         if(free){
-            free(this.id);
+            CoreController.getInstance().free(this.id);
         } else {
-            notFree(this.id);
+            CoreController.getInstance().notFree(this.id);
         }
     }
 }

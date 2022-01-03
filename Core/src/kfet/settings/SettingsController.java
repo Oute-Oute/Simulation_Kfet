@@ -10,6 +10,7 @@ import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 
 import kfet.CoreController;
+import main.java.control.ControllerDevices;
 import main.java.control.ControllerHR;
 import main.java.control.Scheduler;
 import main.java.control.Unserializer;
@@ -18,7 +19,7 @@ import main.java.payment.NewCustomer;
 import java.io.File;
 
 
-public class SettingsController extends CoreController{
+public class SettingsController {
 
     @FXML
     Slider CookSelector, coffeeSelector, cashierSelector = new Slider();
@@ -44,12 +45,16 @@ public class SettingsController extends CoreController{
             alert.setContentText("You must select a data file");
             alert.showAndWait();
         }
-        ControllerHR.setInstance((int)CookSelector.getValue(),(int)cashierSelector.getValue(),(int)coffeeSelector.getValue());
-        Unserializer unserializer = new Unserializer();
-        customers = unserializer.unserialiseCustomers(dataSelector.getText());
 
-        for (int i=0; i<customers.getCustomers().size();i++){
-            Scheduler.getInstance().addEvent(new NewCustomer(customers.getCustomers().get(i),customers.getCustomers().get(i).getArrivalTime()));
+
+        ControllerHR.setInstance((int) CookSelector.getValue(), (int) cashierSelector.getValue(), (int) coffeeSelector.getValue());
+        Unserializer unserializer = new Unserializer();
+
+        CoreController.getInstance().setCustomers(unserializer.unserialiseCustomers(dataSelector.getText()));
+
+
+        for (int i = 0; i < CoreController.getInstance().getCustomers().getCustomers().size(); i++) {
+            Scheduler.getInstance().addEvent(new NewCustomer(CoreController.getInstance().getCustomers().getCustomers().get(i), CoreController.getInstance().getCustomers().getCustomers().get(i).getArrivalTime()));
         }
 
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
@@ -70,7 +75,9 @@ public class SettingsController extends CoreController{
                 new FileChooser.ExtensionFilter("DAT", "*.dat"),
                 new FileChooser.ExtensionFilter("All Files", "*.*"));
         File file = fileChooser.showOpenDialog(new Stage());
-        dataSelector.setText(file.getPath());
+        if (file != null) {
+            dataSelector.setText(file.getPath());
+        }
     }
 
 }

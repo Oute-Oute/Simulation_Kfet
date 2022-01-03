@@ -20,7 +20,8 @@ public class NewCustomer extends Event {
 
     @Override
     public void run() {
-        int time = 60; //le temps que met cet event à se réaliser
+        System.out.println("New Customer");
+        int time = 30; //le temps que met cet event à se réaliser
 
         //S'il y a un caissier de libre
         if(ControllerHR.getInstance().getFreeKfetier().get("Cashier") > 0) {

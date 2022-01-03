@@ -16,7 +16,7 @@ public class ServeCoffee extends Event {
     private Device cafetiere;
     private Kfetier kfetier;
 
-    public ServeCoffee(Customer customer, Device cafetiere, Kfetier kfetier, int startingTime){
+    public ServeCoffee(Customer customer, Device cafetiere, Kfetier kfetier, int startingTime) {
         super(startingTime);
         this.cafetiere = cafetiere;
         this.customer = customer;
@@ -25,11 +25,12 @@ public class ServeCoffee extends Event {
 
     @Override
     public void run() {
+        System.out.println("Serve Chocolate");
         kfetier.setFree(true);
         cafetiere.setFree(true);
 
         WaitingList.getInstance().searchGlobal(customer);
-        Scheduler.getInstance().addEvent(new ServeCustomer(customer, Scheduler.getInstance().getCurrentTime()));
+        Scheduler.getInstance().addEvent(new ServeCustomer(customer, Scheduler.getInstance().getCurrentTime() + 1));
 
 
     }

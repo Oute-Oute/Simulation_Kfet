@@ -210,7 +210,7 @@ public final class ControllerDevices {
      * Cherche quelle bouilloire est actuellement libre
      * Cette méthode ne doit être lancée qu'après s'être assuré qu'il y avait une bouilloire de libre
      * TODO: ptetre une exception du coup
-     * @return la position de la machine à chocobouilloire libre dans son arraylist
+     * @return la position de la bouilloire libre dans son arraylist
      */
     public int whichKettle(){
         int i = 0;

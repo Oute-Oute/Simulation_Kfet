@@ -19,6 +19,7 @@ public class EndBoilingWater extends Event {
 
     @Override
     public void run() {
+        System.out.println("End Boiling Water");
         StartBoilingWater.setIsCold(false);
         kettle.setFree(true);
 

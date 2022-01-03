@@ -16,6 +16,8 @@ public class ServeRamen extends Event {
 
     @Override
     public void run() {
+        //TODO: ptetre un truc jsp?
+        System.out.println("Serve Ramen");
 
     }
 }

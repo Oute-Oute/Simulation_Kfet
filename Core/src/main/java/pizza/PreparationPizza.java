@@ -19,6 +19,7 @@ public class PreparationPizza extends Event {
 
     @Override
     public void run() {
+        System.out.println("Preparation Pizza");
         int time = 30; //le temps que met cet event à se réaliser
 
         //On récupere le Cuisinier et le four qui vont mettre la pizza à cuire

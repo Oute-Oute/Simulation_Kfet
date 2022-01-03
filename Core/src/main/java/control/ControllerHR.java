@@ -7,7 +7,7 @@ import java.util.HashMap;
 
 public final class ControllerHR{
 
-    private int nbCashier, nbCooks, nbkfetiers;
+    private int nbCashier, nbCooks, nbKfetiers;
     private static ControllerHR controllerHRInstance;
 
     private ArrayList<Kfetier> cashier;
@@ -15,29 +15,29 @@ public final class ControllerHR{
     private ArrayList<Kfetier> kfetiers;
     private HashMap<String, Integer> freeKfetier;
 
-    public ControllerHR(int nbCooks, int nbCashier, int nbkfetiers){
-        this.nbkfetiers=nbkfetiers;
-        this.nbCooks=nbCooks;
-        this.nbCashier=nbCashier;
+    private ControllerHR(int nbCooks, int nbCashier, int nbKfetiers){
+        this.nbKfetiers = nbKfetiers;
+        this.nbCooks = nbCooks;
+        this.nbCashier = nbCashier;
         int id = 20; //TODO: vérifier si y a pas un pb
 
         //Cashier
         cashier = new ArrayList<>(nbCashier);
-        for(int i = id; i < nbCashier; i++){
+        for(int i = id; i < id+nbCashier; i++){
             cashier.add(new Kfetier(i, "Cashier"));
         }
         id += nbCashier;
 
         //Cooks
         cooks = new ArrayList<>(nbCooks);
-        for(int i = id ; i < nbCooks + id; i++){
+        for(int i = id ; i < id+nbCooks + id; i++){
             cooks.add(new Kfetier(i, "Cook"));
         }
         id += nbCooks;
 
         //Kfetier
-        kfetiers = new ArrayList<>(nbkfetiers);
-        for(int i = id ; i < nbkfetiers + id; i++){
+        kfetiers = new ArrayList<>(nbKfetiers);
+        for(int i = id; i < id+ nbKfetiers + id; i++){
             kfetiers.add(new Kfetier(i, "Kfetier"));
         }
 
@@ -45,14 +45,18 @@ public final class ControllerHR{
         freeKfetier = new HashMap<>();
         freeKfetier.put("Cashier", nbCashier);
         freeKfetier.put("Cook", nbCooks);
-        freeKfetier.put("Kfetier", nbkfetiers);
+        freeKfetier.put("Kfetier", nbKfetiers);
     }
 
     public static ControllerHR getInstance(){
+        /*if (controllerHRInstance == null){
+            controllerHRInstance = new ControllerHR();
+        }*/
+        //TODO: vérifier pb ici si jamais
         return controllerHRInstance;
     }
-    public static void setInstance(int nbCooks, int nbCashier, int nbkfetiers){
-        controllerHRInstance=new ControllerHR(nbCooks,nbCashier,nbkfetiers);
+    public static void setInstance(int nbCooks, int nbCashier, int nbKfetiers){
+        controllerHRInstance = new ControllerHR(nbCooks,nbCashier,nbKfetiers);
     }
 
     public ArrayList<Kfetier> getCashier() {
@@ -160,7 +164,7 @@ public final class ControllerHR{
         this.nbCooks = nbCooks;
     }
 
-    public void setNbkfetiers(int nbkfetiers) {
-        this.nbkfetiers = nbkfetiers;
+    public void setNbKfetiers(int nbKfetiers) {
+        this.nbKfetiers = nbKfetiers;
     }
 }

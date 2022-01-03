@@ -1,6 +1,8 @@
 package main.java.control;
 
+import kfet.CoreController;
 import main.java.Event;
+import main.java.report.ExportExcel;
 
 import java.time.Clock;
 import java.time.Duration;
@@ -20,7 +22,7 @@ public final class Scheduler {
     }
 
     public static Scheduler getInstance() {
-        if (SchedulerInstance == null){
+        if (SchedulerInstance == null) {
             SchedulerInstance = new Scheduler();
         }
         return SchedulerInstance;
@@ -28,6 +30,10 @@ public final class Scheduler {
 
     public int getCurrentTime() {
         return currentTime;
+    }
+
+    public int getnbEvent(){
+        return incomingEvent.size();
     }
 
     /**
@@ -60,8 +66,10 @@ public final class Scheduler {
     public void startingEvent(int currentTime) {
         int i = 0;
 
-        while(SchedulerInstance.incomingEvent.get(i).getStartingTime() <= currentTime){
+        while(i < SchedulerInstance.getnbEvent() && SchedulerInstance.incomingEvent.get(i).getStartingTime() <= currentTime){
+            System.out.println(currentTime+" /7200");
             SchedulerInstance.incomingEvent.get(i).run();
+            SchedulerInstance.incomingEvent.remove(i);
             i++;
         }
     }
@@ -77,18 +85,15 @@ public final class Scheduler {
                 baseClock = newClock;
                 startingEvent(currentTime);
                 currentTime += 1;
-                newClock = Clock.tickSeconds(ZoneId.systemDefault());
+                newClock = Clock.tickSeconds(ZoneId.systemDefault()); //TODO: prends plus en compte le temps des tick
             }
         }
+        ExportExcel.CreateFile(CoreController.getInstance().getCustomers());
     }
+
+
 
     public static void start(){
-        Scheduler sch = new Scheduler();
-        sch.passingTime();
-    }
-
-    public static void main(String[] args){
-        Scheduler sch = new Scheduler();
-        sch.passingTime();
+        getInstance().passingTime();
     }
 }

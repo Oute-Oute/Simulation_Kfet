@@ -21,6 +21,7 @@ public class PreparationChocolate extends Event {
 
     @Override
     public void run() {
+        System.out.println("Preparation Chocolate");
         int position = ControllerHR.getInstance().whichKfetier();
         Kfetier kfetier = ControllerHR.getInstance().getKfetiers().get(position);
         position = ControllerDevices.getInstance().whichCocoa();
@@ -28,7 +29,7 @@ public class PreparationChocolate extends Event {
 
         customer.getOrder().setChocolate(customer.getOrder().getChocolate() - 1);
 
-        Scheduler.getInstance().addEvent(new ServeChocolate(customer, cocoa, kfetier, getStartingTime() + 30 ));
+        Scheduler.getInstance().addEvent(new ServeChocolate(customer, cocoa, kfetier, getStartingTime() + 15 ));
 
     }
 }
