@@ -117,7 +117,6 @@ public final class ControllerDevices {
     /**
      * Cherche quel four est actuellement libre
      * Cette méthode ne doit être lancée qu'après s'être assuré qu'il y avait un four de libre
-     * TODO: ptetre une exception du coup
      * @return la position du four libre dans son arraylist
      */
     public int whichOven(){
@@ -140,7 +139,6 @@ public final class ControllerDevices {
     /**
      * Cherche quel microonde est actuellement libre
      * Cette méthode ne doit être lancée qu'après s'être assuré qu'il y avait un microonde de libre
-     * TODO: ptetre une exception du coup
      * @return la position du microonde libre dans son arraylist
      */
     public int whichMicrowave(){
@@ -163,7 +161,6 @@ public final class ControllerDevices {
     /**
      * Cherche quelle cafetiere est actuellement libre
      * Cette méthode ne doit être lancée qu'après s'être assuré qu'il y avait une cafetiere de libre
-     * TODO: ptetre une exception du coup
      * @return la position de la cafetiere libre dans son arraylist
      */
     public int whichCafetiere(){
@@ -186,7 +183,6 @@ public final class ControllerDevices {
     /**
      * Cherche quelle machine à choco est actuellement libre
      * Cette méthode ne doit être lancée qu'après s'être assuré qu'il y avait une machine à choco de libre
-     * TODO: ptetre une exception du coup
      * @return la position de la machine à choco libre dans son arraylist
      */
     public int whichCocoa(){
@@ -209,7 +205,6 @@ public final class ControllerDevices {
     /**
      * Cherche quelle bouilloire est actuellement libre
      * Cette méthode ne doit être lancée qu'après s'être assuré qu'il y avait une bouilloire de libre
-     * TODO: ptetre une exception du coup
      * @return la position de la bouilloire libre dans son arraylist
      */
     public int whichKettle(){

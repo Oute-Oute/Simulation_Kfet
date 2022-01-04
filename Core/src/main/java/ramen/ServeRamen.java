@@ -3,6 +3,9 @@ package main.java.ramen;
 import classes.Customer;
 
 import main.java.Event;
+import main.java.WaitingList;
+import main.java.control.Scheduler;
+import main.java.payment.ServeCustomer;
 
 
 public class ServeRamen extends Event {
@@ -16,8 +19,8 @@ public class ServeRamen extends Event {
 
     @Override
     public void run() {
-        //TODO: ptetre un truc jsp?
         System.out.println("Serve Ramen");
-
+        Scheduler.getInstance().addEvent(new ServeCustomer(customer, Scheduler.getInstance().getCurrentTime() + 1));
+        WaitingList.getInstance().searchGlobal(customer);
     }
 }

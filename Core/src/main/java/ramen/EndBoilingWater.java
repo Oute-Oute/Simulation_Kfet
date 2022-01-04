@@ -4,6 +4,7 @@ import classes.Customer;
 
 import main.java.Device;
 import main.java.Event;
+import main.java.control.ControllerDevices;
 import main.java.control.Scheduler;
 
 public class EndBoilingWater extends Event {
@@ -22,6 +23,7 @@ public class EndBoilingWater extends Event {
         System.out.println("End Boiling Water");
         StartBoilingWater.setIsCold(false);
         kettle.setFree(true);
+        ControllerDevices.getInstance().getFreeDevices().replace("Kettle", ControllerDevices.getInstance().getFreeDevices().get("Kettle") + 1);
 
         Scheduler.getInstance().addEvent(new ServeRamen(customer, getStartingTime() + 1 ));
 

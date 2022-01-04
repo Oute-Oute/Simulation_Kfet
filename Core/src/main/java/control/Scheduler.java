@@ -79,6 +79,17 @@ public final class Scheduler {
         Clock baseClock = Clock.systemUTC();
         Clock newClock = Clock.systemUTC();
 
+        //TODO: a supprimer
+        for(int i = 0; i<CoreController.getInstance().getCustomers().getCustomers().size(); i++) {
+            CoreController.getInstance().getCustomers().getCustomers().get(i).id = i;
+            System.out.println("Client "+i+": arrive à "+CoreController.getInstance().getCustomers().getCustomers().get(i).getArrivalTime());
+            System.out.println("Commande: "+CoreController.getInstance().getCustomers().getCustomers().get(i).getOrder().getPicard()+" picard\n\t" +
+                    CoreController.getInstance().getCustomers().getCustomers().get(i).getOrder().getNbPizza()+" pizza\n\t" +
+                    CoreController.getInstance().getCustomers().getCustomers().get(i).getOrder().getRamen()+" ramen\n\t" +
+                    CoreController.getInstance().getCustomers().getCustomers().get(i).getOrder().getCoffee()+" café\n\t" +
+                    CoreController.getInstance().getCustomers().getCustomers().get(i).getOrder().getChocolate()+" chocolat");
+        }
+
         while (currentTime <= 7200) {
 
             if (baseClock.instant().truncatedTo(ChronoUnit.SECONDS).equals(newClock.instant().truncatedTo(ChronoUnit.SECONDS))) {
@@ -88,11 +99,12 @@ public final class Scheduler {
                 newClock = Clock.tickSeconds(ZoneId.systemDefault()); //TODO: prends plus en compte le temps des tick
             }
         }
+
         ExportExcel.CreateFile(CoreController.getInstance().getCustomers());
     }
 
 
-
+    //TODO: ne fonctionne pas si on essaye de relancer la simulation
     public static void start(){
         getInstance().passingTime();
     }

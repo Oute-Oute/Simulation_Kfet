@@ -9,20 +9,27 @@ public class PreparationOrder extends Event {
 
     private Customer customer;
 
-    public PreparationOrder(Customer customer, int startingTime){
+    public PreparationOrder(Customer customer, int startingTime) {
         super(startingTime);
         this.customer = customer;
     }
 
     @Override
     public void run() {
-        System.out.println("Preparation Order");
+        System.out.println("Preparation Order " + customer.id);
 
-        //On ajoute le client à la liste d'attente post order
-        WaitingList.getInstance().getPostOrder().add(customer);
+        if(!WaitingList.getInstance().getPostOrder().contains(customer)) {
+            //On ajoute le client à la liste d'attente post order
+            WaitingList.getInstance().getPostOrder().add(customer);
+        }
 
         //on cherche si quelque chose est dispo pour lancer sa commande, sinon l'algo le trouvera plus tard
-        WaitingList.getInstance().searchGlobal(customer);
-        WaitingList.getInstance().searchPizza(customer);
+        if (customer.getOrder().getNbPizza() > 0) {
+            WaitingList.getInstance().searchPizza(customer);
+        }
+
+        if (customer.getOrder().getChocolate() + customer.getOrder().getCoffee() + customer.getOrder().getRamen() + customer.getOrder().getPicard() > 0) {
+            WaitingList.getInstance().searchGlobal(customer);
+        }
     }
 }

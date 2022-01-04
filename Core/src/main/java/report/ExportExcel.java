@@ -20,6 +20,9 @@ import java.util.Date;
 
 public class ExportExcel {
 
+    //TODO: si on a le temps: stats sur nb d'events lancés en retard
+    //TODO: gérer le cas d'erreur du fichier déjà ouvert
+    
     /**
      * Créé le fichier contenant les rapports, ou ajoute une nouvelle feuille s'il existe déjà
      */
