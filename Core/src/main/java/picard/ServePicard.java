@@ -5,6 +5,7 @@ import classes.Customer;
 import main.java.Device;
 import main.java.Event;
 import main.java.WaitingList;
+import main.java.control.ControllerDevices;
 import main.java.control.Scheduler;
 import main.java.payment.ServeCustomer;
 
@@ -26,12 +27,13 @@ public class ServePicard extends Event {
     public void run() {
         System.out.println("Serve Picard");
         Random r = new Random();
-        if (r.nextDouble() < 0.2 && cooked != 2) {
+        if (r.nextDouble() < 0.2 && cooked != 2) {          //Le plat est froid donc il retourne chauffer
+            System.out.println("Picard froid: retourne chauffer");
             Scheduler.getInstance().addEvent(new ServePicard(customer, microwave, 2, getStartingTime() + 150));
-        } else {
+        } else {                                            //On peut servir le plat
             microwave.setFree(true);
-            customer.getOrder().setPicard(customer.getOrder().getPicard() - 1);
-            WaitingList.getInstance().searchGlobal(customer);
+            ControllerDevices.getInstance().getFreeDevices().replace("Microwave", ControllerDevices.getInstance().getFreeDevices().get("Microwave"));
+//            WaitingList.getInstance().searchGlobal(customer);
             Scheduler.getInstance().addEvent(new ServeCustomer(customer, Scheduler.getInstance().getCurrentTime() + 1));
         }
     }

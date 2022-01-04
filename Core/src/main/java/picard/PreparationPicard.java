@@ -19,7 +19,7 @@ public class PreparationPicard extends Event {
 
     @Override
     public void run() {
-        System.out.println("Preparation Picard");
+        System.out.println("Preparation Picard "+customer.id);
         int time = 30; //le temps que met cet event à se réaliser
 
         //On récupere le Cuisinier et le four qui vont mettre la pizza à cuire

@@ -12,14 +12,14 @@ import main.java.control.Scheduler;
 public class PreparationPizza extends Event {
     private Customer customer;
 
-    public PreparationPizza(Customer customer, int startingTime){
+    public PreparationPizza(Customer customer, int startingTime) {
         super(startingTime);
         this.customer = customer;
     }
 
     @Override
     public void run() {
-        System.out.println("Preparation Pizza");
+        System.out.println("Preparation Pizza " + customer.id);
         int time = 30; //le temps que met cet event à se réaliser
 
         //On récupere le Cuisinier et le four qui vont mettre la pizza à cuire

@@ -29,18 +29,16 @@ public class StartBoilingWater extends Event {
     public void run() {
         System.out.println("Start boiling water");
         if(isCold){
-            int position = ControllerHR.getInstance().whichKfetier();
-            Kfetier kfetier = ControllerHR.getInstance().getKfetiers().get(position);
-            position = ControllerDevices.getInstance().whichKettle();
+            int position = ControllerDevices.getInstance().whichKettle();
             Device kettle = ControllerDevices.getInstance().getKettle().get(position);
-
             Scheduler.getInstance().addEvent(new EndBoilingWater(customer, kettle, getStartingTime() + 180));
+            customer.getOrder().setRamen(customer.getOrder().getRamen() - 1);
             WaitingList.getInstance().searchGlobal(customer);
-
-
         } else {
             Scheduler.getInstance().addEvent(new ServeRamen(customer, getStartingTime() + 1 ));
+            customer.getOrder().setRamen(customer.getOrder().getRamen() - 1);
         }
+
 
     }
 }

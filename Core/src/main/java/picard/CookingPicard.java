@@ -6,6 +6,7 @@ import main.java.Device;
 import main.java.Event;
 import main.java.Kfetier;
 import main.java.WaitingList;
+import main.java.control.ControllerHR;
 import main.java.control.Scheduler;
 
 
@@ -27,6 +28,8 @@ public class CookingPicard extends Event {
     public void run(){
         System.out.println("Cooking Picard");
         kfetier.setFree(true);
+        ControllerHR.getInstance().getFreeKfetier().replace("Kfetier",ControllerHR.getInstance().getFreeKfetier().get("Kfetier") + 1);
+
         WaitingList.getInstance().searchGlobal(customer);
         Scheduler.getInstance().addEvent(new ServePicard(customer, microwave, 1, getStartingTime() + 1));
     }

@@ -20,7 +20,7 @@ public class NewCustomer extends Event {
 
     @Override
     public void run() {
-        System.out.println("New Customer");
+        System.out.println("New Customer, id "+customer.id);
         int time = 30; //le temps que met cet event à se réaliser
 
         //S'il y a un caissier de libre
@@ -30,15 +30,21 @@ public class NewCustomer extends Event {
             Kfetier cashier = ControllerHR.getInstance().getCashier().get(position);
 
             //On set le temps à attendre
-            time += customer.getPaymentDuration();
+            time += customer.getPaymentDuration() + Scheduler.getInstance().getCurrentTime();
 
             //On ajoute au Scheduler
             Scheduler.getInstance().addEvent(new EndPayment(customer, cashier, time));
 
+            //Retire le client de la pré order
+            WaitingList.getInstance().getPreOrder().remove(customer);
+
         }
         else {
             //Le client est ajouté à la liste d'attente pré order
-            WaitingList.getInstance().getPreOrder().add(customer);
+            if(!WaitingList.getInstance().getPreOrder().contains(customer)) {
+                System.out.println("Caissier occupé => Ajout client " + customer.id + " liste pré-order");
+                WaitingList.getInstance().getPreOrder().add(customer);
+            }
         }
     }
 }

@@ -19,7 +19,7 @@ public final class ControllerHR{
         this.nbKfetiers = nbKfetiers;
         this.nbCooks = nbCooks;
         this.nbCashier = nbCashier;
-        int id = 20; //TODO: vérifier si y a pas un pb
+        int id = 20;
 
         //Cashier
         cashier = new ArrayList<>(nbCashier);
@@ -90,7 +90,6 @@ public final class ControllerHR{
     /**
      * Cherche quel caissier est actuellement libre
      * Cette méthode ne doit être lancée qu'après s'être assuré qu'il y avait un caissier de libre
-     * TODO: ptetre une exception du coup
      * @return la position du caissier libre dans son arraylist
      */
     public int whichCashier(){
@@ -113,7 +112,6 @@ public final class ControllerHR{
     /**
      * Cherche quel Kfetier est actuellement libre
      * Cette méthode ne doit être lancée qu'après s'être assuré qu'il y avait un Kfetier de libre
-     * TODO: ptetre une exception du coup
      * @return la position du Kfetier libre dans son arraylist
      */
     public int whichKfetier(){
@@ -136,7 +134,6 @@ public final class ControllerHR{
     /**
      * Cherche quel cuisinier est actuellement libre
      * Cette méthode ne doit être lancée qu'après s'être assuré qu'il y avait un cuisinier de libre
-     * TODO: ptetre une exception du coup
      * @return la position du cuisinier libre dans son arraylist
      */
     public int whichCook(){
