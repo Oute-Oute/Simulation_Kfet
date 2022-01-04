@@ -15,6 +15,7 @@ public class Customer implements Serializable {
 
     private Boolean kfetier;
     private Order order;
+    public int id;
     private int paymentDuration; //Cpt = 3s, Lydia rapide = 7s, Liquide = 15s, Lydia lent = 20s
     private int arrivalTick; //tick de l'heure d'arrivée
     private int arrivalTime;
