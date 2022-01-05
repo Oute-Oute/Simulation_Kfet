@@ -8,11 +8,10 @@ import java.util.Date;
 
 /**
  *
- * @author Lilian
- * @author Corentin
+ * @author Thomas Blumstein
  *
- * Will Serialize data for multiple structures, like the pointeuse or the company class
- * all the file names and dirs are already preselected for now
+ * Will Serialize data for the genrator
+ * to be used later in the simulator
  */
 public class Serializer {
 
@@ -42,10 +41,8 @@ public class Serializer {
             SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH-mm-ss") ;
             nameFile = new File(System.getProperty("user.home"), "SimulationKfet/Data/"+dateFormat.format(date)+".dat");
             if (nameFile.createNewFile()) {
-                System.out.println("File created: " + nameFile.getName());
+
                 path = nameFile.getAbsolutePath();
-            } else {
-                System.out.println("File already exists.");
             }
         } catch (IOException e) {
             System.out.println("An error occurred.");
@@ -56,11 +53,10 @@ public class Serializer {
     }
 
     /**
-     * Save the Company's data, then access each dpt on the company's dpt list to save its data,
-     * then access each employee on the dpt's list to save its data
-     * every time it creates another file for each class (company-dpt-employee)
+     * Save the Customers's data, then access each Customer on the Customers's list to save its data,
+     * then access each order on the customer list to save its data
      *
-     * @param customers the company to serialize
+     * @param customers the customers to serialize
      */
     public void serializeCustomers(Customers customers) {
         File directory = new File(System.getProperty("user.home"), "SimulationKfet/Data/");

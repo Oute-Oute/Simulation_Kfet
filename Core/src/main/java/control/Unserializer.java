@@ -3,15 +3,11 @@ package main.java.control;
 import classes.Customers;
 import java.io.*;
 
-//TODO: commentaires
-
 /**
  * 
- * @author Lilian
- * @author Corentin
+ * @author Thomas Blumstein
  *
- * Will Serialize data for multiple structures, like the pointeuse or the company class
- * all the file names and dirs are already preselected for now
+ * Will Unserialize data for the simulator (Customers)
  */
 public class Unserializer {
 
@@ -25,8 +21,8 @@ public class Unserializer {
 	private ObjectOutputStream oS;
 
 	/**
-	 * Read from a file to create a company and all its data
-	 * @return a new company with all the department, employee and data on them
+	 * Read from a file to create a Customers and all its data
+	 * @return a new Customers with all the customer and order
 	 */
 	public Customers unserialiseCustomers(String filePath) {
 

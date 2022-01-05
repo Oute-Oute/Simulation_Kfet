@@ -8,6 +8,7 @@ import main.java.Kfetier;
 import main.java.control.ControllerDevices;
 import main.java.control.ControllerHR;
 import main.java.control.Scheduler;
+import main.java.payment.PreparationOrder;
 
 public class PreparationPicard extends Event {
     private Customer customer;
@@ -20,6 +21,7 @@ public class PreparationPicard extends Event {
     @Override
     public void run() {
         System.out.println("Preparation Picard "+customer.id);
+        if (ControllerHR.getInstance().getFreeKfetier().get("Kfetier") > 0) {
         int time = 30; //le temps que met cet event à se réaliser
 
         //On récupere le Cuisinier et le four qui vont mettre la pizza à cuire
@@ -36,7 +38,11 @@ public class PreparationPicard extends Event {
 
         //On ajoute au Scheduler
         Scheduler.getInstance().addEvent(new CookingPicard(customer, kfetier, microwave, 0, time));
-
+        }
+ else {
+            System.out.println("Pas de kfetier libre");
+            Scheduler.getInstance().addEvent(new PreparationOrder(customer, Scheduler.getInstance().getCurrentTime()+50));
+        }
     }
 }
 

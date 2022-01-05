@@ -103,10 +103,12 @@ public final class WaitingList {
     public void searchPizza(Customer customer) {
         System.out.println("search pizza "+customer.id);
         ControllerDevices devicesInstance = ControllerDevices.getInstance();
-
+        ControllerHR HRInstance = ControllerHR.getInstance();
         if (customer.getOrder().getNbPizza() > 0) {
-            if (devicesInstance.getFreeDevices().get("Oven") > 0) {
-                Scheduler.getInstance().addEvent(new PreparationPizza(customer, Scheduler.getInstance().getCurrentTime() + 1));
+            if (HRInstance.getFreeKfetier().get("Cook") > 0) {           // Un kfetier est libre
+                if (devicesInstance.getFreeDevices().get("Oven") > 0) {
+                    Scheduler.getInstance().addEvent(new PreparationPizza(customer, Scheduler.getInstance().getCurrentTime() + 1));
+                }
             }
         }
     }

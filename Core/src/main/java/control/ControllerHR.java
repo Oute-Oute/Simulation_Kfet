@@ -100,7 +100,7 @@ public final class ControllerHR{
             if (cashier.get(i).getFree()) {
                 //On passe le caissier à occupé et on change le nb de caissiers libres
                 cashier.get(i).setFree(false);
-                freeKfetier.replace("Cashier", freeKfetier.get("Cashier") - 1);
+                ControllerHR.getInstance().freeKfetier.replace("Cashier", freeKfetier.get("Cashier") - 1);
                 found = true;
             } else {
                 i++;
@@ -122,7 +122,7 @@ public final class ControllerHR{
             if (kfetiers.get(i).getFree()) {
                 //On passe le kfetier à occupé et on change le nb de kfetiers libres
                 kfetiers.get(i).setFree(false);
-                freeKfetier.replace("Kfetier", freeKfetier.get("Kfetier") - 1);
+                ControllerHR.getInstance().freeKfetier.replace("Kfetier", freeKfetier.get("Kfetier") - 1);
                 found = true;
             } else {
                 i++;
@@ -144,7 +144,7 @@ public final class ControllerHR{
             if (cooks.get(i).getFree()) {
                 //On passe le cuisinier à occupé et on change le nb de cuisiniers libres
                 cooks.get(i).setFree(false);
-                freeKfetier.replace("Cook", freeKfetier.get("Cook") - 1);
+                ControllerHR.getInstance().freeKfetier.replace("Cook", freeKfetier.get("Cook") - 1);
                 found = true;
             } else {
                 i++;
