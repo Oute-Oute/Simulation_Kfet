@@ -32,8 +32,7 @@ public class ServePicard extends Event {
             Scheduler.getInstance().addEvent(new ServePicard(customer, microwave, 2, getStartingTime() + 150));
         } else {                                            //On peut servir le plat
             microwave.setFree(true);
-            ControllerDevices.getInstance().getFreeDevices().replace("Microwave", ControllerDevices.getInstance().getFreeDevices().get("Microwave"));
-//            WaitingList.getInstance().searchGlobal(customer);
+            ControllerDevices.getInstance().getFreeDevices().replace("Microwave", ControllerDevices.getInstance().getFreeDevices().get("Microwave") + 1);
             Scheduler.getInstance().addEvent(new ServeCustomer(customer, Scheduler.getInstance().getCurrentTime() + 1));
         }
     }

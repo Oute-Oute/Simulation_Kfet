@@ -70,7 +70,7 @@ public final class Scheduler {
             System.out.println(currentTime+" /7200");
             SchedulerInstance.incomingEvent.get(i).run();
             SchedulerInstance.incomingEvent.remove(i);
-            i++;
+            //i++;
         }
     }
 
@@ -89,6 +89,7 @@ public final class Scheduler {
                     CoreController.getInstance().getCustomers().getCustomers().get(i).getOrder().getCoffee()+" café\n\t" +
                     CoreController.getInstance().getCustomers().getCustomers().get(i).getOrder().getChocolate()+" chocolat");
         }
+        System.out.println(ControllerDevices.getInstance().getFreeDevices().get("Cafetiere")+" cafetieres de libre");
 
         while (currentTime <= 7200) {
 
