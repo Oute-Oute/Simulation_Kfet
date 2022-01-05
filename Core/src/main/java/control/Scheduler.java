@@ -1,7 +1,9 @@
 package main.java.control;
 
+import javafx.scene.control.Alert;
 import kfet.CoreController;
 import main.java.Event;
+import main.java.WaitingList;
 import main.java.report.ExportExcel;
 
 import java.time.Clock;
@@ -79,16 +81,6 @@ public final class Scheduler {
         Clock baseClock = Clock.systemUTC();
         Clock newClock = Clock.systemUTC();
 
-        //TODO: a supprimer
-        for(int i = 0; i<CoreController.getInstance().getCustomers().getCustomers().size(); i++) {
-            CoreController.getInstance().getCustomers().getCustomers().get(i).id = i;
-            System.out.println("Client "+i+": arrive à "+CoreController.getInstance().getCustomers().getCustomers().get(i).getArrivalTime());
-            System.out.println("Commande: "+CoreController.getInstance().getCustomers().getCustomers().get(i).getOrder().getPicard()+" picard\n\t" +
-                    CoreController.getInstance().getCustomers().getCustomers().get(i).getOrder().getNbPizza()+" pizza\n\t" +
-                    CoreController.getInstance().getCustomers().getCustomers().get(i).getOrder().getRamen()+" ramen\n\t" +
-                    CoreController.getInstance().getCustomers().getCustomers().get(i).getOrder().getCoffee()+" café\n\t" +
-                    CoreController.getInstance().getCustomers().getCustomers().get(i).getOrder().getChocolate()+" chocolat");
-        }
         System.out.println(ControllerDevices.getInstance().getFreeDevices().get("Cafetiere")+" cafetieres de libre");
 
         while (currentTime <= 7200) {
@@ -98,6 +90,24 @@ public final class Scheduler {
                 startingEvent(currentTime);
                 currentTime += 1;
                 newClock = Clock.tickSeconds(ZoneId.systemDefault()); //TODO: prends plus en compte le temps des tick
+            }
+            if (currentTime==7200){
+                System.out.println("Fin de service");
+
+                Alert alert = new Alert(Alert.AlertType.INFORMATION);
+
+                alert.setTitle("Fin de service");
+                alert.setHeaderText("Le service est terminé");
+                alert.setContentText("Vous avez servi tout les clients! Offrez un Tropico à vos kfetiers pendant que vous allez regarder les statistiques du service");
+                alert.showAndWait();
+            }
+            if (currentTime ==7200 && WaitingList.getInstance().getPostOrder().size()>=1){
+                Alert alert = new Alert(Alert.AlertType.ERROR);
+
+                alert.setTitle("Fin de service");
+                alert.setHeaderText("Le service est terminé mais il reste des clients a servir");
+                alert.setContentText("Vous pouvez réessayer avec moins de clients ou en changeant certains paramètres (n'oubliez pas que vous simulez la K'Fet et pas le McDonalds de l'Heure Tranquille, pensez au bien-être de vos Kfetiers!)");
+                alert.showAndWait();
             }
         }
 

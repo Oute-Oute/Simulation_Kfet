@@ -15,8 +15,10 @@ import main.java.control.ControllerHR;
 import main.java.control.Scheduler;
 import main.java.control.Unserializer;
 import main.java.payment.NewCustomer;
+import main.java.report.ExportExcel;
 
 import java.io.File;
+import java.io.StreamTokenizer;
 
 
 public class SettingsController {
@@ -49,9 +51,14 @@ public class SettingsController {
 
         ControllerHR.setInstance((int) CookSelector.getValue(), (int) cashierSelector.getValue(), (int) coffeeSelector.getValue());
         Unserializer unserializer = new Unserializer();
-
-        CoreController.getInstance().setCustomers(unserializer.unserialiseCustomers(dataSelector.getText()));
+        String File = dataSelector.getText();
+        CoreController.getInstance().setCustomers(unserializer.unserialiseCustomers(File));
         CoreController.getInstance().actualizeSprites();
+        System.out.println(File);
+        String delimiter="[\\\\.]+";
+        String[] tokenString = new String[0];
+        tokenString = File.split(delimiter);
+        ExportExcel.datFile=tokenString[5];
 
 
         for (int i = 0; i < CoreController.getInstance().getCustomers().getCustomers().size(); i++) {

@@ -41,6 +41,13 @@ public class ServeCustomer extends Event {
                 if (customer1.getOrder().getChocolate() + customer1.getOrder().getCoffee() + customer1.getOrder().getRamen() + customer1.getOrder().getPicard() > 0) {
                     WaitingList.getInstance().searchGlobal(customer1);
                 }
+                else if(customer1.getOrder().getNbArticles() == 0 && customer1.getOrder().getNbServed()==0){
+                    customer.setDepartureTime(Scheduler.getInstance().getCurrentTime());
+                    System.out.println("Customer arrived at " + customer1.getArrivalTime() + " and departed at " + customer.getDepartureTime());
+                    int position = WaitingList.getInstance().getPostOrder().indexOf(customer1);
+                    WaitingList.getInstance().getPostOrder().remove(position);
+                    System.out.println("size = "+ WaitingList.getInstance().getPostOrder().size()+"position = "+position);
+                }
             }
         }
 

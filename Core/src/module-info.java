@@ -6,6 +6,7 @@ module com.example.simulation.core {
     requires poi.ooxml.schemas;
     requires com.example.simulation.common;
     requires com.example.simulation.generator;
+    requires java.desktop;
 
     opens kfet to javafx.fxml;
     exports kfet;

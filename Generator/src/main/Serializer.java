@@ -25,6 +25,7 @@ public class Serializer {
     private ObjectOutputStream oS;
 
     private String path;
+    File txtFile = null;
 
     /**
      * Open a file and create it if it doesn't exist
@@ -40,6 +41,7 @@ public class Serializer {
             Date date = new Date() ;
             SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH-mm-ss") ;
             nameFile = new File(System.getProperty("user.home"), "SimulationKfet/Data/"+dateFormat.format(date)+".dat");
+            txtFile = new File(System.getProperty("user.home"), "SimulationKfet/Data/"+dateFormat.format(date)+".txt");
             if (nameFile.createNewFile()) {
 
                 path = nameFile.getAbsolutePath();
@@ -58,7 +60,7 @@ public class Serializer {
      *
      * @param customers the customers to serialize
      */
-    public void serializeCustomers(Customers customers) {
+    public void serializeCustomers(Customers customers) throws FileNotFoundException {
         File directory = new File(System.getProperty("user.home"), "SimulationKfet/Data/");
         if (!directory.exists()) {
             directory.mkdir();
@@ -72,6 +74,18 @@ public class Serializer {
         } catch (IOException e) {
             e.printStackTrace();
         }
+        PrintWriter writer = new PrintWriter(txtFile);
+        for(int i = 0; i<customers.getCustomers().size(); i++) {
+            customers.getCustomers().get(i).id = i;
+            writer.println("Client "+i+": arrive à "+customers.getCustomers().get(i).getArrivalTime());
+            writer.println("Commande: "+customers.getCustomers().get(i).getOrder().getPicard()+" picard\n\t" +
+                    customers.getCustomers().get(i).getOrder().getNbPizza()+" pizza\n\t" +
+                    customers.getCustomers().get(i).getOrder().getRamen()+" ramen\n\t" +
+                    customers.getCustomers().get(i).getOrder().getCoffee()+" café\n\t" +
+                    customers.getCustomers().get(i).getOrder().getChocolate()+" chocolat");
+        }
+        writer.close();
+
     }
 
     public String getPath(){

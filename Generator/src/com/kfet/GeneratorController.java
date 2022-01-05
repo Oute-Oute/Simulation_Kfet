@@ -8,6 +8,8 @@ import main.Serializer;
 
 import classes.Customers;
 
+import java.io.FileNotFoundException;
+
 public class GeneratorController {
     @FXML
     private Spinner nbCustomersSpin;
@@ -27,7 +29,7 @@ public class GeneratorController {
     private Slider slider_max_order;
 
     @FXML
-    protected void onGenerateClick() {
+    protected void onGenerateClick() throws FileNotFoundException {
         int nbCustomers = Integer.parseInt(nbCustomersSpin.getValue().toString());
         double proba = (Double.parseDouble(probaKfetierSpin.getValue().toString()) / 100);
         int cpt = (int) cptSlider.getValue();

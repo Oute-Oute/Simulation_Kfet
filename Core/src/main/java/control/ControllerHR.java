@@ -52,7 +52,6 @@ public final class ControllerHR{
         /*if (controllerHRInstance == null){
             controllerHRInstance = new ControllerHR();
         }*/
-        //TODO: vérifier pb ici si jamais
         return controllerHRInstance;
     }
     public static void setInstance(int nbCooks, int nbCashier, int nbKfetiers){
