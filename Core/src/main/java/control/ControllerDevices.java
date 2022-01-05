@@ -7,7 +7,7 @@ import java.util.HashMap;
 
 public final class ControllerDevices {
 
-    private static int NB_OVEN = 8, NB_MICROWAVE = 3, NB_CAFETIERE = 1, NB_KETTLE = 1, NB_COCOA = 1;
+    private static int NB_OVEN = 8, NB_MICROWAVE = 3, NB_CAFETIERE = 2, NB_KETTLE = 1, NB_COCOA = 1;
     private static ControllerDevices controllerDevicesInstance = new ControllerDevices();
 
     private ArrayList<Device> oven;

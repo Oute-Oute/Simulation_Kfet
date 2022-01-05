@@ -20,7 +20,7 @@ public class PreparationCoffee extends Event {
 
     @Override
     public void run() {
-        System.out.println("Preparation Coffee");
+        System.out.println("Preparation Coffee "+customer.id);
 
         int position = ControllerHR.getInstance().whichKfetier();
         Kfetier kfetier = ControllerHR.getInstance().getKfetiers().get(position);
@@ -29,7 +29,7 @@ public class PreparationCoffee extends Event {
 
         customer.getOrder().setCoffee(customer.getOrder().getCoffee() - 1);
 
-        Scheduler.getInstance().addEvent(new ServeCoffee(customer, cafetiere, kfetier, getStartingTime() + 15 ));
+        Scheduler.getInstance().addEvent(new ServeCoffee(customer, cafetiere, kfetier, Scheduler.getInstance().getCurrentTime() + 15 ));
 
     }
 }
