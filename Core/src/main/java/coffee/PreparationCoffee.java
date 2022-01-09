@@ -30,11 +30,11 @@ public class PreparationCoffee extends Event {
 
             customer.getOrder().setCoffee(customer.getOrder().getCoffee() - 1);
 
-            Scheduler.getInstance().addEvent(new ServeCoffee(customer, cafetiere, kfetier, Scheduler.getInstance().getCurrentTime() + 15));
+            Scheduler.getInstance().addEvent(new ServeCoffee(customer, cafetiere, kfetier, Scheduler.getInstance().getCurrentTime() + 30));
         }
         else {
             System.out.println("Pas de kfetier libre");
-            Scheduler.getInstance().addEvent(new PreparationOrder(customer, Scheduler.getInstance().getCurrentTime()+50));
+            Scheduler.getInstance().addEvent(new PreparationOrder(customer, Scheduler.getInstance().getCurrentTime()+60));
         }
     }
 }

@@ -15,6 +15,7 @@ public class StartBoilingWater extends Event {
 
     private static Boolean isCold = true;
     private Customer customer;
+    private static int lastBoiling = 0;
 
     public StartBoilingWater(Customer customer, int startingTime) {
         super(startingTime);
@@ -25,9 +26,18 @@ public class StartBoilingWater extends Event {
         isCold = cold;
     }
 
+    public static void setLastBoiling(int lastBoiling) {
+        StartBoilingWater.lastBoiling = lastBoiling;
+    }
+
     @Override
     public void run() {
         System.out.println("Start boiling water");
+
+        if(Scheduler.getInstance().getCurrentTime() > lastBoiling + 900){
+            isCold = true;
+        }
+
         if(isCold){
             int position = ControllerDevices.getInstance().whichKettle();
             Device kettle = ControllerDevices.getInstance().getKettle().get(position);

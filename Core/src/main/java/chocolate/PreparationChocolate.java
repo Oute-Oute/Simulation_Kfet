@@ -31,11 +31,11 @@ public class PreparationChocolate extends Event {
 
             customer.getOrder().setChocolate(customer.getOrder().getChocolate() - 1);
 
-            Scheduler.getInstance().addEvent(new ServeChocolate(customer, cocoa, kfetier, getStartingTime() + 15));
+            Scheduler.getInstance().addEvent(new ServeChocolate(customer, cocoa, kfetier, getStartingTime() + 30));
 
         } else {
             System.out.println("Pas de kfetier libre");
-            Scheduler.getInstance().addEvent(new PreparationOrder(customer, Scheduler.getInstance().getCurrentTime() + 50));
+            Scheduler.getInstance().addEvent(new PreparationOrder(customer, Scheduler.getInstance().getCurrentTime() + 60));
         }
     }
 }

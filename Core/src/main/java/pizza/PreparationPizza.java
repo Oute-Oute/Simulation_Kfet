@@ -38,10 +38,9 @@ public class PreparationPizza extends Event {
 
             //On ajoute au Scheduler
             Scheduler.getInstance().addEvent(new CookingPizza(customer, cook, oven, time));
-        }
-        else {
+        } else {
             System.out.println("Pas de cuisinier de libre");
-            Scheduler.getInstance().addEvent(new PreparationOrder(customer, Scheduler.getInstance().getCurrentTime()+50));
+            Scheduler.getInstance().addEvent(new PreparationOrder(customer, Scheduler.getInstance().getCurrentTime() + 60));
         }
     }
 }
