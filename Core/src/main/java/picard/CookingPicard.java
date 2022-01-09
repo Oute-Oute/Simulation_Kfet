@@ -27,11 +27,12 @@ public class CookingPicard extends Event {
 
     public void run(){
         System.out.println("Cooking Picard");
+        int time = 360 + Scheduler.getInstance().getCurrentTime();
+
         kfetier.setFree(true);
         ControllerHR.getInstance().getFreeKfetier().replace("Kfetier",ControllerHR.getInstance().getFreeKfetier().get("Kfetier") + 1);
 
         WaitingList.getInstance().searchGlobal(customer);
-        Scheduler.getInstance().addEvent(new ServePicard(customer, microwave, 1, getStartingTime() + 1));
+        Scheduler.getInstance().addEvent(new ServePicard(customer, microwave, 1, time ));
     }
-
 }
