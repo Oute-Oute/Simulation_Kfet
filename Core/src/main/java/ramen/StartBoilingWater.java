@@ -9,6 +9,7 @@ import main.java.WaitingList;
 import main.java.control.ControllerDevices;
 import main.java.control.ControllerHR;
 import main.java.control.Scheduler;
+import main.java.payment.PreparationOrder;
 
 
 public class StartBoilingWater extends Event {
@@ -32,23 +33,22 @@ public class StartBoilingWater extends Event {
 
     @Override
     public void run() {
-        System.out.println("Start boiling water");
+            System.out.println("Start boiling water");
 
-        if(Scheduler.getInstance().getCurrentTime() > lastBoiling + 900){
-            isCold = true;
-        }
+            if (Scheduler.getInstance().getCurrentTime() > lastBoiling + 900) {
+                isCold = true;
+            }
 
-        if(isCold){
-            int position = ControllerDevices.getInstance().whichKettle();
-            Device kettle = ControllerDevices.getInstance().getKettle().get(position);
-            Scheduler.getInstance().addEvent(new EndBoilingWater(customer, kettle, getStartingTime() + 180));
-            customer.getOrder().setRamen(customer.getOrder().getRamen() - 1);
-            WaitingList.getInstance().searchGlobal(customer);
-        } else {
-            Scheduler.getInstance().addEvent(new ServeRamen(customer, getStartingTime() + 1 ));
-            customer.getOrder().setRamen(customer.getOrder().getRamen() - 1);
-        }
-
+            if (isCold) {
+                int position = ControllerDevices.getInstance().whichKettle();
+                Device kettle = ControllerDevices.getInstance().getKettle().get(position);
+                Scheduler.getInstance().addEvent(new EndBoilingWater(customer, kettle, getStartingTime() + 180));
+                customer.getOrder().setRamen(customer.getOrder().getRamen() - 1);
+                WaitingList.getInstance().searchGlobal(customer);
+            } else {
+                Scheduler.getInstance().addEvent(new ServeRamen(customer, getStartingTime() + 1));
+                customer.getOrder().setRamen(customer.getOrder().getRamen() - 1);
+            }
 
     }
 }
