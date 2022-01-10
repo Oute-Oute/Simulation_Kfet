@@ -23,7 +23,7 @@ public class EndBoilingWater extends Event {
         System.out.println("End Boiling Water");
         StartBoilingWater.setIsCold(false);
         StartBoilingWater.setLastBoiling(Scheduler.getInstance().getCurrentTime());
-        kettle.setFree(true);
+        this.kettle.setFree(true);
         ControllerDevices.getInstance().getFreeDevices().replace("Kettle", ControllerDevices.getInstance().getFreeDevices().get("Kettle") + 1);
 
         Scheduler.getInstance().addEvent(new ServeRamen(customer, getStartingTime() + 1 ));
