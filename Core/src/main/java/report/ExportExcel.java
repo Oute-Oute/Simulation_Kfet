@@ -11,6 +11,9 @@ import main.java.control.ControllerDevices;
 import org.apache.poi.ss.usermodel.CellStyle;
 import org.apache.poi.ss.usermodel.FillPatternType;
 import org.apache.poi.ss.usermodel.IndexedColors;
+import org.apache.poi.ss.util.CellRangeAddress;
+import org.apache.poi.xddf.usermodel.*;
+import org.apache.poi.xddf.usermodel.chart.*;
 import org.apache.poi.xssf.usermodel.*;
 import org.openxmlformats.schemas.spreadsheetml.x2006.main.CTTable;
 import org.openxmlformats.schemas.spreadsheetml.x2006.main.CTTableColumn;
@@ -165,7 +168,36 @@ public class ExportExcel {
         style.setFillBackgroundColor(IndexedColors.LIGHT_ORANGE.getIndex());
         style.setFillPattern(FillPatternType.SOLID_FOREGROUND);
 
-        //TODO: faire graphique https://cdn.discordapp.com/attachments/513074388011188227/923220084523159602/unknown.png
+
+        XSSFDrawing drawing = sheet.createDrawingPatriarch();
+        XSSFClientAnchor anchor = drawing.createAnchor(0, 0, 0, 0, 6, 5, 15, 25);
+        XSSFChart chart = drawing.createChart(anchor);
+        chart.setTitleText("Temps d'attente selon le nombre d'article commandés");
+        XDDFValueAxis bottomAxis = chart.createValueAxis(AxisPosition.BOTTOM);
+        bottomAxis.setTitle("Nombre d'article commandés"); // https://stackoverflow.com/questions/32010765
+        XDDFValueAxis leftAxis = chart.createValueAxis(AxisPosition.LEFT);
+        leftAxis.setTitle("Temps d'attente en seconde");
+        leftAxis.setCrosses(AxisCrosses.AUTO_ZERO);
+
+        XDDFDataSource<Double> xs = XDDFDataSourcesFactory.fromNumericCellRange(sheet, new CellRangeAddress(1, nbLine-1, 2, 2));
+        XDDFNumericalDataSource<Double> ys1 = XDDFDataSourcesFactory.fromNumericCellRange(sheet, new CellRangeAddress(1, nbLine-1, 4, 4));
+
+        XDDFScatterChartData data = (XDDFScatterChartData) chart.createData(ChartTypes.SCATTER, bottomAxis, leftAxis);
+        XDDFScatterChartData.Series series1 = (XDDFScatterChartData.Series) data.addSeries(xs, ys1);
+        series1.setSmooth(false); // https://stackoverflow.com/questions/39636138
+
+        series1.setMarkerStyle(MarkerStyle.CIRCLE);
+        series1.setMarkerSize((short)5);
+        setLineNoFill(series1);
+
+        //XDDFScatterChartData.Series series2 = (XDDFScatterChartData.Series) data.addSeries(xs, ys2);
+        //series2.setTitle("3x", null);
+
+        //series2.setMarkerStyle(MarkerStyle.CIRCLE);
+        //series2.setMarkerSize((short)5);
+        //setLineNoFill(series2);
+
+        chart.plot(data);
     }
 
     /**
@@ -257,5 +289,14 @@ public class ExportExcel {
                 sheet.autoSizeColumn(c);
             }
         }
+    }
+    private static void setLineNoFill(XDDFScatterChartData.Series series) {
+        XDDFNoFillProperties noFillProperties = new XDDFNoFillProperties();
+        XDDFLineProperties lineProperties = new XDDFLineProperties();
+        lineProperties.setFillProperties(noFillProperties);
+        XDDFShapeProperties shapeProperties = series.getShapeProperties();
+        if (shapeProperties == null) shapeProperties = new XDDFShapeProperties();
+        shapeProperties.setLineProperties(lineProperties);
+        series.setShapeProperties(shapeProperties);
     }
 }

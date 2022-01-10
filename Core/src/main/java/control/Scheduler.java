@@ -88,15 +88,15 @@ public final class Scheduler {
 
         while (currentTime <= 7200) {
             basetime=LocalTime.now();
-            if (basetime.isAfter(newTime)) {
-                //if (baseClock.instant().truncatedTo(ChronoUnit.SECONDS).equals(newClock.instant().truncatedTo(ChronoUnit.SECONDS))) {//exec rapide
+            //if (basetime.isAfter(newTime)) {
+                if (baseClock.instant().truncatedTo(ChronoUnit.SECONDS).equals(newClock.instant().truncatedTo(ChronoUnit.SECONDS))) {//exec rapide
                 newTime=basetime;
                 startingEvent(currentTime);
                 currentTime += 1;
                 newTime=newTime.plusNanos(10000000);
 
                 //System.out.println(Scheduler.getInstance().getCurrentTime());
-                //newClock = Clock.tickSeconds(ZoneId.systemDefault());//execrapide
+                newClock = Clock.tickSeconds(ZoneId.systemDefault());//execrapide
 
             }
             if (currentTime==7200){
