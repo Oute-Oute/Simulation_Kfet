@@ -2,15 +2,11 @@ package main.java.report;
 
 import classes.Customer;
 import classes.Customers;
-import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
+
 import javafx.scene.control.Alert;
-import javafx.scene.control.Button;
 import javafx.scene.control.ButtonType;
 import main.java.control.ControllerDevices;
-import org.apache.poi.ss.usermodel.CellStyle;
-import org.apache.poi.ss.usermodel.FillPatternType;
-import org.apache.poi.ss.usermodel.IndexedColors;
+import org.apache.poi.ss.usermodel.*;
 import org.apache.poi.ss.util.CellRangeAddress;
 import org.apache.poi.xddf.usermodel.*;
 import org.apache.poi.xddf.usermodel.chart.*;
@@ -19,11 +15,10 @@ import org.openxmlformats.schemas.spreadsheetml.x2006.main.CTTable;
 import org.openxmlformats.schemas.spreadsheetml.x2006.main.CTTableColumn;
 import org.openxmlformats.schemas.spreadsheetml.x2006.main.CTTableColumns;
 import org.openxmlformats.schemas.spreadsheetml.x2006.main.CTTableStyleInfo;
+
 import java.awt.Desktop;
 
 import java.io.*;
-import java.text.SimpleDateFormat;
-import java.util.Date;
 import java.util.Optional;
 
 public class ExportExcel {
@@ -36,14 +31,12 @@ public class ExportExcel {
      */
     public static void CreateFile(Customers customers) {
         try {
-            SimpleDateFormat dateFormat = new SimpleDateFormat("dd-MM HH-mm-ss");
-            Date date = new Date();
             File directory = new File(System.getProperty("user.home"), "SimulationKfet/Reports/");
             if (!directory.exists()) {
                 directory.mkdir();
             }
             XSSFWorkbook workbook;
-            File file=new File(System.getProperty("user.home"), "SimulationKfet/Reports/Report_"+datFile+".xlsx");
+            File file = new File(System.getProperty("user.home"), "SimulationKfet/Reports/Report_" + datFile + ".xlsx");
             if (!file.exists()) {        //Si le fichier n'existe pas, créer workbook
                 workbook = new XSSFWorkbook();
             } else {                    //Si le fichier existe, récuperer le workbook existant
@@ -53,10 +46,9 @@ public class ExportExcel {
                 in.close();
             }
 
+            XSSFSheet customersheet = workbook.createSheet("Customers_" + workbook.getNumberOfSheets() / 2);
+            XSSFSheet devicesheet = workbook.createSheet("Devices_" + workbook.getNumberOfSheets() / 2);
 
-
-            XSSFSheet customersheet = workbook.createSheet("Customers_"+workbook.getNumberOfSheets()/2);
-            XSSFSheet devicesheet = workbook.createSheet("Devices_"+workbook.getNumberOfSheets()/2);
             //Ensemble de méthodes pour remplir le rapport ici
             tableCustomer(workbook, customersheet, customers);
             tableDevice(workbook, devicesheet);
@@ -64,8 +56,8 @@ public class ExportExcel {
             //
 
             //Écrit le fichier et ferme le stream
-            boolean isFree=false;
-            while(!isFree){
+            boolean isFree = false;
+            while (!isFree) {
                 try {
                     FileOutputStream out = new FileOutputStream(file);
                     workbook.write(out);
@@ -75,7 +67,7 @@ public class ExportExcel {
                     alert.setTitle("Statistiques créées");
                     alert.setHeaderText("Le fichier de Statistiques à été créé");
                     alert.setContentText("Vous pouvez le treouver à cet emplacement : ");
-                    alert.setContentText(System.getProperty("user.home").toString()+"SimulationKfet/Reports/Report_"+datFile+".xlsx");
+                    alert.setContentText(System.getProperty("user.home") + "SimulationKfet/Reports/Report_" + datFile + ".xlsx");
                     ButtonType dirButtonType = new ButtonType("Ouvrir le dossier");
                     ButtonType closeButtonType = new ButtonType("Fermer");
                     alert.getButtonTypes().setAll(dirButtonType, closeButtonType);
@@ -86,7 +78,7 @@ public class ExportExcel {
                         d.open(directory);
                     }
 
-                    isFree=true;
+                    isFree = true;
                 } catch (FileNotFoundException e) {
                     Alert alert = new Alert(Alert.AlertType.ERROR);
 
@@ -96,7 +88,6 @@ public class ExportExcel {
                     alert.showAndWait();
                 }
             }
-
 
 
         } catch (Exception e) {
@@ -162,7 +153,7 @@ public class ExportExcel {
         cell.setCellValue("Temps d'attente moyen:");
         sheet.autoSizeColumn(3);
         XSSFCell cell1 = row.createCell(4);
-        cell1.setCellFormula("AVERAGE(E2:E" + (nbLine) + ")");
+        cell1.setCellFormula("ROUND(AVERAGE(E2:E" + (nbLine) + "),0)");
 
         CellStyle style = workbook.createCellStyle();
         style.setFillBackgroundColor(IndexedColors.LIGHT_ORANGE.getIndex());
@@ -207,10 +198,12 @@ public class ExportExcel {
      */
 
     private static void tableDevice(XSSFWorkbook workbook, XSSFSheet sheet) {
+        int nbLine = 17;
+
         //On crée notre table
         XSSFTable table = sheet.createTable(null);
         CTTable cttable = table.getCTTable();
-        cttable.setRef("A1:C15");           //14 Device + Ligne d'en tête
+        cttable.setRef("A1:C" + nbLine);           //14 Device + Ligne d'en tête
 
         //Table avec une ligne sur deux en couleur
         CTTableStyleInfo styleInfo = cttable.addNewTableStyleInfo();
@@ -220,15 +213,15 @@ public class ExportExcel {
 
         //On choisit le nb de colonnes et on remplit
         CTTableColumns columns = cttable.addNewTableColumns();
-        columns.setCount(3);
+        columns.setCount(2);
 
-        String[] name = {"Device", "Taux d'occupation", "Nombre d'utilisations"};
+        String[] name = {"Device", "Taux d'occupation (%)", "Nombre d'utilisations"};
 
         //On prépare la table avec id et nom
-        for (int i = 1; i < 3; i++) {
+        for (int i = 1; i <= 3; i++) {
             CTTableColumn column = columns.addNewTableColumn();
             column.setId(i);
-            column.setName(name[i]);
+            column.setName(name[i - 1]);
         }
 
         XSSFRow firstRow = sheet.createRow(0);
@@ -242,47 +235,45 @@ public class ExportExcel {
         int nbKettle = instanceDevice.getKettle().size();
         int nbOven = instanceDevice.getOven().size();
         int nbMicrowave = instanceDevice.getMicrowave().size();
-        int nbCocoa = instanceDevice.getCocoa().size();
-        int nbDevice = nbCafetiere + nbKettle + nbOven + nbMicrowave + nbCocoa;
 
         int current;
         //On remplit la table
-        for (int r = 1; r < nbDevice; r++) {
-            XSSFRow row = sheet.createRow(r);
+        for (int r = 0; r < nbLine - 1; r++) {
+            XSSFRow row = sheet.createRow(r + 1);
             for (int c = 0; c < 3; c++) {
                 XSSFCell cell = row.createCell(c);
-                if (r < nbMicrowave) {                                          //Micro ondes
+                if (r < nbMicrowave) { // rmax = 2                                         //Micro ondes
                     switch (c) {
-                        case 0 -> cell.setCellValue("Micro-Onde n°" + r);
-                        case 1 -> cell.setCellValue(instanceDevice.getMicrowave().get(r).getOccupationTime()/7200);
+                        case 0 -> cell.setCellValue("Micro-Onde n°" + (r + 1));
+                        case 1 -> cell.setCellFormula("ROUND("+((double)instanceDevice.getMicrowave().get(r).getOccupationTime()/72) + ",1)");
                         case 2 -> cell.setCellValue(instanceDevice.getMicrowave().get(r).getNbUsed());
                     }
-                } else if (r < nbMicrowave + nbOven) {                           //fours
-                    current = r - nbMicrowave;
+                } else if (r < nbMicrowave + nbOven) { //rmax = 3 + 8 -1 = 10                                        //fours
+                    current = r - nbMicrowave; // currentmax = 10 - 3 = 7
                     switch (c) {
-                        case 0 -> cell.setCellValue("Four n°" + (current));
-                        case 1 -> cell.setCellValue(instanceDevice.getOven().get(current).getOccupationTime()/7200);
+                        case 0 -> cell.setCellValue("Four n°" + (current + 1));
+                        case 1 -> cell.setCellFormula("ROUND("+((double)instanceDevice.getOven().get(current).getOccupationTime()/72) + ",1)");
                         case 2 -> cell.setCellValue(instanceDevice.getOven().get(current).getNbUsed());
                     }
-                } else if (r < nbMicrowave + nbOven + nbKettle) {                 //Bouilloire
-                    current = r - nbMicrowave - nbOven;
+                } else if (r < nbMicrowave + nbOven + nbKettle) { //rmax = 3 + 8 + 2 -1 = 12         //Bouilloire
+                    current = r - nbMicrowave - nbOven; //currentmax = 12 - 3 - 8 = 1
                     switch (c) {
-                        case 0 -> cell.setCellValue("Bouilloire n°" + (current));
-                        case 1 -> cell.setCellValue(instanceDevice.getKettle().get(current).getOccupationTime()/7200);
+                        case 0 -> cell.setCellValue("Bouilloire n°" + (current + 1));
+                        case 1 -> cell.setCellFormula("ROUND("+((double)instanceDevice.getKettle().get(current).getOccupationTime()/72) + ",1)");
                         case 2 -> cell.setCellValue(instanceDevice.getKettle().get(current).getNbUsed());
                     }
-                } else if (r < nbMicrowave + nbOven + nbKettle + nbCafetiere) {       //Cafetiere
-                    current = r - nbMicrowave - nbOven - nbKettle;
+                } else if (r < nbMicrowave + nbOven + nbKettle + nbCafetiere) { //rmax = 3 + 8 + 2 + 2 -1 = 14      //Cafetiere
+                    current = r - nbMicrowave - nbOven - nbKettle; //currentmax = 14 - 3 - 8 - 2 = 1
                     switch (c) {
-                        case 0 -> cell.setCellValue("Cafetière n°" + (current));
-                        case 1 -> cell.setCellValue(instanceDevice.getCafetiere().get(current).getOccupationTime()/7200);
+                        case 0 -> cell.setCellValue("Cafetière n°" + (current + 1));
+                        case 1 -> cell.setCellFormula("ROUND("+((double)instanceDevice.getCafetiere().get(current).getOccupationTime()/72) + ",1)");
                         case 2 -> cell.setCellValue(instanceDevice.getCafetiere().get(current).getNbUsed());
                     }
-                } else {                                                          //Chocolat
-                    current = r - nbMicrowave - nbOven - nbKettle - nbCafetiere;
+                } else { //rmax = 16                                           //Chocolat
+                    current = r - nbMicrowave - nbOven - nbKettle - nbCafetiere;  //currentmax = 15 - 3 - 8 - 2 - 2 = 0
                     switch (c) {
-                        case 0 -> cell.setCellValue("Machine à chocolat n°" + (current));
-                        case 1 -> cell.setCellValue(instanceDevice.getCocoa().get(current).getOccupationTime()/7200);
+                        case 0 -> cell.setCellValue("Machine à chocolat n°" + (current + 1));
+                        case 1 -> cell.setCellFormula("ROUND("+((double)instanceDevice.getCocoa().get(current).getOccupationTime()/72) + ",1)");
                         case 2 -> cell.setCellValue(instanceDevice.getCocoa().get(current).getNbUsed());
                     }
                 }
