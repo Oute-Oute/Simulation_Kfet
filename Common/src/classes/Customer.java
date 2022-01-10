@@ -41,7 +41,6 @@ public class Customer implements Serializable {
 
         arrivalTick = Math.abs((int) (2000*r.nextGaussian()));
         arrivalTime = arrivalTick/tpm;
-        //TODO gerer client tard
 
     }
 

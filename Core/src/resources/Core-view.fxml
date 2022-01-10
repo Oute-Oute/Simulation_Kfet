@@ -1,11 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.*?>
-<?import javafx.scene.image.*?>
-<?import javafx.scene.layout.*?>
-<?import javafx.scene.shape.*?>
+<?import javafx.scene.control.Menu?>
+<?import javafx.scene.control.MenuBar?>
+<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.control.SeparatorMenuItem?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.shape.Circle?>
 
-<Pane fx:id="pane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="584.0" prefWidth="895.0" xmlns="http://javafx.com/javafx/11.0.2" xmlns:fx="http://javafx.com/fxml/1">
+<Pane fx:id="pane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="584.0" prefWidth="895.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1">
       <MenuBar prefHeight="25.0" prefWidth="895.0">
           <Menu mnemonicParsing="false" text="File">
               <MenuItem mnemonicParsing="false" onAction="#openGenerator" text="Generator" />
@@ -14,7 +18,7 @@
           <Menu mnemonicParsing="false" text="Options">
          <items>
             <MenuItem mnemonicParsing="false" onAction="#startSimulation" text="Start" />
-            <MenuItem mnemonicParsing="false" onAction="#startSimulation" text="Stop" />
+            <MenuItem mnemonicParsing="false" onAction="#stopSimulation" text="Stop" />
             <SeparatorMenuItem mnemonicParsing="false" />
             <MenuItem mnemonicParsing="false" text="Play" />
             <MenuItem mnemonicParsing="false" text="Pause" />

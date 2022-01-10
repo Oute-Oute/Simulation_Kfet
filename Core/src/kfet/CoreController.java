@@ -19,6 +19,7 @@ import main.java.control.ControllerHR;
 import main.java.control.Pair;
 import main.java.control.Scheduler;
 
+import java.awt.*;
 import java.io.IOException;
 import java.util.HashMap;
 
@@ -38,6 +39,7 @@ public final class CoreController {
 
     @FXML
     private ImageView Cashier1,Cashier2,CoffeeMaker1,CoffeeMaker2,Cooker1,Cooker2;
+
 
     @FXML
     private TranslateTransition transition = new TranslateTransition();
@@ -96,8 +98,6 @@ public final class CoreController {
         coordinates.put(13, new Pair<>(775.0, 90.0));
         coordinates.put(14, new Pair<>(725.0, 90.0));
         coordinates.put(15, new Pair<>(600.0, 280.0));
-
-        //TODO verifier que tout les emplacements ont leur coords
 
     }
     @FXML
@@ -196,5 +196,8 @@ public final class CoreController {
             Scheduler.start();
         }
     }
-
+    @FXML
+    protected void stopSimulation(){
+        Scheduler.getInstance().setCurrentTime(7200);
+    }
 }

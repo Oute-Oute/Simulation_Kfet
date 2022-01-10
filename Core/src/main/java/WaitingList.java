@@ -65,7 +65,7 @@ public final class WaitingList {
                     }
                 } else if (customer.getOrder().getRamen() > 0 && !found) {
                     System.out.println("Ramen à faire");
-                    if (devicesInstance.getFreeDevices().get("Kettle") > 0) {    //TODO: gérer le fait qu'une bouilloire peut cuire 3 ramen
+                    if (devicesInstance.getFreeDevices().get("Kettle") > 0) {
                         found = true;
                         Scheduler.getInstance().addEvent(new StartBoilingWater(customer, time));
                     }

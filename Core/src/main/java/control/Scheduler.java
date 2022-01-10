@@ -8,6 +8,7 @@ import main.java.report.ExportExcel;
 
 import java.time.Clock;
 import java.time.Duration;
+import java.time.LocalTime;
 import java.time.ZoneId;
 import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
@@ -80,16 +81,23 @@ public final class Scheduler {
         Duration tick_Duration = Duration.ofMillis(1200);     // Une seconde dans la simulation = 0.084 secondes IRL pour que le service de 2h soit simulé en 10 minutes
         Clock baseClock = Clock.systemUTC();
         Clock newClock = Clock.systemUTC();
+        LocalTime basetime = LocalTime.now();
+        LocalTime newTime = LocalTime.now();
 
         System.out.println(ControllerDevices.getInstance().getFreeDevices().get("Cafetiere")+" cafetieres de libre");
 
         while (currentTime <= 7200) {
-
-            if (baseClock.instant().truncatedTo(ChronoUnit.SECONDS).equals(newClock.instant().truncatedTo(ChronoUnit.SECONDS))) {
-                baseClock = newClock;
+            basetime=LocalTime.now();
+            if (basetime.isAfter(newTime)) {
+                //if (baseClock.instant().truncatedTo(ChronoUnit.SECONDS).equals(newClock.instant().truncatedTo(ChronoUnit.SECONDS))) {//exec rapide
+                newTime=basetime;
                 startingEvent(currentTime);
                 currentTime += 1;
-                newClock = Clock.tickSeconds(ZoneId.systemDefault()); //TODO: prends plus en compte le temps des tick
+                newTime=newTime.plusNanos(10000000);
+
+                //System.out.println(Scheduler.getInstance().getCurrentTime());
+                //newClock = Clock.tickSeconds(ZoneId.systemDefault());//execrapide
+
             }
             if (currentTime==7200){
                 System.out.println("Fin de service");
@@ -118,5 +126,9 @@ public final class Scheduler {
     //TODO: ne fonctionne pas si on essaye de relancer la simulation
     public static void start(){
         getInstance().passingTime();
+    }
+
+    public void setCurrentTime(int currentTime) {
+        this.currentTime = currentTime;
     }
 }
