@@ -162,7 +162,7 @@ public class ExportExcel {
         cell.setCellValue("Temps d'attente moyen:");
         sheet.autoSizeColumn(3);
         XSSFCell cell1 = row.createCell(4);
-        cell1.setCellFormula("MOYENNE(E2:E" + (nbLine) + ")");
+        cell1.setCellFormula("AVERAGE(E2:E" + (nbLine) + ")");
 
         CellStyle style = workbook.createCellStyle();
         style.setFillBackgroundColor(IndexedColors.LIGHT_ORANGE.getIndex());

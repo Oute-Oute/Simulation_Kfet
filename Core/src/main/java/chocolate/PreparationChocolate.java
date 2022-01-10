@@ -24,15 +24,20 @@ public class PreparationChocolate extends Event {
     public void run() {
         System.out.println("Preparation Chocolate");
         if (ControllerHR.getInstance().getFreeKfetier().get("Kfetier") > 0) {
-            int position = ControllerHR.getInstance().whichKfetier();
-            Kfetier kfetier = ControllerHR.getInstance().getKfetiers().get(position);
-            position = ControllerDevices.getInstance().whichCocoa();
-            Device cocoa = ControllerDevices.getInstance().getCocoa().get(position);
+            if (ControllerDevices.getInstance().getFreeDevices().get("Cocoa")>0) {
+                int position = ControllerHR.getInstance().whichKfetier();
+                Kfetier kfetier = ControllerHR.getInstance().getKfetiers().get(position);
+                int devicePosition = ControllerDevices.getInstance().whichCocoa();
+                Device cocoa = ControllerDevices.getInstance().getCocoa().get(devicePosition);
 
-            customer.getOrder().setChocolate(customer.getOrder().getChocolate() - 1);
+                customer.getOrder().setChocolate(customer.getOrder().getChocolate() - 1);
 
-            Scheduler.getInstance().addEvent(new ServeChocolate(customer, cocoa, kfetier, getStartingTime() + 30));
-
+                Scheduler.getInstance().addEvent(new ServeChocolate(customer, cocoa, kfetier, getStartingTime() + 30));
+            }
+            else{
+                System.out.println("Pas de chocolatiere libre");
+                Scheduler.getInstance().addEvent(new PreparationOrder(customer, Scheduler.getInstance().getCurrentTime() + 60));
+            }
         } else {
             System.out.println("Pas de kfetier libre");
             Scheduler.getInstance().addEvent(new PreparationOrder(customer, Scheduler.getInstance().getCurrentTime() + 60));
