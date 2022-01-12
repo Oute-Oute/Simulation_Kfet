@@ -5,7 +5,7 @@ import main.java.control.Scheduler;
 
 public class Device{
 
-    private int id;
+    private final int id;
     private String type;
     private Boolean isFree;
     private int occupationTime, startOccupated, endOccupated;

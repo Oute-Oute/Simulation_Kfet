@@ -12,9 +12,9 @@ import main.java.control.Scheduler;
 
 public class CookingPizza extends Event {
 
-    private Kfetier cook;
-    private Device oven;
-    private Customer customer;
+    private final Kfetier cook;
+    private final Device oven;
+    private final Customer customer;
 
     public CookingPizza(Customer customer, Kfetier cook, Device oven, int startingTime) {
         super(startingTime);

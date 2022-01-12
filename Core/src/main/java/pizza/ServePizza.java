@@ -12,8 +12,8 @@ import main.java.payment.ServeCustomer;
 
 public class ServePizza extends Event {
 
-    private Device oven;
-    private Customer customer;
+    private final Device oven;
+    private final Customer customer;
 
     public ServePizza(Customer customer, Device oven, int startingTime) {
         super(startingTime);

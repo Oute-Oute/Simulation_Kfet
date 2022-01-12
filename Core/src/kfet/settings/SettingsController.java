@@ -48,31 +48,33 @@ public class SettingsController {
             alert.showAndWait();
         }
 
+        else {
+            ControllerHR.setInstance((int) CookSelector.getValue(), (int) cashierSelector.getValue(), (int) coffeeSelector.getValue());
+            Unserializer unserializer = new Unserializer();
+            String File = dataSelector.getText();
+            CoreController.getInstance().setCustomers(unserializer.unserialiseCustomers(File));
+            CoreController.getInstance().actualizeSprites();
+            System.out.println(File);
+            String delimiter="[\\\\.]+";
+            String[] tokenString = new String[0];
+            tokenString = File.split(delimiter);
+            ExportExcel.datFile=tokenString[5];
 
-        ControllerHR.setInstance((int) CookSelector.getValue(), (int) cashierSelector.getValue(), (int) coffeeSelector.getValue());
-        Unserializer unserializer = new Unserializer();
-        String File = dataSelector.getText();
-        CoreController.getInstance().setCustomers(unserializer.unserialiseCustomers(File));
-        CoreController.getInstance().actualizeSprites();
-        System.out.println(File);
-        String delimiter="[\\\\.]+";
-        String[] tokenString = new String[0];
-        tokenString = File.split(delimiter);
-        ExportExcel.datFile=tokenString[5];
 
+            for (int i = 0; i < CoreController.getInstance().getCustomers().getCustomers().size(); i++) {
+                Scheduler.getInstance().addEvent(new NewCustomer(CoreController.getInstance().getCustomers().getCustomers().get(i), CoreController.getInstance().getCustomers().getCustomers().get(i).getArrivalTime()));
+            }
 
-        for (int i = 0; i < CoreController.getInstance().getCustomers().getCustomers().size(); i++) {
-            Scheduler.getInstance().addEvent(new NewCustomer(CoreController.getInstance().getCustomers().getCustomers().get(i), CoreController.getInstance().getCustomers().getCustomers().get(i).getArrivalTime()));
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+
+            alert.setTitle("Validation");
+            alert.setHeaderText("You can now start the simulation!");
+            alert.showAndWait();
+
+            Stage stage = (Stage) doneButton.getScene().getWindow();
+            stage.close();
         }
 
-        Alert alert = new Alert(Alert.AlertType.INFORMATION);
-
-        alert.setTitle("Validation");
-        alert.setHeaderText("You can now start the simulation!");
-        alert.showAndWait();
-
-        Stage stage = (Stage) doneButton.getScene().getWindow();
-        stage.close();
     }
 
     @FXML

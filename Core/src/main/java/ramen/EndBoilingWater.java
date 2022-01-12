@@ -9,8 +9,8 @@ import main.java.control.Scheduler;
 
 public class EndBoilingWater extends Event {
 
-    private Device kettle;
-    private Customer customer;
+    private final Device kettle;
+    private final Customer customer;
 
     public EndBoilingWater(Customer customer, Device kettle, int startingTime){
         super(startingTime);

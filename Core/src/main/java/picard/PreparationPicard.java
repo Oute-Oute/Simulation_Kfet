@@ -11,7 +11,7 @@ import main.java.control.Scheduler;
 import main.java.payment.PreparationOrder;
 
 public class PreparationPicard extends Event {
-    private Customer customer;
+    private final Customer customer;
 
     public PreparationPicard(Customer customer, int startingTime) {
         super(startingTime);

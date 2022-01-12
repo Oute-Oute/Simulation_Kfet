@@ -15,8 +15,9 @@ import main.java.report.ExportExcel;
 
 public final class Scheduler {
     private static Scheduler SchedulerInstance = new Scheduler();
-    private ArrayList<Event> incomingEvent = new ArrayList();
+    private final ArrayList<Event> incomingEvent = new ArrayList();
     private int currentTime = 0;
+    private int status=0;
 
     private Scheduler() {
     }
@@ -45,7 +46,7 @@ public final class Scheduler {
 
             int i;
             for(i = 0; i < SchedulerInstance.incomingEvent.size() && !found; ++i) {
-                if (event.getStartingTime() < ((Event)SchedulerInstance.incomingEvent.get(i)).getStartingTime()) {
+                if (event.getStartingTime() < SchedulerInstance.incomingEvent.get(i).getStartingTime()) {
                     SchedulerInstance.incomingEvent.add(i, event);
                     found = true;
                 }
@@ -58,19 +59,21 @@ public final class Scheduler {
 
     }
 
-    public void startingEvent(int currentTime) {
+    public void startingEvent(int currentTime) throws InterruptedException {
         byte i = 0;
 
-        while(i < SchedulerInstance.getnbEvent() && ((Event)SchedulerInstance.incomingEvent.get(i)).getStartingTime() <= currentTime) {
+        while(i < SchedulerInstance.getnbEvent() && SchedulerInstance.incomingEvent.get(i).getStartingTime() <= currentTime) {
             System.out.println(currentTime + " /7200");
-            ((Event)SchedulerInstance.incomingEvent.get(i)).run();
+            SchedulerInstance.incomingEvent.get(i).run();
             SchedulerInstance.incomingEvent.remove(i);
+
         }
 
     }
 
-    public void passingTime() {
-        Duration tick_Duration = Duration.ofMillis(1200L);
+    public void passingTime() throws InterruptedException {
+
+        Duration tick_duration = Duration.ofMillis(1200L);
         Clock baseClock = Clock.systemUTC();
         Clock newClock = Clock.systemUTC();
         LocalTime basetime = LocalTime.now();
@@ -79,41 +82,42 @@ public final class Scheduler {
         HashMap var10001 = ControllerDevices.getInstance().getFreeDevices();
         var10000.println(var10001.get("Cafetiere") + " cafetieres de libre");
 
-        while(this.currentTime <= 7200) {
-            basetime = LocalTime.now();
-            if (basetime.isAfter(newTime)) {
-                this.startingEvent(this.currentTime);
-                ++this.currentTime;
-                newTime = basetime.plusNanos(10000000L);
+
+        while (this.currentTime <= 7200) {
+            if (status == 0) {
+                CoreController.getInstance().Reclock(currentTime);
+                basetime = LocalTime.now();
+                if (basetime.isAfter(newTime)) {
+                    this.startingEvent(this.currentTime);
+                    ++this.currentTime;
+                    newTime = basetime.plusNanos(10000000L);
+                }
             }
 
-            Alert alert;
-            if (this.currentTime == 7200) {
-                System.out.println("Fin de service");
-                alert = new Alert(AlertType.INFORMATION);
-                alert.setTitle("Fin de service");
-                alert.setHeaderText("Le service est terminé");
-                alert.setContentText("Vous avez servi tout les clients! Offrez un Tropico à vos kfetiers pendant que vous allez regarder les statistiques du service");
-                alert.showAndWait();
-            }
-
-            if (this.currentTime == 7200 && WaitingList.getInstance().getPostOrder().size() >= 1) {
-                alert = new Alert(AlertType.ERROR);
-                alert.setTitle("Fin de service");
-                alert.setHeaderText("Le service est terminé mais il reste des clients a servir");
-                alert.setContentText("Vous pouvez réessayer avec moins de clients ou en changeant certains paramètres (n'oubliez pas que vous simulez la K'Fet et pas le McDonalds de l'Heure Tranquille, pensez au bien-être de vos Kfetiers!)");
-                alert.showAndWait();
-            }
         }
+        System.out.println("Fin");
+        if (WaitingList.getInstance().getPostOrder().size() >= 1
+                || WaitingList.getInstance().getPreOrder().size() >= 1) {
+            CoreController.getInstance().End(1);
 
-        ExportExcel.CreateFile(CoreController.getInstance().getCustomers());
+        } else {
+            CoreController.getInstance().End(0);
+        }
+        this.currentTime = 7201;
     }
 
-    public static void start() {
+
+
+    public static void start() throws InterruptedException {
         getInstance().passingTime();
     }
 
     public void setCurrentTime(int currentTime) {
         this.currentTime = currentTime;
     }
+
+    public void setStatus(int status){
+        this.status=status;
+    }
+
 }

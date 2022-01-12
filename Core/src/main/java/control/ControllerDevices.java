@@ -7,7 +7,11 @@ import java.util.HashMap;
 
 public final class ControllerDevices {
 
-    private static int NB_OVEN = 8, NB_MICROWAVE = 3, NB_CAFETIERE = 2, NB_KETTLE = 2, NB_COCOA = 1;
+    private static final int NB_OVEN = 8;
+    private static final int NB_MICROWAVE = 3;
+    private static final int NB_CAFETIERE = 2;
+    private static final int NB_KETTLE = 2;
+    private static final int NB_COCOA = 1;
     private static ControllerDevices controllerDevicesInstance = new ControllerDevices();
 
     private ArrayList<Device> oven;
@@ -15,7 +19,7 @@ public final class ControllerDevices {
     private ArrayList<Device> cafetiere;
     private ArrayList<Device> kettle;
     private ArrayList<Device> cocoa;
-    private HashMap<String, Integer> freeDevices;
+    private final HashMap<String, Integer> freeDevices;
 
     private ControllerDevices(){
         int id;

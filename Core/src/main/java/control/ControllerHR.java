@@ -13,7 +13,7 @@ public final class ControllerHR{
     private ArrayList<Kfetier> cashier;
     private ArrayList<Kfetier> cooks;
     private ArrayList<Kfetier> kfetiers;
-    private HashMap<String, Integer> freeKfetier;
+    private final HashMap<String, Integer> freeKfetier;
 
     private ControllerHR(int nbCooks, int nbCashier, int nbKfetiers){
         this.nbKfetiers = nbKfetiers;

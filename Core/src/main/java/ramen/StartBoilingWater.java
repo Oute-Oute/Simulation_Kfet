@@ -15,7 +15,7 @@ import main.java.payment.PreparationOrder;
 public class StartBoilingWater extends Event {
 
     private static Boolean isCold = true;
-    private Customer customer;
+    private final Customer customer;
     private static int lastBoiling = 0;
 
     public StartBoilingWater(Customer customer, int startingTime) {

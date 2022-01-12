@@ -10,7 +10,7 @@ import main.java.payment.ServeCustomer;
 
 public class ServeRamen extends Event {
 
-    private Customer customer;
+    private final Customer customer;
 
     public ServeRamen(Customer customer, int startingTime){
         super(startingTime);

@@ -1,4 +1,2 @@
 package kfet.help;
-
-public class HelpController {
-}
+public class HelpController {}

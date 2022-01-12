@@ -11,7 +11,7 @@ import main.java.control.Scheduler;
 
 public class NewCustomer extends Event {
 
-    private Customer customer;
+    private final Customer customer;
 
     public NewCustomer(Customer customer, int startingTime){
         super(startingTime);

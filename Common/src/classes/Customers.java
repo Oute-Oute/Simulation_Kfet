@@ -8,7 +8,7 @@ import java.util.Random;
 public class Customers implements Serializable {
     @Serial
     private static final long serialVersionUID =1L;
-    private ArrayList<Customer> customers;
+    private final ArrayList<Customer> customers;
     private float customerFrequency;
 
     public Customers(){

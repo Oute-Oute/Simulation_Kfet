@@ -17,7 +17,7 @@ public class Order implements Serializable {
     private int ramen;
     private int picard;
     private int nbPizza;
-    private ArrayList<Integer> pizza;
+    private final ArrayList<Integer> pizza;
 
     public Order(int max){
         Random r = new Random();

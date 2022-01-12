@@ -7,7 +7,7 @@ import main.java.WaitingList;
 
 public class PreparationOrder extends Event {
 
-    private Customer customer;
+    private final Customer customer;
 
     public PreparationOrder(Customer customer, int startingTime) {
         super(startingTime);

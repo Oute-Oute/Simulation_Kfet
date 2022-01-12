@@ -13,9 +13,9 @@ import java.util.Random;
 
 public class ServePicard extends Event {
 
-    private Device microwave;
-    private Customer customer;
-    private int cooked;     //0 si pas cuit, 1 si cuit une fois, 2 si cuit 2 fois
+    private final Device microwave;
+    private final Customer customer;
+    private final int cooked;     //0 si pas cuit, 1 si cuit une fois, 2 si cuit 2 fois
 
     public ServePicard(Customer customer, Device oven, int cooked, int startingTime) {
         super(startingTime);

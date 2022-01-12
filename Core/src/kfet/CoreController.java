@@ -3,7 +3,9 @@ package kfet;
 import classes.Customers;
 import com.kfet.GeneratorApplication;
 import javafx.animation.TranslateTransition;
+import javafx.application.Platform;
 import javafx.fxml.FXML;
+import javafx.scene.control.Alert;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
@@ -11,40 +13,52 @@ import javafx.scene.paint.Color;
 import javafx.scene.paint.Paint;
 import javafx.scene.shape.Circle;
 import javafx.scene.shape.StrokeType;
+import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import javafx.util.Duration;
 import kfet.help.HelpApplication;
 import kfet.settings.SettingsApplication;
+import main.java.WaitingList;
 import main.java.control.ControllerHR;
 import main.java.control.Pair;
 import main.java.control.Scheduler;
+import main.java.report.ExportExcel;
 
 import java.awt.*;
 import java.io.IOException;
+import java.time.LocalDateTime;
+import java.time.LocalTime;
+import java.time.format.DateTimeFormatter;
 import java.util.HashMap;
 
 public final class CoreController {
 
     private static CoreController CoreControllerInstance=new CoreController();
     private Customers customers = null;
+    private Thread scheduler;
+
+    private LocalTime time;
+
+    @FXML
+    Text clock;
 
     @FXML
     private Circle Cashier_1, Cashier_2, Oven_1, Oven_2, Oven_3, Oven_4, Oven_5, Oven_6, Oven_7, Oven_8, MO_1, MO_2, MO_3, Coffee_1, Coffee_2, Chocolate, Kettle_1, Kettle_2;
 
     @FXML
-    private HashMap<Integer, Circle> colorCircle = new HashMap<>();
+    private final HashMap<Integer, Circle> colorCircle = new HashMap<>();
 
     @FXML
-    private HashMap<Integer, Pair<Double, Double>> coordinates = new HashMap<>();
+    private final HashMap<Integer, Pair<Double, Double>> coordinates = new HashMap<>();
 
     @FXML
     private ImageView Cashier1,Cashier2,CoffeeMaker1,CoffeeMaker2,Cooker1,Cooker2;
 
 
     @FXML
-    private TranslateTransition transition = new TranslateTransition();
+    private final TranslateTransition transition = new TranslateTransition();
     @FXML
-    private Pane pane=new Pane();
+    private final Pane pane=new Pane();
 
     public static CoreController getInstance(){
         if(CoreControllerInstance == null){
@@ -98,6 +112,11 @@ public final class CoreController {
         coordinates.put(13, new Pair<>(775.0, 90.0));
         coordinates.put(14, new Pair<>(725.0, 90.0));
         coordinates.put(15, new Pair<>(600.0, 280.0));
+
+
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("hh:mm");
+        time = LocalTime.of(12,30,0);
+        Reclock(0);
 
     }
     @FXML
@@ -187,17 +206,75 @@ public final class CoreController {
     }
 
     @FXML
-    protected void startSimulation() throws IOException {
-
+    protected void startSimulation() throws IOException, InterruptedException {
         if (Scheduler.getInstance().getnbEvent() == 0) {
             openSettings();
         } else {
-            CoreControllerInstance.initialize();
-            Scheduler.start();
+       scheduler = new Thread(){
+        public void run() {
+
+                    CoreControllerInstance.initialize();
+                try {
+                    Scheduler.start();
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+
+    }};
+        scheduler.start();
         }
+
+
     }
     @FXML
     protected void stopSimulation(){
         Scheduler.getInstance().setCurrentTime(7200);
+    }
+    @FXML
+    protected void playSimulation(){
+        Scheduler.getInstance().setStatus(0);
+
+    }
+    @FXML
+    protected void pauseSimulation() throws InterruptedException {
+        Scheduler.getInstance().setStatus(1);
+
+
+    }
+
+
+    public void End(int status){
+
+        Platform.runLater(new Runnable(){
+            @Override
+            public void run() {
+
+                if (status==0) {
+                    Alert alert;
+                    alert = new Alert(Alert.AlertType.INFORMATION);
+                    alert.setTitle("Fin de service");
+                    alert.setHeaderText("Le service est terminé");
+                    alert.setContentText("Vous avez servi tout les clients! Offrez un Tropico à vos kfetiers pendant que vous allez regarder les statistiques du service");
+                    alert.showAndWait();
+                }
+
+                else if (status==1) {
+                    Alert alert;
+                    alert = new Alert(Alert.AlertType.ERROR);
+                    alert.setTitle("Fin de service");
+                    alert.setHeaderText("Le service est terminé mais il reste des clients a servir");
+                    alert.setContentText("Vous pouvez réessayer avec moins de clients ou en changeant certains paramètres (n'oubliez pas que vous simulez la K'Fet et pas le McDonalds de l'Heure Tranquille, pensez au bien-être de vos Kfetiers!)");
+                    alert.showAndWait();
+                }
+
+                ExportExcel.CreateFile(CoreController.getInstance().getCustomers());
+            }
+        });
+
+
+    }
+    public void Reclock(int second){
+        LocalTime newTime=time.plusSeconds(second);
+        clock.setText(newTime.toString());
     }
 }

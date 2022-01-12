@@ -14,9 +14,9 @@ import main.java.payment.ServeCustomer;
 
 public class ServeChocolate extends Event {
 
-    private Customer customer;
-    private Device cocoa;
-    private Kfetier kfetier;
+    private final Customer customer;
+    private final Device cocoa;
+    private final Kfetier kfetier;
 
     public ServeChocolate(Customer customer, Device cocoa, Kfetier kfetier, int startingTime) {
         super(startingTime);

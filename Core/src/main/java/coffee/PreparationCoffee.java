@@ -12,7 +12,7 @@ import main.java.payment.PreparationOrder;
 
 public class PreparationCoffee extends Event {
 
-    private Customer customer;
+    private final Customer customer;
 
     public PreparationCoffee(Customer customer, int startingTime){
         super(startingTime);

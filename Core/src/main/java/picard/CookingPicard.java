@@ -12,10 +12,10 @@ import main.java.control.Scheduler;
 
 public class CookingPicard extends Event {
 
-    private Kfetier kfetier;
-    private Device microwave;
-    private Customer customer;
-    private int cooked;
+    private final Kfetier kfetier;
+    private final Device microwave;
+    private final Customer customer;
+    private final int cooked;
 
     public CookingPicard(Customer customer, Kfetier kfetier, Device microwave, int cooked, int startingTime){
         super(startingTime);

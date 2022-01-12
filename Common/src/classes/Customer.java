@@ -11,15 +11,15 @@ public class Customer implements Serializable {
     @Serial
     private static final long serialVersionUID =1L;
     private static int cptPayement = 3, fastLydiaPayement = 7, cashPayement = 15, slowLydiaPayement = 20;
-    private static ArrayList<Integer> payement = new ArrayList<>(Stream.of(cptPayement, fastLydiaPayement, cashPayement,slowLydiaPayement).collect(Collectors.toList()));
+    private static final ArrayList<Integer> payement = new ArrayList<>(Stream.of(cptPayement, fastLydiaPayement, cashPayement,slowLydiaPayement).collect(Collectors.toList()));
 
-    private Boolean kfetier;
-    private Order order;
+    private final Boolean kfetier;
+    private final Order order;
     public int id;
-    private int paymentDuration; //Cpt = 3s, Lydia rapide = 7s, Liquide = 15s, Lydia lent = 20s
-    private int arrivalTick; //tick de l'heure d'arrivée
-    private int arrivalTime;
-    private int tpm = 60;//ticks par minutes pour la génération temporelle
+    private final int paymentDuration; //Cpt = 3s, Lydia rapide = 7s, Liquide = 15s, Lydia lent = 20s
+    private final int arrivalTick; //tick de l'heure d'arrivée
+    private final int arrivalTime;
+    private final int tpm = 60;//ticks par minutes pour la génération temporelle
 
     private int departureTime;
 

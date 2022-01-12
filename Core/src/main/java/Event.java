@@ -1,7 +1,7 @@
 package main.java;
 
 public abstract class Event {
-    private int startingTime;
+    private final int startingTime;
 
     public Event(int startingTime){
         this.startingTime = startingTime;

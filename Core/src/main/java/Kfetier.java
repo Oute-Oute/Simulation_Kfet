@@ -4,7 +4,7 @@ package main.java;
 import kfet.CoreController;
 
 public class Kfetier {
-    private int id;
+    private final int id;
     private String type;
     private Boolean isFree;
 

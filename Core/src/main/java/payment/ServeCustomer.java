@@ -9,7 +9,7 @@ import main.java.control.Scheduler;
 
 public class ServeCustomer extends Event {
 
-    private Customer customer;
+    private final Customer customer;
 
     public ServeCustomer(Customer customer, int startingTime) {
         super(startingTime);
@@ -31,6 +31,9 @@ public class ServeCustomer extends Event {
 
         if (Scheduler.getInstance().getnbEvent() == 1) {
             System.out.println("\t\tVerification de fin & size = "+ WaitingList.getInstance().getPostOrder().size());
+            if(WaitingList.getInstance().getPostOrder().size()==0){
+                Scheduler.getInstance().setCurrentTime(7200);
+            }
             for (int i = 0; i < WaitingList.getInstance().getPostOrder().size(); i++) {
                 Customer customer1 = WaitingList.getInstance().getPostOrder().get(i);
 

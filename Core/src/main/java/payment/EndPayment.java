@@ -11,8 +11,8 @@ import main.java.control.Scheduler;
 
 public class EndPayment extends Event {
 
-    private Customer customer;
-    private Kfetier cashier;
+    private final Customer customer;
+    private final Kfetier cashier;
 
     public EndPayment(Customer customer, Kfetier cashier, int StartingTime) {
         super(StartingTime);

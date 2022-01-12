@@ -16,8 +16,8 @@ import java.util.ArrayList;
 public final class WaitingList {
 
     private static WaitingList waitingListInstance = new WaitingList();
-    private ArrayList<Customer> preOrder;
-    private ArrayList<Customer> postOrder;
+    private final ArrayList<Customer> preOrder;
+    private final ArrayList<Customer> postOrder;
 
     private WaitingList() {
         preOrder = new ArrayList<>();
