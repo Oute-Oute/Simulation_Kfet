@@ -5,6 +5,7 @@ import classes.Customers;
 
 import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonType;
+import main.java.WaitingList;
 import main.java.control.ControllerDevices;
 import org.apache.poi.ss.usermodel.*;
 import org.apache.poi.ss.util.CellRangeAddress;
@@ -46,11 +47,13 @@ public class ExportExcel {
                 in.close();
             }
 
-            XSSFSheet customersheet = workbook.createSheet("Customers_" + workbook.getNumberOfSheets() / 2);
-            XSSFSheet devicesheet = workbook.createSheet("Devices_" + workbook.getNumberOfSheets() / 2);
+            XSSFSheet customersheet = workbook.createSheet("Customers_" + workbook.getNumberOfSheets() / 3);
+            XSSFSheet devicesheet = workbook.createSheet("Devices_" + workbook.getNumberOfSheets() / 3);
+            XSSFSheet waitingSheet = workbook.createSheet("WaintgList_" + workbook.getNumberOfSheets()/3);
 
             //Ensemble de méthodes pour remplir le rapport ici
             tableCustomer(workbook, customersheet, customers);
+            tableWaitingList(workbook, waitingSheet);
             tableDevice(workbook, devicesheet);
             //
             //
@@ -95,12 +98,64 @@ public class ExportExcel {
         }
     }
 
+    private static void tableWaitingList(XSSFWorkbook workbook, XSSFSheet sheet) {
+        //Table WaitingList
+        XSSFTable table = sheet.createTable(null);
+        CTTable ctTable = table.getCTTable();
+        ctTable.setRef("A1:C721");
+
+        CTTableStyleInfo styleInfo = ctTable.addNewTableStyleInfo();
+        styleInfo.setName("TableStyleMedium3");
+        styleInfo.setShowColumnStripes(false);
+        styleInfo.setShowRowStripes(true);
+
+        CTTableColumns columns = ctTable.addNewTableColumns();
+        columns.setCount(2);
+
+        String[] name = {"Temps", "Taille PréOrder", "Taille PostOrder"};
+
+        for (int i = 1; i <= 3; i++) {
+            CTTableColumn column = columns.addNewTableColumn();
+            column.setId(i);
+            column.setName(name[i - 1]);
+        }
+
+        for (int r = 0; r < 721; r++) {
+            XSSFRow row = sheet.createRow(r);
+            for (int c = 0; c < 3; c++) {
+                XSSFCell cell = row.createCell(c);
+                if (r == 0) {
+                    cell.setCellValue(name[c]);
+                    sheet.autoSizeColumn(c);
+                } else {
+                    switch (c) {
+                        case 0 -> cell.setCellValue((r-1) * 10);
+                        case 1 -> cell.setCellValue(WaitingList.getInstance().getSizePre().get(r));
+                        case 2 -> cell.setCellValue(WaitingList.getInstance().getSizePost().get(r));
+                    }
+                }
+            }
+        }
+
+        sheet.getRow(0).createCell(4).setCellValue("Temps d'attente moyen:");
+        sheet.getRow(1).createCell(4).setCellValue("Caisse");
+        sheet.getRow(1).createCell(5).setCellFormula("ROUND(AVERAGE(B2:B721),0)");
+        sheet.getRow(2).createCell(4).setCellValue("Commande");
+        sheet.getRow(2).createCell(5).setCellFormula("ROUND(AVERAGE(C2:C721),0)");
+
+        CellStyle style = workbook.createCellStyle();
+        style.setFillBackgroundColor(IndexedColors.LIGHT_ORANGE.getIndex());
+        style.setFillPattern(FillPatternType.SOLID_FOREGROUND);
+
+    }
+
     /**
      * Créé une table remplie avec les clients, leur heure d'arrivée, leur heure de départ et leur nb d'articles commandés
      *
      * @param sheet feuille à écrire
      */
     private static void tableCustomer(XSSFWorkbook workbook, XSSFSheet sheet, Customers customers) {
+        //Table customers
         int nbLine = customers.getCustomers().size() + 1;
 
         //On créé notre table
@@ -154,41 +209,6 @@ public class ExportExcel {
         sheet.autoSizeColumn(3);
         XSSFCell cell1 = row.createCell(4);
         cell1.setCellFormula("ROUND(AVERAGE(E2:E" + (nbLine) + "),0)");
-
-        CellStyle style = workbook.createCellStyle();
-        style.setFillBackgroundColor(IndexedColors.LIGHT_ORANGE.getIndex());
-        style.setFillPattern(FillPatternType.SOLID_FOREGROUND);
-
-
-        XSSFDrawing drawing = sheet.createDrawingPatriarch();
-        XSSFClientAnchor anchor = drawing.createAnchor(0, 0, 0, 0, 6, 5, 15, 25);
-        XSSFChart chart = drawing.createChart(anchor);
-        chart.setTitleText("Temps d'attente selon le nombre d'article commandés");
-        XDDFValueAxis bottomAxis = chart.createValueAxis(AxisPosition.BOTTOM);
-        bottomAxis.setTitle("Nombre d'article commandés"); // https://stackoverflow.com/questions/32010765
-        XDDFValueAxis leftAxis = chart.createValueAxis(AxisPosition.LEFT);
-        leftAxis.setTitle("Temps d'attente en seconde");
-        leftAxis.setCrosses(AxisCrosses.AUTO_ZERO);
-
-        XDDFDataSource<Double> xs = XDDFDataSourcesFactory.fromNumericCellRange(sheet, new CellRangeAddress(1, nbLine-1, 2, 2));
-        XDDFNumericalDataSource<Double> ys1 = XDDFDataSourcesFactory.fromNumericCellRange(sheet, new CellRangeAddress(1, nbLine-1, 4, 4));
-
-        XDDFScatterChartData data = (XDDFScatterChartData) chart.createData(ChartTypes.SCATTER, bottomAxis, leftAxis);
-        XDDFScatterChartData.Series series1 = (XDDFScatterChartData.Series) data.addSeries(xs, ys1);
-        series1.setSmooth(false); // https://stackoverflow.com/questions/39636138
-
-        series1.setMarkerStyle(MarkerStyle.CIRCLE);
-        series1.setMarkerSize((short)5);
-        setLineNoFill(series1);
-
-        //XDDFScatterChartData.Series series2 = (XDDFScatterChartData.Series) data.addSeries(xs, ys2);
-        //series2.setTitle("3x", null);
-
-        //series2.setMarkerStyle(MarkerStyle.CIRCLE);
-        //series2.setMarkerSize((short)5);
-        //setLineNoFill(series2);
-
-        chart.plot(data);
     }
 
     /**
@@ -245,35 +265,35 @@ public class ExportExcel {
                 if (r < nbMicrowave) { // rmax = 2                                         //Micro ondes
                     switch (c) {
                         case 0 -> cell.setCellValue("Micro-Onde n°" + (r + 1));
-                        case 1 -> cell.setCellFormula("ROUND("+((double)instanceDevice.getMicrowave().get(r).getOccupationTime()/72) + ",1)");
+                        case 1 -> cell.setCellFormula("ROUND(" + ((double) instanceDevice.getMicrowave().get(r).getOccupationTime() / 72) + ",1)");
                         case 2 -> cell.setCellValue(instanceDevice.getMicrowave().get(r).getNbUsed());
                     }
                 } else if (r < nbMicrowave + nbOven) { //rmax = 3 + 8 -1 = 10                                        //fours
                     current = r - nbMicrowave; // currentmax = 10 - 3 = 7
                     switch (c) {
                         case 0 -> cell.setCellValue("Four n°" + (current + 1));
-                        case 1 -> cell.setCellFormula("ROUND("+((double)instanceDevice.getOven().get(current).getOccupationTime()/72) + ",1)");
+                        case 1 -> cell.setCellFormula("ROUND(" + ((double) instanceDevice.getOven().get(current).getOccupationTime() / 72) + ",1)");
                         case 2 -> cell.setCellValue(instanceDevice.getOven().get(current).getNbUsed());
                     }
                 } else if (r < nbMicrowave + nbOven + nbKettle) { //rmax = 3 + 8 + 2 -1 = 12         //Bouilloire
                     current = r - nbMicrowave - nbOven; //currentmax = 12 - 3 - 8 = 1
                     switch (c) {
                         case 0 -> cell.setCellValue("Bouilloire n°" + (current + 1));
-                        case 1 -> cell.setCellFormula("ROUND("+((double)instanceDevice.getKettle().get(current).getOccupationTime()/72) + ",1)");
+                        case 1 -> cell.setCellFormula("ROUND(" + ((double) instanceDevice.getKettle().get(current).getOccupationTime() / 72) + ",1)");
                         case 2 -> cell.setCellValue(instanceDevice.getKettle().get(current).getNbUsed());
                     }
                 } else if (r < nbMicrowave + nbOven + nbKettle + nbCafetiere) { //rmax = 3 + 8 + 2 + 2 -1 = 14      //Cafetiere
                     current = r - nbMicrowave - nbOven - nbKettle; //currentmax = 14 - 3 - 8 - 2 = 1
                     switch (c) {
                         case 0 -> cell.setCellValue("Cafetière n°" + (current + 1));
-                        case 1 -> cell.setCellFormula("ROUND("+((double)instanceDevice.getCafetiere().get(current).getOccupationTime()/72) + ",1)");
+                        case 1 -> cell.setCellFormula("ROUND(" + ((double) instanceDevice.getCafetiere().get(current).getOccupationTime() / 72) + ",1)");
                         case 2 -> cell.setCellValue(instanceDevice.getCafetiere().get(current).getNbUsed());
                     }
                 } else { //rmax = 16                                           //Chocolat
                     current = r - nbMicrowave - nbOven - nbKettle - nbCafetiere;  //currentmax = 15 - 3 - 8 - 2 - 2 = 0
                     switch (c) {
                         case 0 -> cell.setCellValue("Machine à chocolat n°" + (current + 1));
-                        case 1 -> cell.setCellFormula("ROUND("+((double)instanceDevice.getCocoa().get(current).getOccupationTime()/72) + ",1)");
+                        case 1 -> cell.setCellFormula("ROUND(" + ((double) instanceDevice.getCocoa().get(current).getOccupationTime() / 72) + ",1)");
                         case 2 -> cell.setCellValue(instanceDevice.getCocoa().get(current).getNbUsed());
                     }
                 }
@@ -281,6 +301,7 @@ public class ExportExcel {
             }
         }
     }
+
     private static void setLineNoFill(XDDFScatterChartData.Series series) {
         XDDFNoFillProperties noFillProperties = new XDDFNoFillProperties();
         XDDFLineProperties lineProperties = new XDDFLineProperties();

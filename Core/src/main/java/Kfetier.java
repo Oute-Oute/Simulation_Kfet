@@ -32,10 +32,5 @@ public class Kfetier {
 
     public void setFree(Boolean free) {
         isFree = free;
-        if(free){
-            CoreController.getInstance().free(this.id);
-        } else {
-            CoreController.getInstance().notFree(this.id);
-        }
     }
 }

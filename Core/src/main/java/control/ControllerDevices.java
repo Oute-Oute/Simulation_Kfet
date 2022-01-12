@@ -22,7 +22,7 @@ public final class ControllerDevices {
     private final HashMap<String, Integer> freeDevices;
 
     private ControllerDevices(){
-        int id;
+        int id = 0;
 
         //Oven
         oven = new ArrayList<>(NB_OVEN);

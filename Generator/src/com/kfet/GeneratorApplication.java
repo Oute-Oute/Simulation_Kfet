@@ -8,6 +8,9 @@ import javafx.stage.Stage;
 import java.io.IOException;
 import java.util.Objects;
 
+/**
+ * Start the generator.
+ */
 public class GeneratorApplication {
 
     public void start(Stage stage) throws IOException {
@@ -18,8 +21,4 @@ public class GeneratorApplication {
         stage.show();
         stage.getIcons().add(new Image(Objects.requireNonNull(GeneratorApplication.class.getResourceAsStream("/icon.png"))));
     }
-
-    //public static void main(String[] args) {
-      //  launch();
-    //}
 }

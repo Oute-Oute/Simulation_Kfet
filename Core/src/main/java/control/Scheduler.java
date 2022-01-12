@@ -15,7 +15,7 @@ import main.java.report.ExportExcel;
 
 public final class Scheduler {
     private static Scheduler SchedulerInstance = new Scheduler();
-    private final ArrayList<Event> incomingEvent = new ArrayList();
+    private ArrayList<Event> incomingEvent = new ArrayList();
     private int currentTime = 0;
     private int status=0;
 
@@ -66,7 +66,6 @@ public final class Scheduler {
             System.out.println(currentTime + " /7200");
             SchedulerInstance.incomingEvent.get(i).run();
             SchedulerInstance.incomingEvent.remove(i);
-
         }
 
     }

@@ -16,12 +16,16 @@ import java.util.ArrayList;
 public final class WaitingList {
 
     private static WaitingList waitingListInstance = new WaitingList();
-    private final ArrayList<Customer> preOrder;
-    private final ArrayList<Customer> postOrder;
+    private ArrayList<Customer> preOrder;
+    private ArrayList<Customer> postOrder;
+    private ArrayList<Integer> sizePre;
+    private ArrayList<Integer> sizePost;
 
     private WaitingList() {
         preOrder = new ArrayList<>();
         postOrder = new ArrayList<>();
+        sizePost = new ArrayList<>();
+        sizePre = new ArrayList<>();
     }
 
     public static WaitingList getInstance() {
@@ -43,7 +47,7 @@ public final class WaitingList {
     /**
      * Search what part of the customer's order can be prepared depending on the different free devices
      *
-     * @param customer
+     * @param customer customer to search for
      */
     public void searchGlobal(Customer customer) {
         System.out.println("Algo global customer " + customer.id);
@@ -98,7 +102,7 @@ public final class WaitingList {
     /**
      * Search if the customer ordered a pizza and if an oven is free to start the PreparationPizza
      *
-     * @param customer
+     * @param customer customer to search for
      */
     public void searchPizza(Customer customer) {
         System.out.println("search pizza "+customer.id);
@@ -111,5 +115,13 @@ public final class WaitingList {
                 }
             }
         }
+    }
+
+    public ArrayList<Integer> getSizePre() {
+        return sizePre;
+    }
+
+    public ArrayList<Integer> getSizePost() {
+        return sizePost;
     }
 }
