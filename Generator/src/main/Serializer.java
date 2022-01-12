@@ -7,11 +7,7 @@ import java.util.Date;
 
 
 /**
- *
- * @author Thomas Blumstein
- *
- * Will Serialize data for the genrator
- * to be used later in the simulator
+ * The type Serializer.
  */
 public class Serializer {
 
@@ -24,13 +20,20 @@ public class Serializer {
      */
     private ObjectOutputStream oS;
 
+    /**
+     * The file path
+     */
     private String path;
+
+    /**
+     * The Txt file.
+     */
     File txtFile = null;
 
     /**
      * Open a file and create it if it doesn't exist
      *
-     * @return a File object with the file open
+     * @return a File object with the file opened
      */
     public File createOpenFile() {
 
@@ -59,6 +62,7 @@ public class Serializer {
      * then access each order on the customer list to save its data
      *
      * @param customers the customers to serialize
+     * @throws FileNotFoundException the file not found exception
      */
     public void serializeCustomers(Customers customers) throws FileNotFoundException {
         File directory = new File(System.getProperty("user.home"), "SimulationKfet/Data/");
@@ -88,6 +92,11 @@ public class Serializer {
 
     }
 
+    /**
+     * Get path string.
+     *
+     * @return the string
+     */
     public String getPath(){
         return path;
     }

@@ -10,6 +10,9 @@ import classes.Customers;
 
 import java.io.FileNotFoundException;
 
+/**
+ * The Generator Controller
+ */
 public class GeneratorController {
     @FXML
     private Spinner nbCustomersSpin;
