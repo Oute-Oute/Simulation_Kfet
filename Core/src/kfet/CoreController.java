@@ -40,7 +40,7 @@ public final class CoreController {
     private LocalTime time;
 
     @FXML
-    Text clock;
+    private Text clock;
 
     @FXML
     private Circle Cashier_1, Cashier_2, Oven_1, Oven_2, Oven_3, Oven_4, Oven_5, Oven_6, Oven_7, Oven_8, MO_1, MO_2, MO_3, Coffee_1, Coffee_2, Chocolate, Kettle_1, Kettle_2;
@@ -49,7 +49,9 @@ public final class CoreController {
     private final HashMap<Integer, Circle> colorCircle = new HashMap<>();
 
     @FXML
-    private final HashMap<Integer, Pair<Double, Double>> coordinates = new HashMap<>();
+    public HashMap<Integer, Pair<Double, Double>> coordinates = new HashMap<>();
+
+    public HashMap<Integer,ImageView> humans=new HashMap<>();
 
     @FXML
     private ImageView Cashier1,Cashier2,CoffeeMaker1,CoffeeMaker2,Cooker1,Cooker2;
@@ -94,6 +96,7 @@ public final class CoreController {
         colorCircle.put(14, Kettle_2);
         colorCircle.put(15, Chocolate);
         colorCircle.put(20, Cashier_1);
+        colorCircle.put(21, Cashier_2);
 
 
         coordinates.put(0, new Pair<>(475.0, 520.0));
@@ -112,6 +115,13 @@ public final class CoreController {
         coordinates.put(13, new Pair<>(775.0, 90.0));
         coordinates.put(14, new Pair<>(725.0, 90.0));
         coordinates.put(15, new Pair<>(600.0, 280.0));
+
+        humans.put(0,Cashier1);
+        humans.put(1,Cashier2);
+        humans.put(2,Cooker1);
+        humans.put(3,Cooker2);
+        humans.put(4,CoffeeMaker1);
+        humans.put(5,CoffeeMaker2);
 
 
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("hh:mm");
@@ -175,9 +185,9 @@ public final class CoreController {
     }
 
     @FXML
-    protected void transition(ImageView sprite, int device) {
+    public void transition(ImageView sprite, int device) {
         Pair<Double, Double> Coords = coordinates.get(device);
-        transition.setDuration(Duration.seconds(1.5));
+        transition.setDuration(Duration.millis(20));
         transition.setToX(Coords.getL() - sprite.getLayoutX());
         transition.setToY(Coords.getR() - sprite.getLayoutY());
         transition.setNode(sprite);
@@ -275,6 +285,6 @@ public final class CoreController {
     }
     public void Reclock(int second){
         LocalTime newTime=time.plusSeconds(second);
-        clock.setText(newTime.toString());
+        //this.clock.setText(newTime.toString());
     }
 }

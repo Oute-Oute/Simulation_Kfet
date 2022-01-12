@@ -2,6 +2,7 @@ package main.java.payment;
 
 import classes.Customer;
 
+import kfet.CoreController;
 import main.java.Event;
 import main.java.Kfetier;
 import main.java.WaitingList;
@@ -25,6 +26,7 @@ public class EndPayment extends Event {
         //Libère le caissier
         System.out.println("End Payment "+ customer.id);
         cashier.setFree(true);
+        CoreController.getInstance().free(cashier.getId());
         ControllerHR.getInstance().getFreeKfetier().replace("Cashier", ControllerHR.getInstance().getFreeKfetier().get("Cashier") + 1);
 
         int time = Scheduler.getInstance().getCurrentTime() + 1;

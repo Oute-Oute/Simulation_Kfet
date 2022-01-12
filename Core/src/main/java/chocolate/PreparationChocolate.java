@@ -25,10 +25,10 @@ public class PreparationChocolate extends Event {
         System.out.println("Preparation Chocolate");
         if (ControllerHR.getInstance().getFreeKfetier().get("Kfetier") > 0) {
             if (ControllerDevices.getInstance().getFreeDevices().get("Cocoa")>0) {
-                int position = ControllerHR.getInstance().whichKfetier();
-                Kfetier kfetier = ControllerHR.getInstance().getKfetiers().get(position);
                 int devicePosition = ControllerDevices.getInstance().whichCocoa();
                 Device cocoa = ControllerDevices.getInstance().getCocoa().get(devicePosition);
+                int position = ControllerHR.getInstance().whichKfetier(15);
+                Kfetier kfetier = ControllerHR.getInstance().getKfetiers().get(position);
 
                 customer.getOrder().setChocolate(customer.getOrder().getChocolate() - 1);
 

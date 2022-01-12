@@ -1,5 +1,6 @@
 package main.java.control;
 
+import kfet.CoreController;
 import main.java.Kfetier;
 
 import java.util.ArrayList;
@@ -23,21 +24,21 @@ public final class ControllerHR{
 
         //Cashier
         cashier = new ArrayList<>(nbCashier);
-        for(int i = id; i < id+nbCashier; i++){
+        for(int i = id; i < id+2; i++){
             cashier.add(new Kfetier(i, "Cashier"));
         }
         id += nbCashier;
 
         //Cooks
         cooks = new ArrayList<>(nbCooks);
-        for(int i = id ; i < id+nbCooks; i++){
+        for(int i = id ; i < id+2; i++){
             cooks.add(new Kfetier(i, "Cook"));
         }
         id += nbCooks;
 
         //Kfetier
         kfetiers = new ArrayList<>(nbKfetiers);
-        for(int i = id; i < id+nbKfetiers; i++){
+        for(int i = id; i < id+2; i++){
             kfetiers.add(new Kfetier(i, "Kfetier"));
         }
 
@@ -100,6 +101,7 @@ public final class ControllerHR{
                 //On passe le caissier à occupé et on change le nb de caissiers libres
                 cashier.get(i).setFree(false);
                 ControllerHR.getInstance().freeKfetier.replace("Cashier", freeKfetier.get("Cashier") - 1);
+                CoreController.getInstance().notFree(i+20);
                 found = true;
             } else {
                 i++;
@@ -113,7 +115,7 @@ public final class ControllerHR{
      * Cette méthode ne doit être lancée qu'après s'être assuré qu'il y avait un Kfetier de libre
      * @return la position du Kfetier libre dans son arraylist
      */
-    public int whichKfetier(){
+    public int whichKfetier(int device){
         int i = 0;
         boolean found = false;
         //On cherche quel Kfetier est libre
@@ -122,6 +124,7 @@ public final class ControllerHR{
                 //On passe le kfetier à occupé et on change le nb de kfetiers libres
                 kfetiers.get(i).setFree(false);
                 ControllerHR.getInstance().freeKfetier.replace("Kfetier", freeKfetier.get("Kfetier") - 1);
+                CoreController.getInstance().transition(CoreController.getInstance().humans.get(i+4),device);
                 found = true;
             } else {
                 i++;
@@ -135,7 +138,7 @@ public final class ControllerHR{
      * Cette méthode ne doit être lancée qu'après s'être assuré qu'il y avait un cuisinier de libre
      * @return la position du cuisinier libre dans son arraylist
      */
-    public int whichCook(){
+    public int whichCook(int device){
         int i = 0;
         boolean found = false;
         //On cherche quel cuisinier est libre
@@ -144,6 +147,7 @@ public final class ControllerHR{
                 //On passe le cuisinier à occupé et on change le nb de cuisiniers libres
                 cooks.get(i).setFree(false);
                 ControllerHR.getInstance().freeKfetier.replace("Cook", freeKfetier.get("Cook") - 1);
+                CoreController.getInstance().transition(CoreController.getInstance().humans.get(i+2),device);
                 found = true;
             } else {
                 i++;

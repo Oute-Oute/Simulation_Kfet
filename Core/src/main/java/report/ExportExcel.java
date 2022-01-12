@@ -49,7 +49,7 @@ public class ExportExcel {
 
             XSSFSheet customersheet = workbook.createSheet("Customers_" + workbook.getNumberOfSheets() / 3);
             XSSFSheet devicesheet = workbook.createSheet("Devices_" + workbook.getNumberOfSheets() / 3);
-            XSSFSheet waitingSheet = workbook.createSheet("WaintgList_" + workbook.getNumberOfSheets()/3);
+            XSSFSheet waitingSheet = workbook.createSheet("WaitingList_" + workbook.getNumberOfSheets()/3);
 
             //Ensemble de méthodes pour remplir le rapport ici
             tableCustomer(workbook, customersheet, customers);
@@ -69,7 +69,7 @@ public class ExportExcel {
 
                     alert.setTitle("Statistiques créées");
                     alert.setHeaderText("Le fichier de Statistiques à été créé");
-                    alert.setContentText("Vous pouvez le treouver à cet emplacement : ");
+                    alert.setContentText("Vous pouvez le trouver à cet emplacement : ");
                     alert.setContentText(System.getProperty("user.home") + "SimulationKfet/Reports/Report_" + datFile + ".xlsx");
                     ButtonType dirButtonType = new ButtonType("Ouvrir le dossier");
                     ButtonType closeButtonType = new ButtonType("Fermer");
@@ -129,9 +129,17 @@ public class ExportExcel {
                     sheet.autoSizeColumn(c);
                 } else {
                     switch (c) {
-                        case 0 -> cell.setCellValue((r-1) * 10);
-                        case 1 -> cell.setCellValue(WaitingList.getInstance().getSizePre().get(r));
-                        case 2 -> cell.setCellValue(WaitingList.getInstance().getSizePost().get(r));
+                        case 0 : cell.setCellValue((r-1) * 10);
+                        case 1 :
+                            if(WaitingList.getInstance().getSizePre().size()>0) {
+                                cell.setCellValue(WaitingList.getInstance().getSizePre().get(r));
+                            }
+                            break;
+                        case 2 :
+                            if(WaitingList.getInstance().getSizePost().size()>0) {
+                                cell.setCellValue(WaitingList.getInstance().getSizePost().get(r));
+                            }
+                            break;
                     }
                 }
             }

@@ -26,10 +26,11 @@ public class PreparationPizza extends Event {
                 int time = 30; //le temps que met cet event à se réaliser
 
                 //On récupere le Cuisinier et le four qui vont mettre la pizza à cuire
-                int position = ControllerHR.getInstance().whichCook();
+
+                int devicePosition = ControllerDevices.getInstance().whichOven();
+                Device oven = ControllerDevices.getInstance().getOven().get(devicePosition);
+                int position = ControllerHR.getInstance().whichCook(devicePosition);
                 Kfetier cook = ControllerHR.getInstance().getCooks().get(position);
-                position = ControllerDevices.getInstance().whichOven();
-                Device oven = ControllerDevices.getInstance().getOven().get(position);
 
                 //On change le nb de pizza dans la commande
                 customer.getOrder().setNbPizza(customer.getOrder().getNbPizza() - 1);

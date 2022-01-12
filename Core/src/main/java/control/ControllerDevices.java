@@ -151,7 +151,7 @@ public final class ControllerDevices {
         //On cherche quel microonde est libre
         while (i < microwave.size() && !found) {
             if (microwave.get(i).getFree()) {
-                //On passe le microonde à occupé et on change le nb de microonde libres
+                //On passe le micro-onde à occupé et on change le nb de micro-onde libres
                 microwave.get(i).setFree(false);
                 freeDevices.replace("Microwave", freeDevices.get("Microwave") - 1);
                 found = true;
