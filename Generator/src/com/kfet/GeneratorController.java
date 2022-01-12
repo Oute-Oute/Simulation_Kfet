@@ -39,6 +39,15 @@ public class GeneratorController {
         int max_order = (int) slider_max_order.getValue();
         double frequency = 3600 * Double.parseDouble(String.valueOf(customerFrequencySlider.getValue()));
 
+        if(frequency == 0){
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+
+            alert.setTitle("Are you sure?");
+            alert.setHeaderText("You choosed 0 as frequency");
+            alert.setContentText("That means you'll see only one customer during the simulation\nGenerate a new file if it's not what you expected");
+            alert.showAndWait();
+        }
+
         Customers customers = new Customers(nbCustomers, proba, fast, cash, slow, cpt, frequency, max_order);
         Serializer serializer = new Serializer();
         serializer.serializeCustomers(customers);

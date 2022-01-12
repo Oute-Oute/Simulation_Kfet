@@ -45,7 +45,7 @@ public final class Scheduler {
 
             int i;
             for(i = 0; i < SchedulerInstance.incomingEvent.size() && !found; ++i) {
-                if (event.getStartingTime() < ((Event)SchedulerInstance.incomingEvent.get(i)).getStartingTime()) {
+                if (event.getStartingTime() < (SchedulerInstance.incomingEvent.get(i)).getStartingTime()) {
                     SchedulerInstance.incomingEvent.add(i, event);
                     found = true;
                 }
@@ -61,9 +61,9 @@ public final class Scheduler {
     public void startingEvent(int currentTime) {
         byte i = 0;
 
-        while(i < SchedulerInstance.getnbEvent() && ((Event)SchedulerInstance.incomingEvent.get(i)).getStartingTime() <= currentTime) {
+        while(i < SchedulerInstance.getnbEvent() && (SchedulerInstance.incomingEvent.get(i)).getStartingTime() <= currentTime) {
             System.out.println(currentTime + " /7200");
-            ((Event)SchedulerInstance.incomingEvent.get(i)).run();
+            (SchedulerInstance.incomingEvent.get(i)).run();
             SchedulerInstance.incomingEvent.remove(i);
         }
 
@@ -76,8 +76,6 @@ public final class Scheduler {
         LocalTime basetime = LocalTime.now();
         LocalTime newTime = LocalTime.now();
         PrintStream var10000 = System.out;
-        HashMap var10001 = ControllerDevices.getInstance().getFreeDevices();
-        var10000.println(var10001.get("Cafetiere") + " cafetieres de libre");
 
         while(this.currentTime <= 7200) {
             basetime = LocalTime.now();
@@ -85,6 +83,11 @@ public final class Scheduler {
                 this.startingEvent(this.currentTime);
                 ++this.currentTime;
                 newTime = basetime.plusNanos(10000000L);
+            }
+
+            if(currentTime%10 == 0){
+                WaitingList.getInstance().getSizePost().add(WaitingList.getInstance().getPostOrder().size());
+                WaitingList.getInstance().getSizePre().add(WaitingList.getInstance().getPreOrder().size());
             }
 
             Alert alert;
@@ -95,9 +98,7 @@ public final class Scheduler {
                 alert.setHeaderText("Le service est terminé");
                 alert.setContentText("Vous avez servi tout les clients! Offrez un Tropico à vos kfetiers pendant que vous allez regarder les statistiques du service");
                 alert.showAndWait();
-            }
-
-            if (this.currentTime == 7200 && WaitingList.getInstance().getPostOrder().size() >= 1) {
+            } else if (this.currentTime == 7200 && WaitingList.getInstance().getPostOrder().size() >= 1) {
                 alert = new Alert(AlertType.ERROR);
                 alert.setTitle("Fin de service");
                 alert.setHeaderText("Le service est terminé mais il reste des clients a servir");

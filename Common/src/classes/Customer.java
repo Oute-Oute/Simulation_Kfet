@@ -10,6 +10,7 @@ import java.util.stream.Stream;
 public class Customer implements Serializable {
     @Serial
     private static final long serialVersionUID =1L;
+    
     private static int cptPayement = 3, fastLydiaPayement = 7, cashPayement = 15, slowLydiaPayement = 20;
     private static ArrayList<Integer> payement = new ArrayList<>(Stream.of(cptPayement, fastLydiaPayement, cashPayement,slowLydiaPayement).collect(Collectors.toList()));
 

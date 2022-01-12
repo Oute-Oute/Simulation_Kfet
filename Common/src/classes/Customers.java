@@ -45,7 +45,9 @@ public class Customers implements Serializable {
        while (globalTime < 7200){
            globalTime += 1;
 
-           if (r.nextInt(1) <= ((globalTime - lastArrivalTime)*(globalTime - lastArrivalTime))/customerFrequency){
+           if(customerFrequency == 0){
+               arrivalTimeCustomers.add(7205);
+           } else if (r.nextInt(1) <= ((globalTime - lastArrivalTime)*(globalTime - lastArrivalTime))/customerFrequency){
                arrivalTimeCustomers.add(globalTime);
                lastArrivalTime = globalTime;
            }

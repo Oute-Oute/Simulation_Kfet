@@ -4,13 +4,10 @@ import classes.Customers;
 import com.kfet.GeneratorApplication;
 import javafx.animation.TranslateTransition;
 import javafx.fxml.FXML;
-import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
-import javafx.scene.paint.Paint;
 import javafx.scene.shape.Circle;
-import javafx.scene.shape.StrokeType;
 import javafx.stage.Stage;
 import javafx.util.Duration;
 import kfet.help.HelpApplication;
@@ -19,13 +16,12 @@ import main.java.control.ControllerHR;
 import main.java.control.Pair;
 import main.java.control.Scheduler;
 
-import java.awt.*;
 import java.io.IOException;
 import java.util.HashMap;
 
 public final class CoreController {
 
-    private static CoreController CoreControllerInstance=new CoreController();
+    private static CoreController CoreControllerInstance = new CoreController();
     private Customers customers = null;
 
     @FXML
@@ -38,16 +34,16 @@ public final class CoreController {
     private HashMap<Integer, Pair<Double, Double>> coordinates = new HashMap<>();
 
     @FXML
-    private ImageView Cashier1,Cashier2,CoffeeMaker1,CoffeeMaker2,Cooker1,Cooker2;
+    private ImageView Cashier1, Cashier2, CoffeeMaker1, CoffeeMaker2, Cooker1, Cooker2;
 
 
     @FXML
     private TranslateTransition transition = new TranslateTransition();
     @FXML
-    private Pane pane=new Pane();
+    private Pane pane = new Pane();
 
-    public static CoreController getInstance(){
-        if(CoreControllerInstance == null){
+    public static CoreController getInstance() {
+        if (CoreControllerInstance == null) {
             CoreControllerInstance = new CoreController();
         }
         return CoreControllerInstance;
@@ -98,36 +94,35 @@ public final class CoreController {
         coordinates.put(13, new Pair<>(775.0, 90.0));
         coordinates.put(14, new Pair<>(725.0, 90.0));
         coordinates.put(15, new Pair<>(600.0, 280.0));
-
     }
+
     @FXML
-    public void actualizeSprites(){
+    public void actualizeSprites() {
         System.out.println("test");
-        if(ControllerHR.getInstance().getNbCashier()==2){
+
+        if (ControllerHR.getInstance().getNbCashier() == 2) {
             System.out.println("Cash");
             colorCircle.put(21, Cashier_2);
             Cashier_2.setVisible(true);
             Cashier2.setVisible(true);
             CoffeeMaker2.setVisible(false);
             Cooker2.setVisible(false);
-
         }
-        if(ControllerHR.getInstance().getNbCooks()==2){
+
+        if (ControllerHR.getInstance().getNbCooks() == 2) {
             System.out.println("Cook");
             Cooker2.setVisible(true);
             Cashier_2.setVisible(false);
             Cashier2.setVisible(false);
             CoffeeMaker2.setVisible(false);
-
-
         }
-        if(ControllerHR.getInstance().getNbKfetiers()==2){
+
+        if (ControllerHR.getInstance().getNbKfetiers() == 2) {
             System.out.println("Kfetier");
             CoffeeMaker2.setVisible(true);
             Cashier_2.setVisible(false);
             Cashier2.setVisible(false);
             Cooker2.setVisible(false);
-
         }
     }
 
@@ -135,28 +130,20 @@ public final class CoreController {
     public void notFree(int id) {
         Circle circle = colorCircle.get(id);
 
-        if (circle != null) {
-            circle.setFill(Color.rgb(196, 55, 55));
-            circle.setStroke(Color.rgb(112, 39, 39));
-        } else {
-            //System.out.println("not Free: Ohno, circle " + id + " is null");
-        }
+        circle.setFill(Color.rgb(196, 55, 55));
+        circle.setStroke(Color.rgb(112, 39, 39));
     }
 
     @FXML
     public void free(int id) {
         Circle circle = colorCircle.get(id);
 
-        if (circle != null) {
-            circle.setFill(Color.rgb(81, 198, 55));
-            circle.setStroke(Color.rgb(39, 114, 53));
-        } else {
-            //System.out.println("free: Ohno, circle " + id + " is null");
-        }
+        circle.setFill(Color.rgb(81, 198, 55));
+        circle.setStroke(Color.rgb(39, 114, 53));
     }
 
     @FXML
-    protected void transition(ImageView sprite, int device) {
+    public void transition(ImageView sprite, int device) {
         Pair<Double, Double> Coords = coordinates.get(device);
         transition.setDuration(Duration.seconds(1.5));
         transition.setToX(Coords.getL() - sprite.getLayoutX());
@@ -167,27 +154,27 @@ public final class CoreController {
     }
 
     @FXML
-    protected void transition() {
+    public void transition() {
         transition(Cooker2, 15);
     }
 
     @FXML
-    protected void openGenerator() throws IOException {
+    public void openGenerator() throws IOException {
         new GeneratorApplication().start(new Stage());
     }
 
     @FXML
-    protected void openSettings() throws IOException {
+    public void openSettings() throws IOException {
         new SettingsApplication().start(new Stage());
     }
 
     @FXML
-    protected void openHelp() throws IOException {
+    public void openHelp() throws IOException {
         new HelpApplication().start(new Stage());
     }
 
     @FXML
-    protected void startSimulation() throws IOException {
+    public void startSimulation() throws IOException {
 
         if (Scheduler.getInstance().getnbEvent() == 0) {
             openSettings();
@@ -196,8 +183,9 @@ public final class CoreController {
             Scheduler.start();
         }
     }
+
     @FXML
-    protected void stopSimulation(){
+    public void stopSimulation() {
         Scheduler.getInstance().setCurrentTime(7200);
     }
 }
