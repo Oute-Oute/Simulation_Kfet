@@ -110,8 +110,6 @@ public final class Scheduler {
         LocalTime newTime = LocalTime.now();
         PrintStream var10000 = System.out;
         HashMap var10001 = ControllerDevices.getInstance().getFreeDevices();
-        var10000.println(var10001.get("Cafetiere") + " cafetieres de libre");
-
 
         while (this.currentTime <= 7200) {
             if (status == 0) {
@@ -123,8 +121,8 @@ public final class Scheduler {
                     newTime = basetime.plusNanos(10000000L);
                 }
             }
-
         }
+
         if (WaitingList.getInstance().getPostOrder().size() >= 1
                 || WaitingList.getInstance().getPreOrder().size() >= 1) {
             CoreController.getInstance().End(1);

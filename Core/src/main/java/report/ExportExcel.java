@@ -47,15 +47,16 @@ public class ExportExcel {
                 in.close();
             }
 
-            XSSFSheet customersheet = workbook.createSheet("Customers_" + workbook.getNumberOfSheets() / 3);
-            XSSFSheet devicesheet = workbook.createSheet("Devices_" + workbook.getNumberOfSheets() / 3);
-            XSSFSheet waitingSheet = workbook.createSheet("WaitingList_" + workbook.getNumberOfSheets()/3);
+            XSSFSheet customerSheet = workbook.createSheet("Customers_" + workbook.getNumberOfSheets() / 4);
+            XSSFSheet deviceSheet = workbook.createSheet("Devices_" + workbook.getNumberOfSheets() / 4);
+            XSSFSheet waitingSheet = workbook.createSheet("WaitingList_" + workbook.getNumberOfSheets() / 4);
+            XSSFSheet kfetierSheet = workbook.createSheet("K'Fetiers_" + workbook.getNumberOfSheets() / 4);
 
             //Ensemble de méthodes pour remplir le rapport ici
-            tableCustomer(workbook, customersheet, customers);
+            tableCustomer(workbook, customerSheet, customers);
             tableWaitingList(workbook, waitingSheet);
-            tableDevice(workbook, devicesheet);
-            //
+            tableDevice(workbook, deviceSheet);
+            tableKfetier(workbook, kfetierSheet);
             //
 
             //Écrit le fichier et ferme le stream
@@ -129,14 +130,15 @@ public class ExportExcel {
                     sheet.autoSizeColumn(c);
                 } else {
                     switch (c) {
-                        case 0 : cell.setCellValue((r-1) * 10);
-                        case 1 :
-                            if(WaitingList.getInstance().getSizePre().size()>0) {
+                        case 0:
+                            cell.setCellValue((r - 1) * 10);
+                        case 1:
+                            if (WaitingList.getInstance().getSizePre().size() > 0) {
                                 cell.setCellValue(WaitingList.getInstance().getSizePre().get(r));
                             }
                             break;
-                        case 2 :
-                            if(WaitingList.getInstance().getSizePost().size()>0) {
+                        case 2:
+                            if (WaitingList.getInstance().getSizePost().size() > 0) {
                                 cell.setCellValue(WaitingList.getInstance().getSizePost().get(r));
                             }
                             break;
@@ -317,34 +319,38 @@ public class ExportExcel {
     private static void tableKfetier(XSSFWorkbook workbook, XSSFSheet sheet) {
         int nbLine = 17;
 
+        int nbCook = ControllerHR.getInstance().getNbCooks();
+        int nbCashier = ControllerHR.getInstance().getNbCashier();
+        int nbKfetier = ControllerHR.getInstance().getNbKfetiers();
+
         //On crée nos tables
         XSSFTable tableCook = sheet.createTable(null);
         CTTable cttableCook = tableCook.getCTTable();
-        cttableCook.setRef("A1:C" + (ControllerHR.getInstance().getNbCooks()+1));
+        cttableCook.setRef("A1:C" + (nbCook + 1));
 
         XSSFTable tableCashier = sheet.createTable(null);
         CTTable cttableCashier = tableCashier.getCTTable();
-        cttableCashier.setRef("A"+(ControllerHR.getInstance().getNbCooks()+2)+":C" + (ControllerHR.getInstance().getNbCooks()+3+ControllerHR.getInstance().getNbCashier()));
+        cttableCashier.setRef("A" + (nbCook + 3) + ":C" + (nbCook + nbCashier + 3));
 
         XSSFTable tableKfetier = sheet.createTable(null);
         CTTable cttableKfetier = tableKfetier.getCTTable();
-        cttableKfetier.setRef("A"+(ControllerHR.getInstance().getNbCooks()+4+ControllerHR.getInstance().getNbCashier())+":F" + (ControllerHR.getInstance().getNbCooks()+5+ControllerHR.getInstance().getNbCashier()+ControllerHR.getInstance().getNbKfetiers()));
+        cttableKfetier.setRef("A" + (nbCook + nbCashier + 5) + ":C" + (nbCook + nbCashier + nbKfetier + 5));
 
         //Table avec une ligne sur deux en couleur
         CTTableStyleInfo styleInfoCook = cttableCook.addNewTableStyleInfo();
         styleInfoCook.setName("TableStyleMedium6");
         styleInfoCook.setShowColumnStripes(false);
-        styleInfoCook.setShowRowStripes(true);
+        styleInfoCook.setShowRowStripes(false);
 
         CTTableStyleInfo styleInfoCashier = cttableCashier.addNewTableStyleInfo();
         styleInfoCashier.setName("TableStyleMedium3");
         styleInfoCashier.setShowColumnStripes(false);
-        styleInfoCashier.setShowRowStripes(true);
+        styleInfoCashier.setShowRowStripes(false);
 
         CTTableStyleInfo styleInfoKfetier = cttableKfetier.addNewTableStyleInfo();
-        styleInfoKfetier.setName("TableStyleMedium1");
+        styleInfoKfetier.setName("TableStyleMedium5");
         styleInfoKfetier.setShowColumnStripes(false);
-        styleInfoKfetier.setShowRowStripes(true);
+        styleInfoKfetier.setShowRowStripes(false);
 
         //On choisit le nb de colonnes et on remplit
         CTTableColumns columnsCook = cttableCook.addNewTableColumns();
@@ -364,67 +370,68 @@ public class ExportExcel {
 
             CTTableColumn columnCashier = columnsCashier.addNewTableColumn();
             columnCashier.setId(i);
-            columnCashier.setName(name[i-1]);
+            columnCashier.setName(name[i - 1]);
 
             CTTableColumn columnKfetier = columnsKfetier.addNewTableColumn();
             columnKfetier.setId(i);
-            columnKfetier.setName(name[i-1]);
+            columnKfetier.setName(name[i - 1]);
         }
 
-        XSSFRow firstRow = sheet.createRow(0);
+        XSSFRow rowNameCook = sheet.createRow(0);
+        XSSFRow rowNameCashier = sheet.createRow(nbCook + 2);
+        XSSFRow rowNameKfetier = sheet.createRow(nbCook + nbCashier + 4);
+
         for (int c = 0; c < 3; c++) {
-            XSSFCell cell = firstRow.createCell(c);
+            XSSFCell cell = rowNameCook.createCell(c);
             cell.setCellValue(name[c]);
+
+            cell = rowNameCashier.createCell(c);
+            cell.setCellValue(name[c]);
+
+            cell = rowNameKfetier.createCell(c);
+            cell.setCellValue(name[c]);
+
+            sheet.autoSizeColumn(c);
         }
 
-        ControllerDevices instanceDevice = ControllerDevices.getInstance();
-        int nbCafetiere = instanceDevice.getCafetiere().size();
-        int nbKettle = instanceDevice.getKettle().size();
-        int nbOven = instanceDevice.getOven().size();
-        int nbMicrowave = instanceDevice.getMicrowave().size();
-
-        int current;
-        //On remplit la table
-        for (int r = 0; r < nbLine - 1; r++) {
-            XSSFRow row = sheet.createRow(r + 1);
+        for (int r = 1; r <= nbCook; r++) {
+            XSSFRow row = sheet.createRow(r);
             for (int c = 0; c < 3; c++) {
                 XSSFCell cell = row.createCell(c);
-                if (r < nbMicrowave) { // rmax = 2                                         //Micro ondes
-                    switch (c) {
-                        case 0 -> cell.setCellValue("Micro-Onde n°" + (r + 1));
-                        case 1 -> cell.setCellFormula("ROUND(" + ((double) instanceDevice.getMicrowave().get(r).getOccupationTime() / 72) + ",1)");
-                        case 2 -> cell.setCellValue(instanceDevice.getMicrowave().get(r).getNbUsed());
-                    }
-                } else if (r < nbMicrowave + nbOven) { //rmax = 3 + 8 -1 = 10                                        //fours
-                    current = r - nbMicrowave; // currentmax = 10 - 3 = 7
-                    switch (c) {
-                        case 0 -> cell.setCellValue("Four n°" + (current + 1));
-                        case 1 -> cell.setCellFormula("ROUND(" + ((double) instanceDevice.getOven().get(current).getOccupationTime() / 72) + ",1)");
-                        case 2 -> cell.setCellValue(instanceDevice.getOven().get(current).getNbUsed());
-                    }
-                } else if (r < nbMicrowave + nbOven + nbKettle) { //rmax = 3 + 8 + 2 -1 = 12         //Bouilloire
-                    current = r - nbMicrowave - nbOven; //currentmax = 12 - 3 - 8 = 1
-                    switch (c) {
-                        case 0 -> cell.setCellValue("Bouilloire n°" + (current + 1));
-                        case 1 -> cell.setCellFormula("ROUND(" + ((double) instanceDevice.getKettle().get(current).getOccupationTime() / 72) + ",1)");
-                        case 2 -> cell.setCellValue(instanceDevice.getKettle().get(current).getNbUsed());
-                    }
-                } else if (r < nbMicrowave + nbOven + nbKettle + nbCafetiere) { //rmax = 3 + 8 + 2 + 2 -1 = 14      //Cafetiere
-                    current = r - nbMicrowave - nbOven - nbKettle; //currentmax = 14 - 3 - 8 - 2 = 1
-                    switch (c) {
-                        case 0 -> cell.setCellValue("Cafetière n°" + (current + 1));
-                        case 1 -> cell.setCellFormula("ROUND(" + ((double) instanceDevice.getCafetiere().get(current).getOccupationTime() / 72) + ",1)");
-                        case 2 -> cell.setCellValue(instanceDevice.getCafetiere().get(current).getNbUsed());
-                    }
-                } else { //rmax = 16                                           //Chocolat
-                    current = r - nbMicrowave - nbOven - nbKettle - nbCafetiere;  //currentmax = 15 - 3 - 8 - 2 - 2 = 0
-                    switch (c) {
-                        case 0 -> cell.setCellValue("Machine à chocolat n°" + (current + 1));
-                        case 1 -> cell.setCellFormula("ROUND(" + ((double) instanceDevice.getCocoa().get(current).getOccupationTime() / 72) + ",1)");
-                        case 2 -> cell.setCellValue(instanceDevice.getCocoa().get(current).getNbUsed());
-                    }
+                switch (c) {
+                    case 0 -> cell.setCellValue("Cook n°" + r);
+                    case 1 -> cell.setCellFormula("ROUND(" + ((double) ControllerHR.getInstance().getCooks().get(r - 1).getOccupationTime() / 72) + ",1)");
+                    case 2 -> cell.setCellValue(ControllerHR.getInstance().getCooks().get(r - 1).getNbUse());
                 }
-                sheet.autoSizeColumn(c);
+            }
+        }
+
+        for (int r = nbCook + 3; r < nbCook + nbCashier + 3; r++) {
+            XSSFRow row = sheet.createRow(r);
+            int current = r - nbCook - 3;
+            for (int c = 0; c < 3; c++) {
+                XSSFCell cell = row.createCell(c);
+                switch (c) {
+                    case 0 -> {
+                        cell.setCellValue("Cashier n°" + (current + 1));
+                        sheet.autoSizeColumn(c);
+                    }
+                    case 1 -> cell.setCellFormula("ROUND(" + ((double) ControllerHR.getInstance().getCashier().get(current).getOccupationTime() / 72) + ",1)");
+                    case 2 -> cell.setCellValue(ControllerHR.getInstance().getCashier().get(current).getNbUse());
+                }
+            }
+        }
+
+        for (int r = nbCook + nbCashier + 5; r < nbCook + nbCashier + nbKfetier + 5; r++) {
+            XSSFRow row = sheet.createRow(r);
+            int current = r - nbCook - nbCashier - 5;
+            for (int c = 0; c < 3; c++) {
+                XSSFCell cell = row.createCell(c);
+                switch (c) {
+                    case 0 -> cell.setCellValue("Kfetier n°" + (current + 1));
+                    case 1 -> cell.setCellFormula("ROUND(" + ((double) ControllerHR.getInstance().getKfetiers().get(current).getOccupationTime() / 72) + ",1)");
+                    case 2 -> cell.setCellValue(ControllerHR.getInstance().getKfetiers().get(current).getNbUse());
+                }
             }
         }
     }

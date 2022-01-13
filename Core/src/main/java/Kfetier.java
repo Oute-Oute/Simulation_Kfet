@@ -1,5 +1,8 @@
 package main.java;
 
+import kfet.CoreController;
+import main.java.control.Scheduler;
+
 /**
  * The type Kfetier.
  */
@@ -7,6 +10,8 @@ public class Kfetier {
     private final int id;
     private String type;
     private Boolean isFree;
+    private int occupationTime, startOccupated, endOccupated;
+    private int nbUse;
 
     /**
      * Instantiates a new Kfetier.
@@ -63,5 +68,31 @@ public class Kfetier {
      */
     public void setFree(Boolean free) {
         isFree = free;
+
+        if (free) {
+            endOccupated = Scheduler.getInstance().getCurrentTime();
+            occupationTime += (endOccupated - startOccupated);
+        } else {
+            startOccupated = Scheduler.getInstance().getCurrentTime();
+            nbUse++;
+        }
+    }
+
+    /**
+     * Gets the number of use of the device.
+     *
+     * @return the number of use
+     */
+    public int getNbUse() {
+        return nbUse;
+    }
+
+    /**
+     * Gets the occupation time.
+     *
+     * @return the occupation time
+     */
+    public int getOccupationTime() {
+        return occupationTime;
     }
 }
