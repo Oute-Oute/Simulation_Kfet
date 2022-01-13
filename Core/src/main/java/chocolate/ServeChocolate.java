@@ -27,9 +27,8 @@ public class ServeChocolate extends Event {
 
     @Override
     public void run() {
-        System.out.println("Serve chocolate");
         kfetier.setFree(true);
-        ControllerHR.getInstance().getFreeKfetier().replace("Kfetier",ControllerHR.getInstance().getFreeKfetier().get("Kfetier") + 1);
+        ControllerHR.getInstance().getFreeKfetier().replace("Kfetier", ControllerHR.getInstance().getFreeKfetier().get("Kfetier") + 1);
 
         cocoa.setFree(true);
         ControllerDevices.getInstance().getFreeDevices().replace("Cocoa", ControllerDevices.getInstance().getFreeDevices().get("Cocoa") + 1);

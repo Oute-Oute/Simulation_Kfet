@@ -13,6 +13,9 @@ import main.java.ramen.StartBoilingWater;
 
 import java.util.ArrayList;
 
+/**
+ * The type Waiting list.
+ */
 public final class WaitingList {
 
     private static WaitingList waitingListInstance = new WaitingList();
@@ -28,6 +31,11 @@ public final class WaitingList {
         sizePre = new ArrayList<>();
     }
 
+    /**
+     * Gets instance.
+     *
+     * @return the instance
+     */
     public static WaitingList getInstance() {
         if (waitingListInstance == null) {
             waitingListInstance = new WaitingList();
@@ -36,10 +44,20 @@ public final class WaitingList {
         return waitingListInstance;
     }
 
+    /**
+     * Gets pre order.
+     *
+     * @return the pre order waiting list
+     */
     public ArrayList<Customer> getPreOrder() {
         return preOrder;
     }
 
+    /**
+     * Gets post order.
+     *
+     * @return the post order waiting list
+     */
     public ArrayList<Customer> getPostOrder() {
         return postOrder;
     }
@@ -50,7 +68,6 @@ public final class WaitingList {
      * @param customer customer to search for
      */
     public void searchGlobal(Customer customer) {
-        System.out.println("Algo global customer " + customer.id);
         ControllerHR HRInstance = ControllerHR.getInstance();
         int time = Scheduler.getInstance().getCurrentTime() + 1;
 
@@ -62,40 +79,29 @@ public final class WaitingList {
                 boolean found = false;
 
                 if (customer.getOrder().getPicard() > 0) {
-                    System.out.println("Picard à faire");
                     if (devicesInstance.getFreeDevices().get("Microwave") > 0) {
                         found = true;
                         Scheduler.getInstance().addEvent(new PreparationPicard(customer, time));
                     }
                 } else if (customer.getOrder().getRamen() > 0 && !found) {
-                    System.out.println("Ramen à faire");
                     if (devicesInstance.getFreeDevices().get("Kettle") > 0) {
                         found = true;
                         Scheduler.getInstance().addEvent(new StartBoilingWater(customer, time));
                     }
                 } else if (customer.getOrder().getCoffee() > 0 && !found) {
-                    System.out.println("Café à faire");
                     if (devicesInstance.getFreeDevices().get("Cafetiere") > 0) {
                         found = true;
                         Scheduler.getInstance().addEvent(new PreparationCoffee(customer, time));
                     }
                 } else if (customer.getOrder().getChocolate() > 0 && !found) {
-                    System.out.println("Chocolat à faire");
                     if (devicesInstance.getFreeDevices().get("Cocoa") > 0) {
                         found = true;
                         Scheduler.getInstance().addEvent(new PreparationChocolate(customer, time));
                     }
                 }
-                if(!found){
-                    System.out.println("Pas d'appareil libre");
-                    //Scheduler.getInstance().addEvent(new PreparationOrder(customer, time));
-                }
-            } else {
-                System.out.println("Pas de kfetier libre");
-                Scheduler.getInstance().addEvent(new PreparationOrder(customer, time+49));
+            } else {    //Pas de kfetier libre
+                Scheduler.getInstance().addEvent(new PreparationOrder(customer, time + 49));
             }
-        } else {
-            System.out.println("Algo global: pas de commande à faire");
         }
     }
 
@@ -105,7 +111,6 @@ public final class WaitingList {
      * @param customer customer to search for
      */
     public void searchPizza(Customer customer) {
-        System.out.println("search pizza "+customer.id);
         ControllerDevices devicesInstance = ControllerDevices.getInstance();
         ControllerHR HRInstance = ControllerHR.getInstance();
         if (customer.getOrder().getNbPizza() > 0) {
@@ -117,10 +122,20 @@ public final class WaitingList {
         }
     }
 
+    /**
+     * Gets the size of the Pre order waiting list at every time
+     *
+     * @return the size
+     */
     public ArrayList<Integer> getSizePre() {
         return sizePre;
     }
 
+    /**
+     * Gets the size of the Post order waiting list at every time.
+     *
+     * @return the size
+     */
     public ArrayList<Integer> getSizePost() {
         return sizePost;
     }

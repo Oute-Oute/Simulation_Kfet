@@ -6,6 +6,9 @@ import main.java.Kfetier;
 import java.util.ArrayList;
 import java.util.HashMap;
 
+/**
+ * The type Controller hr.
+ */
 public final class ControllerHR{
 
     private int nbCashier, nbCooks, nbKfetiers;
@@ -49,48 +52,67 @@ public final class ControllerHR{
         freeKfetier.put("Kfetier", nbKfetiers);
     }
 
+    /**
+     * Get instance controller hr.
+     *
+     * @return the controller hr
+     */
     public static ControllerHR getInstance(){
-        /*if (controllerHRInstance == null){
-            controllerHRInstance = new ControllerHR();
-        }*/
         return controllerHRInstance;
     }
+
+    /**
+     * Set instance.
+     *
+     * @param nbCooks    the nb cooks
+     * @param nbCashier  the nb cashier
+     * @param nbKfetiers the nb kfetiers
+     */
     public static void setInstance(int nbCooks, int nbCashier, int nbKfetiers){
         controllerHRInstance = new ControllerHR(nbCooks,nbCashier,nbKfetiers);
     }
 
+    /**
+     * Gets cashier.
+     *
+     * @return the cashier
+     */
     public ArrayList<Kfetier> getCashier() {
         return cashier;
     }
 
-    public void setCashier(ArrayList<Kfetier> cashier) {
-        this.cashier = cashier;
-    }
-
+    /**
+     * Gets cooks.
+     *
+     * @return the cooks
+     */
     public ArrayList<Kfetier> getCooks() {
         return cooks;
     }
 
-    public void setCooks(ArrayList<Kfetier> cooks) {
-        this.cooks = cooks;
-    }
-
+    /**
+     * Gets kfetiers.
+     *
+     * @return the kfetiers
+     */
     public ArrayList<Kfetier> getKfetiers() {
         return kfetiers;
     }
 
-    public void setKfetiers(ArrayList<Kfetier> kfetiers) {
-        this.kfetiers = kfetiers;
-    }
-
+    /**
+     * Gets free kfetier.
+     *
+     * @return the free kfetier hashmap
+     */
     public HashMap<String, Integer> getFreeKfetier() {
         return freeKfetier;
     }
 
     /**
-     * Cherche quel caissier est actuellement libre
-     * Cette méthode ne doit être lancée qu'après s'être assuré qu'il y avait un caissier de libre
-     * @return la position du caissier libre dans son arraylist
+     * Search which Cashier is currently free
+     * Must only be called when we are sure a cashier is free
+     *
+     * @return the cashier's position in its arraylist
      */
     public int whichCashier(){
         int i = 0;
@@ -111,9 +133,11 @@ public final class ControllerHR{
     }
 
     /**
-     * Cherche quel Kfetier est actuellement libre
-     * Cette méthode ne doit être lancée qu'après s'être assuré qu'il y avait un Kfetier de libre
-     * @return la position du Kfetier libre dans son arraylist
+     * Search which kfetier is currently free
+     * Must only be called when we are sure a kfetier is free
+     *
+     * @param device the device
+     * @return the kfetier's position in its arraylist
      */
     public int whichKfetier(int device){
         int i = 0;
@@ -134,9 +158,11 @@ public final class ControllerHR{
     }
 
     /**
-     * Cherche quel cuisinier est actuellement libre
-     * Cette méthode ne doit être lancée qu'après s'être assuré qu'il y avait un cuisinier de libre
-     * @return la position du cuisinier libre dans son arraylist
+     * Search which Cook is currently free
+     * Must only be called when we are sure a cook is free
+     *
+     * @param device the device
+     * @return the cook's position in its arraylist
      */
     public int whichCook(int device){
         int i = 0;
@@ -156,26 +182,29 @@ public final class ControllerHR{
         return i;
     }
 
-    public void setNbCashier(int nbCashier) {
-        this.nbCashier = nbCashier;
-    }
-
-    public void setNbCooks(int nbCooks) {
-        this.nbCooks = nbCooks;
-    }
-
-    public void setNbKfetiers(int nbKfetiers) {
-        this.nbKfetiers = nbKfetiers;
-    }
-
+    /**
+     * Gets nb cashier.
+     *
+     * @return the nb cashier
+     */
     public int getNbCashier() {
         return nbCashier;
     }
 
+    /**
+     * Gets nb cooks.
+     *
+     * @return the nb cooks
+     */
     public int getNbCooks() {
         return nbCooks;
     }
 
+    /**
+     * Gets nb kfetiers.
+     *
+     * @return the nb kfetiers
+     */
     public int getNbKfetiers() {
         return nbKfetiers;
     }

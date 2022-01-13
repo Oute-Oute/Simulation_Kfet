@@ -12,6 +12,9 @@ import java.io.IOException;
 import java.util.Objects;
 
 
+/**
+ * The Settings application.
+ */
 public class SettingsApplication extends Application {
 
     @Override
@@ -25,6 +28,11 @@ public class SettingsApplication extends Application {
         stage.show();
     }
 
+    /**
+     * The entry point of application.
+     *
+     * @param args the input arguments
+     */
     public static void main(String[] args) {
         launch();
     }

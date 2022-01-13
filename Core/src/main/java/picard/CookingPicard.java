@@ -17,7 +17,7 @@ public class CookingPicard extends Event {
     private final Customer customer;
     private final int cooked;
 
-    public CookingPicard(Customer customer, Kfetier kfetier, Device microwave, int cooked, int startingTime){
+    public CookingPicard(Customer customer, Kfetier kfetier, Device microwave, int cooked, int startingTime) {
         super(startingTime);
         this.kfetier = kfetier;
         this.microwave = microwave;
@@ -25,14 +25,13 @@ public class CookingPicard extends Event {
         this.cooked = cooked;
     }
 
-    public void run(){
-        System.out.println("Cooking Picard");
+    public void run() {
         int time = 360 + Scheduler.getInstance().getCurrentTime();
 
         kfetier.setFree(true);
-        ControllerHR.getInstance().getFreeKfetier().replace("Kfetier",ControllerHR.getInstance().getFreeKfetier().get("Kfetier") + 1);
+        ControllerHR.getInstance().getFreeKfetier().replace("Kfetier", ControllerHR.getInstance().getFreeKfetier().get("Kfetier") + 1);
 
         WaitingList.getInstance().searchGlobal(customer);
-        Scheduler.getInstance().addEvent(new ServePicard(customer, microwave, 1, time ));
+        Scheduler.getInstance().addEvent(new ServePicard(customer, microwave, 1, time));
     }
 }

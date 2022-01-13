@@ -80,7 +80,6 @@ public class Serializer {
         }
         PrintWriter writer = new PrintWriter(txtFile);
         for(int i = 0; i<customers.getCustomers().size(); i++) {
-            customers.getCustomers().get(i).id = i;
             writer.println("Client "+i+": arrive à "+customers.getCustomers().get(i).getArrivalTime());
             writer.println("Commande: "+customers.getCustomers().get(i).getOrder().getPicard()+" picard\n\t" +
                     customers.getCustomers().get(i).getOrder().getNbPizza()+" pizza\n\t" +

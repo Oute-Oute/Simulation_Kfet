@@ -1,12 +1,13 @@
 module com.example.simulation.core {
-    requires javafx.controls;
-    requires javafx.fxml;
     requires com.example.simulation.common;
     requires com.example.simulation.generator;
     requires java.desktop;
     requires poi.ooxml;
     requires poi.ooxml.schemas;
     requires poi;
+    requires javafx.fxml;
+    requires javafx.graphics;
+    requires javafx.controls;
 
     opens kfet to javafx.fxml;
     exports kfet;

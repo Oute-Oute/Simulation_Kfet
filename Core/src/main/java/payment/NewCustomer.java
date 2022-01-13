@@ -20,7 +20,6 @@ public class NewCustomer extends Event {
 
     @Override
     public void run() {
-        System.out.println("New Customer, id "+customer.id);
         int time = 30; //le temps que met cet event à se réaliser
 
         //S'il y a un caissier de libre
@@ -42,7 +41,6 @@ public class NewCustomer extends Event {
         else {
             //Le client est ajouté à la liste d'attente pré order
             if(!WaitingList.getInstance().getPreOrder().contains(customer)) {
-                System.out.println("Caissier occupé => Ajout client " + customer.id + " liste pré-order");
                 WaitingList.getInstance().getPreOrder().add(customer);
             }
         }

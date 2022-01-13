@@ -16,7 +16,6 @@ public class Customer implements Serializable {
 
     private Boolean kfetier;
     private Order order;
-    public int id;
     private int paymentDuration;
     private ArrayList<Integer> payment;
     private int arrivalTick; //tick de l'heure d'arrivée

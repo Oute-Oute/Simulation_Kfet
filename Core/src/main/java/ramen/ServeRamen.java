@@ -12,14 +12,13 @@ public class ServeRamen extends Event {
 
     private final Customer customer;
 
-    public ServeRamen(Customer customer, int startingTime){
+    public ServeRamen(Customer customer, int startingTime) {
         super(startingTime);
         this.customer = customer;
     }
 
     @Override
     public void run() {
-        System.out.println("Serve Ramen");
         Scheduler.getInstance().addEvent(new ServeCustomer(customer, Scheduler.getInstance().getCurrentTime() + 1));
         WaitingList.getInstance().searchGlobal(customer);
     }

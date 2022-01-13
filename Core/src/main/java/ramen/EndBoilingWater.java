@@ -12,7 +12,7 @@ public class EndBoilingWater extends Event {
     private final Device kettle;
     private final Customer customer;
 
-    public EndBoilingWater(Customer customer, Device kettle, int startingTime){
+    public EndBoilingWater(Customer customer, Device kettle, int startingTime) {
         super(startingTime);
         this.kettle = kettle;
         this.customer = customer;
@@ -20,13 +20,12 @@ public class EndBoilingWater extends Event {
 
     @Override
     public void run() {
-        System.out.println("End Boiling Water");
         StartBoilingWater.setIsCold(false);
         StartBoilingWater.setLastBoiling(Scheduler.getInstance().getCurrentTime());
         this.kettle.setFree(true);
         ControllerDevices.getInstance().getFreeDevices().replace("Kettle", ControllerDevices.getInstance().getFreeDevices().get("Kettle") + 1);
 
-        Scheduler.getInstance().addEvent(new ServeRamen(customer, getStartingTime() + 1 ));
+        Scheduler.getInstance().addEvent(new ServeRamen(customer, getStartingTime() + 1));
 
     }
 }

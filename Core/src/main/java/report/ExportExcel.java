@@ -7,6 +7,7 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonType;
 import main.java.WaitingList;
 import main.java.control.ControllerDevices;
+import main.java.control.ControllerHR;
 import org.apache.poi.ss.usermodel.*;
 import org.apache.poi.ss.util.CellRangeAddress;
 import org.apache.poi.xddf.usermodel.*;
@@ -25,7 +26,6 @@ import java.util.Optional;
 public class ExportExcel {
 
     public static String datFile;
-    //TODO: si on a le temps: stats sur nb d'events lancés en retard
 
     /**
      * Créé le fichier contenant les rapports, ou ajoute une nouvelle feuille s'il existe déjà
@@ -47,15 +47,16 @@ public class ExportExcel {
                 in.close();
             }
 
-            XSSFSheet customersheet = workbook.createSheet("Customers_" + workbook.getNumberOfSheets() / 3);
-            XSSFSheet devicesheet = workbook.createSheet("Devices_" + workbook.getNumberOfSheets() / 3);
-            XSSFSheet waitingSheet = workbook.createSheet("WaitingList_" + workbook.getNumberOfSheets()/3);
+            XSSFSheet customerSheet = workbook.createSheet("Customers_" + workbook.getNumberOfSheets() / 4);
+            XSSFSheet deviceSheet = workbook.createSheet("Devices_" + workbook.getNumberOfSheets() / 4);
+            XSSFSheet waitingSheet = workbook.createSheet("WaitingList_" + workbook.getNumberOfSheets() / 4);
+            XSSFSheet kfetierSheet = workbook.createSheet("K'Fetiers_" + workbook.getNumberOfSheets() / 4);
 
             //Ensemble de méthodes pour remplir le rapport ici
-            tableCustomer(workbook, customersheet, customers);
+            tableCustomer(workbook, customerSheet, customers);
             tableWaitingList(workbook, waitingSheet);
-            tableDevice(workbook, devicesheet);
-            //
+            tableDevice(workbook, deviceSheet);
+            tableKfetier(workbook, kfetierSheet);
             //
 
             //Écrit le fichier et ferme le stream
@@ -77,7 +78,6 @@ public class ExportExcel {
                     Desktop d = Desktop.getDesktop();
                     Optional<ButtonType> result = alert.showAndWait();
                     if (result.get() == dirButtonType) {
-                        System.out.println("Approve Button is clicked");
                         d.open(directory);
                     }
 
@@ -98,6 +98,7 @@ public class ExportExcel {
         }
     }
 
+    //TODO: problème sur les stats des listes jsp pourquoi
     private static void tableWaitingList(XSSFWorkbook workbook, XSSFSheet sheet) {
         //Table WaitingList
         XSSFTable table = sheet.createTable(null);
@@ -129,14 +130,15 @@ public class ExportExcel {
                     sheet.autoSizeColumn(c);
                 } else {
                     switch (c) {
-                        case 0 : cell.setCellValue((r-1) * 10);
-                        case 1 :
-                            if(WaitingList.getInstance().getSizePre().size()>0) {
+                        case 0:
+                            cell.setCellValue((r - 1) * 10);
+                        case 1:
+                            if (WaitingList.getInstance().getSizePre().size() > 0) {
                                 cell.setCellValue(WaitingList.getInstance().getSizePre().get(r));
                             }
                             break;
-                        case 2 :
-                            if(WaitingList.getInstance().getSizePost().size()>0) {
+                        case 2:
+                            if (WaitingList.getInstance().getSizePost().size() > 0) {
                                 cell.setCellValue(WaitingList.getInstance().getSizePost().get(r));
                             }
                             break;
@@ -224,7 +226,6 @@ public class ExportExcel {
      *
      * @param sheet feuille à écrire
      */
-
     private static void tableDevice(XSSFWorkbook workbook, XSSFSheet sheet) {
         int nbLine = 17;
 
@@ -309,6 +310,132 @@ public class ExportExcel {
             }
         }
     }
+
+    /**
+     * Créé une table remplie avec les appareils, leur taux d'occupation et leur nb d'utilisation
+     *
+     * @param sheet feuille à écrire
+     */
+    private static void tableKfetier(XSSFWorkbook workbook, XSSFSheet sheet) {
+        int nbLine = 17;
+
+        int nbCook = ControllerHR.getInstance().getNbCooks();
+        int nbCashier = ControllerHR.getInstance().getNbCashier();
+        int nbKfetier = ControllerHR.getInstance().getNbKfetiers();
+
+        //On crée nos tables
+        XSSFTable tableCook = sheet.createTable(null);
+        CTTable cttableCook = tableCook.getCTTable();
+        cttableCook.setRef("A1:C" + (nbCook + 1));
+
+        XSSFTable tableCashier = sheet.createTable(null);
+        CTTable cttableCashier = tableCashier.getCTTable();
+        cttableCashier.setRef("A" + (nbCook + 3) + ":C" + (nbCook + nbCashier + 3));
+
+        XSSFTable tableKfetier = sheet.createTable(null);
+        CTTable cttableKfetier = tableKfetier.getCTTable();
+        cttableKfetier.setRef("A" + (nbCook + nbCashier + 5) + ":C" + (nbCook + nbCashier + nbKfetier + 5));
+
+        //Table avec une ligne sur deux en couleur
+        CTTableStyleInfo styleInfoCook = cttableCook.addNewTableStyleInfo();
+        styleInfoCook.setName("TableStyleMedium6");
+        styleInfoCook.setShowColumnStripes(false);
+        styleInfoCook.setShowRowStripes(false);
+
+        CTTableStyleInfo styleInfoCashier = cttableCashier.addNewTableStyleInfo();
+        styleInfoCashier.setName("TableStyleMedium3");
+        styleInfoCashier.setShowColumnStripes(false);
+        styleInfoCashier.setShowRowStripes(false);
+
+        CTTableStyleInfo styleInfoKfetier = cttableKfetier.addNewTableStyleInfo();
+        styleInfoKfetier.setName("TableStyleMedium5");
+        styleInfoKfetier.setShowColumnStripes(false);
+        styleInfoKfetier.setShowRowStripes(false);
+
+        //On choisit le nb de colonnes et on remplit
+        CTTableColumns columnsCook = cttableCook.addNewTableColumns();
+        columnsCook.setCount(2);
+        CTTableColumns columnsCashier = cttableCashier.addNewTableColumns();
+        columnsCashier.setCount(2);
+        CTTableColumns columnsKfetier = cttableKfetier.addNewTableColumns();
+        columnsKfetier.setCount(2);
+
+        String[] name = {"Kfetier", "Taux d'occupation (%)", "Nombre d'interventions"};
+
+        //On prépare la table avec id et nom
+        for (int i = 1; i <= 3; i++) {
+            CTTableColumn columnCook = columnsCook.addNewTableColumn();
+            columnCook.setId(i);
+            columnCook.setName(name[i - 1]);
+
+            CTTableColumn columnCashier = columnsCashier.addNewTableColumn();
+            columnCashier.setId(i);
+            columnCashier.setName(name[i - 1]);
+
+            CTTableColumn columnKfetier = columnsKfetier.addNewTableColumn();
+            columnKfetier.setId(i);
+            columnKfetier.setName(name[i - 1]);
+        }
+
+        XSSFRow rowNameCook = sheet.createRow(0);
+        XSSFRow rowNameCashier = sheet.createRow(nbCook + 2);
+        XSSFRow rowNameKfetier = sheet.createRow(nbCook + nbCashier + 4);
+
+        for (int c = 0; c < 3; c++) {
+            XSSFCell cell = rowNameCook.createCell(c);
+            cell.setCellValue(name[c]);
+
+            cell = rowNameCashier.createCell(c);
+            cell.setCellValue(name[c]);
+
+            cell = rowNameKfetier.createCell(c);
+            cell.setCellValue(name[c]);
+
+            sheet.autoSizeColumn(c);
+        }
+
+        for (int r = 1; r <= nbCook; r++) {
+            XSSFRow row = sheet.createRow(r);
+            for (int c = 0; c < 3; c++) {
+                XSSFCell cell = row.createCell(c);
+                switch (c) {
+                    case 0 -> cell.setCellValue("Cook n°" + r);
+                    case 1 -> cell.setCellFormula("ROUND(" + ((double) ControllerHR.getInstance().getCooks().get(r - 1).getOccupationTime() / 72) + ",1)");
+                    case 2 -> cell.setCellValue(ControllerHR.getInstance().getCooks().get(r - 1).getNbUse());
+                }
+            }
+        }
+
+        for (int r = nbCook + 3; r < nbCook + nbCashier + 3; r++) {
+            XSSFRow row = sheet.createRow(r);
+            int current = r - nbCook - 3;
+            for (int c = 0; c < 3; c++) {
+                XSSFCell cell = row.createCell(c);
+                switch (c) {
+                    case 0 -> {
+                        cell.setCellValue("Cashier n°" + (current + 1));
+                        sheet.autoSizeColumn(c);
+                    }
+                    case 1 -> cell.setCellFormula("ROUND(" + ((double) ControllerHR.getInstance().getCashier().get(current).getOccupationTime() / 72) + ",1)");
+                    case 2 -> cell.setCellValue(ControllerHR.getInstance().getCashier().get(current).getNbUse());
+                }
+            }
+        }
+
+        for (int r = nbCook + nbCashier + 5; r < nbCook + nbCashier + nbKfetier + 5; r++) {
+            XSSFRow row = sheet.createRow(r);
+            int current = r - nbCook - nbCashier - 5;
+            for (int c = 0; c < 3; c++) {
+                XSSFCell cell = row.createCell(c);
+                switch (c) {
+                    case 0 -> cell.setCellValue("Kfetier n°" + (current + 1));
+                    case 1 -> cell.setCellFormula("ROUND(" + ((double) ControllerHR.getInstance().getKfetiers().get(current).getOccupationTime() / 72) + ",1)");
+                    case 2 -> cell.setCellValue(ControllerHR.getInstance().getKfetiers().get(current).getNbUse());
+                }
+            }
+        }
+    }
+
 
     private static void setLineNoFill(XDDFScatterChartData.Series series) {
         XDDFNoFillProperties noFillProperties = new XDDFNoFillProperties();
