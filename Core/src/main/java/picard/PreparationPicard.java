@@ -27,7 +27,7 @@ public class PreparationPicard extends Event {
                 //On récupere le Cuisinier et le four qui vont mettre la pizza à cuire
                 int devicePosition = ControllerDevices.getInstance().whichMicrowave();
                 Device microwave = ControllerDevices.getInstance().getMicrowave().get(devicePosition);
-                int position = ControllerHR.getInstance().whichKfetier(devicePosition + 8);
+                int position = ControllerHR.getInstance().whichKfetier(devicePosition + 8,0);
                 Kfetier kfetier = ControllerHR.getInstance().getKfetiers().get(position);
 
                 //On change le nb de picard dans la commande

@@ -2,6 +2,7 @@ package main.java.chocolate;
 
 import classes.Customer;
 
+import kfet.CoreController;
 import main.java.Device;
 import main.java.Event;
 import main.java.Kfetier;
@@ -29,6 +30,7 @@ public class ServeChocolate extends Event {
     public void run() {
         kfetier.setFree(true);
         ControllerHR.getInstance().getFreeKfetier().replace("Kfetier", ControllerHR.getInstance().getFreeKfetier().get("Kfetier") + 1);
+        //CoreController.getInstance().transition(CoreController.getInstance().humans.get(kfetier.getId()-19), cocoa.getId());
 
         cocoa.setFree(true);
         ControllerDevices.getInstance().getFreeDevices().replace("Cocoa", ControllerDevices.getInstance().getFreeDevices().get("Cocoa") + 1);

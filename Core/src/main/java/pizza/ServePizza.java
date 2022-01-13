@@ -24,13 +24,14 @@ public class ServePizza extends Event {
     }
 
     public void run() {
-        if (ControllerHR.getInstance().getFreeKfetier().size() > 0) {
-            int position = ControllerHR.getInstance().whichCook(oven.getId());
+        if (ControllerHR.getInstance().getFreeKfetier().get("Cook") > 0) {
+            int position = ControllerHR.getInstance().whichCook(oven.getId(),1);
             oven.setFree(true);
             ControllerDevices.getInstance().getFreeDevices().replace("Oven", ControllerDevices.getInstance().getFreeDevices().get("Oven") + 1);
             WaitingList.getInstance().searchPizza(customer);
             Scheduler.getInstance().addEvent(new ServeCustomer(customer, getStartingTime() + 1));
             ControllerHR.getInstance().getCooks().get(position).setFree(true);
+            ControllerHR.getInstance().getFreeKfetier().replace("Cook", ControllerHR.getInstance().getFreeKfetier().get("Cook") + 1);
         }
     }
 

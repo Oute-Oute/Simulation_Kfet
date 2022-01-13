@@ -28,7 +28,7 @@ public class PreparationPizza extends Event {
 
                 int devicePosition = ControllerDevices.getInstance().whichOven();
                 Device oven = ControllerDevices.getInstance().getOven().get(devicePosition);
-                int position = ControllerHR.getInstance().whichCook(devicePosition);
+                int position = ControllerHR.getInstance().whichCook(devicePosition,0);
                 Kfetier cook = ControllerHR.getInstance().getCooks().get(position);
 
                 //On change le nb de pizza dans la commande

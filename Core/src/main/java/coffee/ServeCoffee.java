@@ -2,6 +2,7 @@ package main.java.coffee;
 
 import classes.Customer;
 
+import kfet.CoreController;
 import main.java.Device;
 import main.java.Event;
 import main.java.Kfetier;
@@ -29,6 +30,7 @@ public class ServeCoffee extends Event {
     public void run() {
         kfetier.setFree(true);
         ControllerHR.getInstance().getFreeKfetier().replace("Kfetier", ControllerHR.getInstance().getFreeKfetier().get("Kfetier") + 1);
+        //CoreController.getInstance().transition(CoreController.getInstance().humans.get(kfetier.getId()-19), cafetiere.getId());
 
         cafetiere.setFree(true);
         ControllerDevices.getInstance().getFreeDevices().replace("Cafetiere", ControllerDevices.getInstance().getFreeDevices().get("Cafetiere") + 1);

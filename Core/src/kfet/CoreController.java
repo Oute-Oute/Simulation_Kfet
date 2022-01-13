@@ -165,7 +165,7 @@ public final class CoreController {
     @FXML
     public void transition(ImageView sprite, int device) {
         Pair<Double, Double> Coords = coordinates.get(device);
-        transition.setDuration(Duration.millis(20));
+        transition.setDuration(Duration.millis(10));
         transition.setToX(Coords.getL() - sprite.getLayoutX());
         transition.setToY(Coords.getR() - sprite.getLayoutY());
         transition.setNode(sprite);

@@ -139,7 +139,7 @@ public final class ControllerHR{
      * @param device the device
      * @return the kfetier's position in its arraylist
      */
-    public int whichKfetier(int device){
+    public int whichKfetier(int device,int status){
         int i = 0;
         boolean found = false;
         //On cherche quel Kfetier est libre
@@ -148,7 +148,9 @@ public final class ControllerHR{
                 //On passe le kfetier à occupé et on change le nb de kfetiers libres
                 kfetiers.get(i).setFree(false);
                 ControllerHR.getInstance().freeKfetier.replace("Kfetier", freeKfetier.get("Kfetier") - 1);
-                CoreController.getInstance().transition(CoreController.getInstance().humans.get(i+4),device);
+                if(status==0) {
+                    CoreController.getInstance().transition(CoreController.getInstance().humans.get(i + 4), device);
+                }
                 found = true;
             } else {
                 i++;
@@ -164,7 +166,7 @@ public final class ControllerHR{
      * @param device the device
      * @return the cook's position in its arraylist
      */
-    public int whichCook(int device){
+    public int whichCook(int device,int status){
         int i = 0;
         boolean found = false;
         //On cherche quel cuisinier est libre

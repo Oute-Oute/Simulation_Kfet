@@ -25,7 +25,7 @@ public class PreparationCoffee extends Event {
 
             int devicePosition = ControllerDevices.getInstance().whichCafetiere();
             Device cafetiere = ControllerDevices.getInstance().getCafetiere().get(devicePosition);
-            int position = ControllerHR.getInstance().whichKfetier(devicePosition + 11);
+            int position = ControllerHR.getInstance().whichKfetier(devicePosition + 11,0);
             Kfetier kfetier = ControllerHR.getInstance().getKfetiers().get(position);
 
             customer.getOrder().setCoffee(customer.getOrder().getCoffee() - 1);

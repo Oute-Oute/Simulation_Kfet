@@ -1,6 +1,5 @@
 package main.java.control;
 
-import java.io.PrintStream;
 import java.time.Clock;
 import java.time.Duration;
 import java.time.LocalTime;
@@ -108,8 +107,6 @@ public final class Scheduler {
         Clock newClock = Clock.systemUTC();
         LocalTime basetime = LocalTime.now();
         LocalTime newTime = LocalTime.now();
-        PrintStream var10000 = System.out;
-        HashMap var10001 = ControllerDevices.getInstance().getFreeDevices();
 
         while (this.currentTime <= 7200) {
             if (status == 0) {
@@ -119,6 +116,8 @@ public final class Scheduler {
                     this.startingEvent(this.currentTime);
                     ++this.currentTime;
                     newTime = basetime.plusNanos(10000000L);
+                    WaitingList.getInstance().getSizePre().add(WaitingList.getInstance().getPreOrder().size());
+                    WaitingList.getInstance().getSizePost().add(WaitingList.getInstance().getPostOrder().size());
                 }
             }
         }

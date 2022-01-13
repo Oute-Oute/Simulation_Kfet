@@ -26,7 +26,7 @@ public class PreparationChocolate extends Event {
             if (ControllerDevices.getInstance().getFreeDevices().get("Cocoa") > 0) {
                 int devicePosition = ControllerDevices.getInstance().whichCocoa();
                 Device cocoa = ControllerDevices.getInstance().getCocoa().get(devicePosition);
-                int position = ControllerHR.getInstance().whichKfetier(15);
+                int position = ControllerHR.getInstance().whichKfetier(15,0);
                 Kfetier kfetier = ControllerHR.getInstance().getKfetiers().get(position);
 
                 customer.getOrder().setChocolate(customer.getOrder().getChocolate() - 1);

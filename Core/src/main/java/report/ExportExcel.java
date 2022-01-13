@@ -98,7 +98,6 @@ public class ExportExcel {
         }
     }
 
-    //TODO: problème sur les stats des listes jsp pourquoi
     private static void tableWaitingList(XSSFWorkbook workbook, XSSFSheet sheet) {
         //Table WaitingList
         XSSFTable table = sheet.createTable(null);
@@ -132,26 +131,68 @@ public class ExportExcel {
                     switch (c) {
                         case 0:
                             cell.setCellValue((r - 1) * 10);
+                            break;
                         case 1:
-                            if (WaitingList.getInstance().getSizePre().size() > 0) {
-                                cell.setCellValue(WaitingList.getInstance().getSizePre().get(r));
+                            if (WaitingList.getInstance().getSizePre().size() >= (r - 1) * 10) {
+                                cell.setCellValue(WaitingList.getInstance().getSizePre().get((r - 1) * 10));
                             }
                             break;
                         case 2:
-                            if (WaitingList.getInstance().getSizePost().size() > 0) {
-                                cell.setCellValue(WaitingList.getInstance().getSizePost().get(r));
+                            if (WaitingList.getInstance().getSizePost().size() >= (r - 1) * 10) {
+                                cell.setCellValue(WaitingList.getInstance().getSizePost().get((r - 1) * 10));
                             }
                             break;
                     }
                 }
             }
         }
+        XSSFDrawing drawing = sheet.createDrawingPatriarch();
+        XSSFClientAnchor anchor = drawing.createAnchor(0, 0, 0, 0, 6, 6, 15, 27);
+
+        XSSFChart chart = drawing.createChart(anchor);
+        chart.setTitleText("Tailles de Pre et PostOrder dans le temps");
+        chart.setTitleOverlay(false);
+
+        XDDFChartLegend legend = chart.getOrAddLegend();
+        legend.setPosition(LegendPosition.TOP_RIGHT);
+
+
+        XDDFCategoryAxis bottomAxis = chart.createCategoryAxis(AxisPosition.BOTTOM);
+        bottomAxis.setTitle("Temps en secondes");
+        XDDFValueAxis leftAxis = chart.createValueAxis(AxisPosition.LEFT);
+        leftAxis.setTitle("Tailles de PreOrder et PostOrder");
+
+        XDDFDataSource<String> time = XDDFDataSourcesFactory.fromStringCellRange(sheet,
+                new CellRangeAddress(0, 720, 0, 0));
+
+        XDDFNumericalDataSource<Double> preOrder = XDDFDataSourcesFactory.fromNumericCellRange(sheet,
+                new CellRangeAddress(0, 720, 1, 1));
+
+        XDDFNumericalDataSource<Double> postOrder = XDDFDataSourcesFactory.fromNumericCellRange(sheet,
+                new CellRangeAddress(0, 720, 2, 2));
+
+        XDDFLineChartData data = (XDDFLineChartData) chart.createData(ChartTypes.LINE, bottomAxis, leftAxis);
+
+        XDDFLineChartData.Series series1 = (XDDFLineChartData.Series) data.addSeries(time, preOrder);
+        series1.setTitle("TaillePreOrder", null);
+        series1.setSmooth(false);
+        series1.setMarkerStyle(MarkerStyle.NONE);
+
+
+        XDDFLineChartData.Series series2 = (XDDFLineChartData.Series) data.addSeries(time, postOrder);
+        series2.setTitle("Taille PostOrder", null);
+        series2.setSmooth(true);
+        series2.setMarkerSize((short) 6);
+        series2.setMarkerStyle(MarkerStyle.NONE);
+        chart.plot(data);
 
         sheet.getRow(0).createCell(4).setCellValue("Temps d'attente moyen:");
         sheet.getRow(1).createCell(4).setCellValue("Caisse");
         sheet.getRow(1).createCell(5).setCellFormula("ROUND(AVERAGE(B2:B721),0)");
         sheet.getRow(2).createCell(4).setCellValue("Commande");
         sheet.getRow(2).createCell(5).setCellFormula("ROUND(AVERAGE(C2:C721),0)");
+
+
 
         CellStyle style = workbook.createCellStyle();
         style.setFillBackgroundColor(IndexedColors.LIGHT_ORANGE.getIndex());
@@ -203,7 +244,7 @@ public class ExportExcel {
                 } else {
                     Customer current = customers.getCustomers().get(r - 1);
                     switch (c) {
-                        case 0 -> cell.setCellValue(r);
+                        case 0 -> cell.setCellValue(r-1);
                         case 1 -> cell.setCellValue(current.getArrivalTime());
                         case 2 -> cell.setCellValue(current.getOrder().getNbArticles());
                         case 3 -> cell.setCellValue(current.getDepartureTime());
@@ -219,6 +260,33 @@ public class ExportExcel {
         sheet.autoSizeColumn(3);
         XSSFCell cell1 = row.createCell(4);
         cell1.setCellFormula("ROUND(AVERAGE(E2:E" + (nbLine) + "),0)");
+
+        CellStyle style = workbook.createCellStyle();
+        style.setFillBackgroundColor(IndexedColors.LIGHT_ORANGE.getIndex());
+        style.setFillPattern(FillPatternType.SOLID_FOREGROUND);
+
+
+        XSSFDrawing drawing = sheet.createDrawingPatriarch();
+        XSSFClientAnchor anchor = drawing.createAnchor(0, 0, 0, 0, 6, 5, 15, 25);
+        XSSFChart chart = drawing.createChart(anchor);
+        chart.setTitleText("Temps d'attente selon le nombre d'article commandés");
+        XDDFValueAxis bottomAxis = chart.createValueAxis(AxisPosition.BOTTOM);
+        bottomAxis.setTitle("Nombre d'article commandés"); // https://stackoverflow.com/questions/32010765
+        XDDFValueAxis leftAxis = chart.createValueAxis(AxisPosition.LEFT);
+        leftAxis.setTitle("Temps d'attente en seconde");
+        leftAxis.setCrosses(AxisCrosses.AUTO_ZERO);
+
+        XDDFDataSource<Double> xs = XDDFDataSourcesFactory.fromNumericCellRange(sheet, new CellRangeAddress(1, nbLine-1, 2, 2));
+        XDDFNumericalDataSource<Double> ys1 = XDDFDataSourcesFactory.fromNumericCellRange(sheet, new CellRangeAddress(1, nbLine-1, 4, 4));
+
+        XDDFScatterChartData data = (XDDFScatterChartData) chart.createData(ChartTypes.SCATTER, bottomAxis, leftAxis);
+        XDDFScatterChartData.Series series1 = (XDDFScatterChartData.Series) data.addSeries(xs, ys1);
+        series1.setSmooth(false); // https://stackoverflow.com/questions/39636138
+
+        series1.setMarkerStyle(MarkerStyle.CIRCLE);
+        series1.setMarkerSize((short)5);
+        setLineNoFill(series1);
+        chart.plot(data);
     }
 
     /**
