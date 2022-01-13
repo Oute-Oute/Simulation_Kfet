@@ -9,6 +9,7 @@ import main.java.WaitingList;
 import main.java.control.ControllerDevices;
 import main.java.control.ControllerHR;
 import main.java.control.Scheduler;
+import main.java.payment.PreparationOrder;
 import main.java.payment.ServeCustomer;
 
 
@@ -32,6 +33,9 @@ public class ServePizza extends Event {
             Scheduler.getInstance().addEvent(new ServeCustomer(customer, getStartingTime() + 1));
             ControllerHR.getInstance().getCooks().get(position).setFree(true);
             ControllerHR.getInstance().getFreeKfetier().replace("Cook", ControllerHR.getInstance().getFreeKfetier().get("Cook") + 1);
+        }
+        else {                    //Pas de kfetier libre
+            Scheduler.getInstance().addEvent(new ServePizza(customer,oven, Scheduler.getInstance().getCurrentTime() + 60));
         }
     }
 

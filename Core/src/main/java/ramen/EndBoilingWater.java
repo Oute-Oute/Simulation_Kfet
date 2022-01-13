@@ -7,6 +7,7 @@ import main.java.Event;
 import main.java.control.ControllerDevices;
 import main.java.control.ControllerHR;
 import main.java.control.Scheduler;
+import main.java.payment.PreparationOrder;
 
 public class EndBoilingWater extends Event {
 
@@ -32,6 +33,9 @@ public class EndBoilingWater extends Event {
 
             ControllerHR.getInstance().getKfetiers().get(position).setFree(true);
             ControllerHR.getInstance().getFreeKfetier().replace("Kfetier", ControllerHR.getInstance().getFreeKfetier().get("Kfetier") + 1);
+        }
+        else {                    //Pas de kfetier libre
+            Scheduler.getInstance().addEvent(new EndBoilingWater(customer,kettle, Scheduler.getInstance().getCurrentTime() + 60));
         }
     }
 }

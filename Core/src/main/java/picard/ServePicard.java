@@ -8,6 +8,7 @@ import main.java.WaitingList;
 import main.java.control.ControllerDevices;
 import main.java.control.ControllerHR;
 import main.java.control.Scheduler;
+import main.java.payment.PreparationOrder;
 import main.java.payment.ServeCustomer;
 
 import java.util.Random;
@@ -41,6 +42,9 @@ public class ServePicard extends Event {
 
             ControllerHR.getInstance().getKfetiers().get(position).setFree(true);
             ControllerHR.getInstance().getFreeKfetier().replace("Kfetier", ControllerHR.getInstance().getFreeKfetier().get("Kfetier") + 1);
+        }
+        else {                    //Pas de kfetier libre
+            Scheduler.getInstance().addEvent(new ServePicard(customer,microwave,cooked, Scheduler.getInstance().getCurrentTime() + 60));
         }
     }
 
