@@ -33,28 +33,26 @@ public class StartBoilingWater extends Event {
 
     @Override
     public void run() {
-            System.out.println("Start boiling water");
 
-            if (Scheduler.getInstance().getCurrentTime() > lastBoiling + 900) {
-                isCold = true;
-            }
+        //L'eau repasse froide toute les 10 minutes
+        if (Scheduler.getInstance().getCurrentTime() > lastBoiling + 900) {
+            isCold = true;
+        }
 
-            if (isCold) {
-                if (ControllerDevices.getInstance().getFreeDevices().get("Kettle")>0) {
-                    int position = ControllerDevices.getInstance().whichKettle();
-                    Device kettle = ControllerDevices.getInstance().getKettle().get(position);
-                    Scheduler.getInstance().addEvent(new EndBoilingWater(customer, kettle, getStartingTime() + 180));
-                    customer.getOrder().setRamen(customer.getOrder().getRamen() - 1);
-                    WaitingList.getInstance().searchGlobal(customer);
-                }
-                else{
-                    System.out.println("Pas de bouilloire libre");
-                    Scheduler.getInstance().addEvent(new PreparationOrder(customer, Scheduler.getInstance().getCurrentTime() + 60));
-                }
-            } else {
-                Scheduler.getInstance().addEvent(new ServeRamen(customer, getStartingTime() + 1));
+        if (isCold) {
+            if (ControllerDevices.getInstance().getFreeDevices().get("Kettle") > 0) {
+                int position = ControllerDevices.getInstance().whichKettle();
+                Device kettle = ControllerDevices.getInstance().getKettle().get(position);
+                Scheduler.getInstance().addEvent(new EndBoilingWater(customer, kettle, getStartingTime() + 180));
                 customer.getOrder().setRamen(customer.getOrder().getRamen() - 1);
+                WaitingList.getInstance().searchGlobal(customer);
+            } else {       //Pas de bouilloire libre
+                Scheduler.getInstance().addEvent(new PreparationOrder(customer, Scheduler.getInstance().getCurrentTime() + 60));
             }
+        } else {            //L'eau a déjà chauffé donc on peut servir directement
+            Scheduler.getInstance().addEvent(new ServeRamen(customer, getStartingTime() + 1));
+            customer.getOrder().setRamen(customer.getOrder().getRamen() - 1);
+        }
 
     }
 }

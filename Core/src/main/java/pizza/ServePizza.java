@@ -24,9 +24,8 @@ public class ServePizza extends Event {
     }
 
     public void run() {
-        if(ControllerHR.getInstance().getFreeKfetier().size()>0) {
-            int position= ControllerHR.getInstance().whichCook(oven.getId());
-            System.out.println("Serve Pizza " + customer.id);
+        if (ControllerHR.getInstance().getFreeKfetier().size() > 0) {
+            int position = ControllerHR.getInstance().whichCook(oven.getId());
             oven.setFree(true);
             ControllerDevices.getInstance().getFreeDevices().replace("Oven", ControllerDevices.getInstance().getFreeDevices().get("Oven") + 1);
             WaitingList.getInstance().searchPizza(customer);

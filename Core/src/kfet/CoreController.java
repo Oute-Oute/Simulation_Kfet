@@ -6,34 +6,28 @@ import javafx.animation.TranslateTransition;
 import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
-import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
-import javafx.scene.paint.Paint;
 import javafx.scene.shape.Circle;
-import javafx.scene.shape.StrokeType;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import javafx.util.Duration;
 import kfet.help.HelpApplication;
 import kfet.settings.SettingsApplication;
-import main.java.WaitingList;
 import main.java.control.ControllerHR;
 import main.java.control.Pair;
 import main.java.control.Scheduler;
 import main.java.report.ExportExcel;
 
-import java.awt.*;
 import java.io.IOException;
-import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 import java.util.HashMap;
 
 public final class CoreController {
 
-    private static CoreController CoreControllerInstance=new CoreController();
+    private static CoreController CoreControllerInstance = new CoreController();
     private Customers customers = null;
     private Thread scheduler;
 
@@ -51,19 +45,19 @@ public final class CoreController {
     @FXML
     public HashMap<Integer, Pair<Double, Double>> coordinates = new HashMap<>();
 
-    public HashMap<Integer,ImageView> humans=new HashMap<>();
+    public HashMap<Integer, ImageView> humans = new HashMap<>();
 
     @FXML
-    private ImageView Cashier1,Cashier2,CoffeeMaker1,CoffeeMaker2,Cooker1,Cooker2;
+    private ImageView Cashier1, Cashier2, CoffeeMaker1, CoffeeMaker2, Cooker1, Cooker2;
 
 
     @FXML
     private final TranslateTransition transition = new TranslateTransition();
     @FXML
-    private final Pane pane=new Pane();
+    private final Pane pane = new Pane();
 
-    public static CoreController getInstance(){
-        if(CoreControllerInstance == null){
+    public static CoreController getInstance() {
+        if (CoreControllerInstance == null) {
             CoreControllerInstance = new CoreController();
         }
         return CoreControllerInstance;
@@ -98,7 +92,6 @@ public final class CoreController {
         colorCircle.put(20, Cashier_1);
         colorCircle.put(21, Cashier_2);
 
-
         coordinates.put(0, new Pair<>(475.0, 520.0));
         coordinates.put(1, new Pair<>(475.0, 455.0));
         coordinates.put(2, new Pair<>(475.0, 400.0));
@@ -116,47 +109,40 @@ public final class CoreController {
         coordinates.put(14, new Pair<>(725.0, 90.0));
         coordinates.put(15, new Pair<>(600.0, 280.0));
 
-        humans.put(0,Cashier1);
-        humans.put(1,Cashier2);
-        humans.put(2,Cooker1);
-        humans.put(3,Cooker2);
-        humans.put(4,CoffeeMaker1);
-        humans.put(5,CoffeeMaker2);
-
+        humans.put(0, Cashier1);
+        humans.put(1, Cashier2);
+        humans.put(2, Cooker1);
+        humans.put(3, Cooker2);
+        humans.put(4, CoffeeMaker1);
+        humans.put(5, CoffeeMaker2);
 
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("hh:mm");
-        time = LocalTime.of(12,30,0);
+        time = LocalTime.of(12, 30, 0);
         Reclock(0);
-
     }
+
     @FXML
-    public void actualizeSprites(){
-        System.out.println("test");
-        if(ControllerHR.getInstance().getNbCashier()==2){
-            System.out.println("Cash");
+    public void actualizeSprites() {
+        if (ControllerHR.getInstance().getNbCashier() == 2) {
             colorCircle.put(21, Cashier_2);
             Cashier_2.setVisible(true);
             Cashier2.setVisible(true);
             CoffeeMaker2.setVisible(false);
             Cooker2.setVisible(false);
-
         }
-        if(ControllerHR.getInstance().getNbCooks()==2){
-            System.out.println("Cook");
+
+        if (ControllerHR.getInstance().getNbCooks() == 2) {
             Cooker2.setVisible(true);
             Cashier_2.setVisible(false);
             Cashier2.setVisible(false);
             CoffeeMaker2.setVisible(false);
-
-
         }
-        if(ControllerHR.getInstance().getNbKfetiers()==2){
-            System.out.println("Kfetier");
+
+        if (ControllerHR.getInstance().getNbKfetiers() == 2) {
             CoffeeMaker2.setVisible(true);
             Cashier_2.setVisible(false);
             Cashier2.setVisible(false);
             Cooker2.setVisible(false);
-
         }
     }
 
@@ -164,24 +150,16 @@ public final class CoreController {
     public void notFree(int id) {
         Circle circle = colorCircle.get(id);
 
-        if (circle != null) {
-            circle.setFill(Color.rgb(196, 55, 55));
-            circle.setStroke(Color.rgb(112, 39, 39));
-        } else {
-            //System.out.println("not Free: Ohno, circle " + id + " is null");
-        }
+        circle.setFill(Color.rgb(196, 55, 55));
+        circle.setStroke(Color.rgb(112, 39, 39));
     }
 
     @FXML
     public void free(int id) {
         Circle circle = colorCircle.get(id);
 
-        if (circle != null) {
-            circle.setFill(Color.rgb(81, 198, 55));
-            circle.setStroke(Color.rgb(39, 114, 53));
-        } else {
-            //System.out.println("free: Ohno, circle " + id + " is null");
-        }
+        circle.setFill(Color.rgb(81, 198, 55));
+        circle.setStroke(Color.rgb(39, 114, 53));
     }
 
     @FXML
@@ -196,79 +174,74 @@ public final class CoreController {
     }
 
     @FXML
-    protected void transition() {
+    public void transition() {
         transition(Cooker2, 15);
     }
 
     @FXML
-    protected void openGenerator() throws IOException {
+    public void openGenerator() throws IOException {
         new GeneratorApplication().start(new Stage());
     }
 
     @FXML
-    protected void openSettings() throws IOException {
+    public void openSettings() throws IOException {
         new SettingsApplication().start(new Stage());
     }
 
     @FXML
-    protected void openHelp() throws IOException {
+    public void openHelp() throws IOException {
         new HelpApplication().start(new Stage());
     }
 
     @FXML
-    protected void startSimulation() throws IOException, InterruptedException {
-        if (Scheduler.getInstance().getnbEvent() == 0) {
+    public void startSimulation() throws IOException, InterruptedException {
+        if (Scheduler.getInstance().getNbEvent() == 0) {
             openSettings();
         } else {
-       scheduler = new Thread(){
-        public void run() {
+            scheduler = new Thread() {
+                public void run() {
 
                     CoreControllerInstance.initialize();
-                try {
-                    Scheduler.start();
-                } catch (InterruptedException e) {
-                    e.printStackTrace();
+                    try {
+                        Scheduler.start();
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
                 }
-
-    }};
-        scheduler.start();
+            };
+            scheduler.start();
         }
 
-
     }
+
     @FXML
-    protected void stopSimulation(){
+    public void stopSimulation() {
         Scheduler.getInstance().setCurrentTime(7200);
     }
+
     @FXML
-    protected void playSimulation(){
+    public void playSimulation() {
         Scheduler.getInstance().setStatus(0);
-
     }
+
     @FXML
-    protected void pauseSimulation() throws InterruptedException {
+    public void pauseSimulation() throws InterruptedException {
         Scheduler.getInstance().setStatus(1);
-
-
     }
 
-
-    public void End(int status){
-
-        Platform.runLater(new Runnable(){
+    public void End(int status) {
+        Platform.runLater(new Runnable() {
             @Override
             public void run() {
 
-                if (status==0) {
+                if (status == 0) {
                     Alert alert;
                     alert = new Alert(Alert.AlertType.INFORMATION);
                     alert.setTitle("Fin de service");
                     alert.setHeaderText("Le service est terminé");
                     alert.setContentText("Vous avez servi tout les clients! Offrez un Tropico à vos kfetiers pendant que vous allez regarder les statistiques du service");
                     alert.showAndWait();
-                }
-
-                else if (status==1) {
+                } else if (status == 1) {
                     Alert alert;
                     alert = new Alert(Alert.AlertType.ERROR);
                     alert.setTitle("Fin de service");
@@ -280,11 +253,9 @@ public final class CoreController {
                 ExportExcel.CreateFile(CoreController.getInstance().getCustomers());
             }
         });
-
-
     }
-    public void Reclock(int second){
-        LocalTime newTime=time.plusSeconds(second);
-        //this.clock.setText(newTime.toString());
+
+    public void Reclock(int second) {
+        LocalTime newTime = time.plusSeconds(second);
     }
 }

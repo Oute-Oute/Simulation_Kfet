@@ -10,7 +10,6 @@ import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 
 import kfet.CoreController;
-import main.java.control.ControllerDevices;
 import main.java.control.ControllerHR;
 import main.java.control.Scheduler;
 import main.java.control.Unserializer;
@@ -18,9 +17,11 @@ import main.java.payment.NewCustomer;
 import main.java.report.ExportExcel;
 
 import java.io.File;
-import java.io.StreamTokenizer;
 
 
+/**
+ * The type Settings controller.
+ */
 public class SettingsController {
 
     @FXML
@@ -46,19 +47,16 @@ public class SettingsController {
             alert.setHeaderText("No data file selected");
             alert.setContentText("You must select a data file");
             alert.showAndWait();
-        }
-
-        else {
+        } else {
             ControllerHR.setInstance((int) CookSelector.getValue(), (int) cashierSelector.getValue(), (int) coffeeSelector.getValue());
             Unserializer unserializer = new Unserializer();
             String File = dataSelector.getText();
             CoreController.getInstance().setCustomers(unserializer.unserialiseCustomers(File));
             CoreController.getInstance().actualizeSprites();
-            System.out.println(File);
-            String delimiter="[\\\\.]+";
+            String delimiter = "[\\\\.]+";
             String[] tokenString = new String[0];
             tokenString = File.split(delimiter);
-            ExportExcel.datFile=tokenString[5];
+            ExportExcel.datFile = tokenString[5];
 
 
             for (int i = 0; i < CoreController.getInstance().getCustomers().getCustomers().size(); i++) {
@@ -82,7 +80,7 @@ public class SettingsController {
         FileChooser fileChooser = new FileChooser();
         fileChooser.setTitle("Choose a data file");
         File recordsDir = new File(System.getProperty("user.home"), "SimulationKfet/Data");
-        if (! recordsDir.exists()) {
+        if (!recordsDir.exists()) {
             recordsDir.mkdirs();
         }
         fileChooser.setInitialDirectory(recordsDir);

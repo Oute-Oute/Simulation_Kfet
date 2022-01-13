@@ -5,6 +5,9 @@ import main.java.Device;
 import java.util.ArrayList;
 import java.util.HashMap;
 
+/**
+ * The type Controller devices.
+ */
 public final class ControllerDevices {
 
     private static final int NB_OVEN = 8;
@@ -21,109 +24,125 @@ public final class ControllerDevices {
     private ArrayList<Device> cocoa;
     private final HashMap<String, Integer> freeDevices;
 
-    private ControllerDevices(){
+    private ControllerDevices() {
         int id = 0;
 
         //Oven
         oven = new ArrayList<>(NB_OVEN);
-        for(int i = 0; i < NB_OVEN; i++){
+        for (int i = 0; i < NB_OVEN; i++) {
             oven.add(new Device(i, "Oven"));
         }
         id = NB_OVEN;
 
         //Microwave
         microwave = new ArrayList<>(NB_MICROWAVE);
-        for(int i = id ; i < NB_MICROWAVE + id; i++){
+        for (int i = id; i < NB_MICROWAVE + id; i++) {
             microwave.add(new Device(i, "Microwave"));
         }
         id += NB_MICROWAVE;
 
         //Cafetiere
         cafetiere = new ArrayList<>(NB_CAFETIERE);
-        for(int i = id ; i < NB_CAFETIERE + id; i++){
+        for (int i = id; i < NB_CAFETIERE + id; i++) {
             cafetiere.add(new Device(i, "Cafetiere"));
         }
         id += NB_CAFETIERE;
 
         //Kettle
         kettle = new ArrayList<>(NB_KETTLE);
-        for(int i = id ; i < NB_KETTLE + id; i++){
+        for (int i = id; i < NB_KETTLE + id; i++) {
             kettle.add(new Device(i, "Kettle"));
         }
         id += NB_KETTLE;
 
         //Cocoa
         cocoa = new ArrayList<>(NB_COCOA);
-        for(int i = id ; i < NB_COCOA + id; i++){
+        for (int i = id; i < NB_COCOA + id; i++) {
             cocoa.add(new Device(i, "Cocoa"));
         }
 
         // FreeDevices
         freeDevices = new HashMap<>();
-        freeDevices.put("Oven",NB_OVEN);
-        freeDevices.put("Microwave",NB_MICROWAVE);
-        freeDevices.put("Cafetiere",NB_CAFETIERE);
-        freeDevices.put("Kettle",NB_KETTLE);
-        freeDevices.put("Cocoa",NB_COCOA);
+        freeDevices.put("Oven", NB_OVEN);
+        freeDevices.put("Microwave", NB_MICROWAVE);
+        freeDevices.put("Cafetiere", NB_CAFETIERE);
+        freeDevices.put("Kettle", NB_KETTLE);
+        freeDevices.put("Cocoa", NB_COCOA);
     }
 
-    public static ControllerDevices getInstance(){
-        if (controllerDevicesInstance == null){
+    /**
+     * Gets instance.
+     *
+     * @return the instance
+     */
+    public static ControllerDevices getInstance() {
+        if (controllerDevicesInstance == null) {
             controllerDevicesInstance = new ControllerDevices();
         }
         return controllerDevicesInstance;
     }
 
+    /**
+     * Gets oven.
+     *
+     * @return the oven
+     */
     public ArrayList<Device> getOven() {
         return oven;
     }
 
-    public void setOven(ArrayList<Device> oven) {
-        this.oven = oven;
-    }
-
+    /**
+     * Gets microwave.
+     *
+     * @return the microwave
+     */
     public ArrayList<Device> getMicrowave() {
         return microwave;
     }
 
-    public void setMicrowave(ArrayList<Device> microwave) {
-        this.microwave = microwave;
-    }
-
+    /**
+     * Gets cafetiere.
+     *
+     * @return the cafetiere
+     */
     public ArrayList<Device> getCafetiere() {
         return cafetiere;
     }
 
-    public void setCafetiere(ArrayList<Device> cafetiere) {
-        this.cafetiere = cafetiere;
-    }
-
+    /**
+     * Gets kettle.
+     *
+     * @return the kettle
+     */
     public ArrayList<Device> getKettle() {
         return kettle;
     }
 
-    public void setKettle(ArrayList<Device> kettle) {
-        this.kettle = kettle;
-    }
-
+    /**
+     * Gets cocoa.
+     *
+     * @return the cocoa
+     */
     public ArrayList<Device> getCocoa() {
         return cocoa;
     }
 
-    public void setCocoa(ArrayList<Device> cocoa) {
-        this.cocoa = cocoa;
-    }
-
+    /**
+     * Gets free devices.
+     *
+     * @return the free devices hashmap
+     */
     public HashMap<String, Integer> getFreeDevices() {
         return freeDevices;
     }
 
     /**
-     * Cherche quel four est actuellement libre
-     * Cette méthode ne doit être lancée qu'après s'être assuré qu'il y avait un four de libre
-     * @return la position du four libre dans son arraylist
+     * Search which oven is currently free
+     * Must only be called when we are sure an oven is free
+     *
+     * @return the oven's position in its arraylist
      */
-    public int whichOven(){
+    public int whichOven() {
         int i = 0;
         boolean found = false;
         //On cherche quel four est libre
@@ -141,11 +160,12 @@ public final class ControllerDevices {
     }
 
     /**
-     * Cherche quel microonde est actuellement libre
-     * Cette méthode ne doit être lancée qu'après s'être assuré qu'il y avait un microonde de libre
-     * @return la position du microonde libre dans son arraylist
+     * Search which microwave is currently free
+     * Must only be called when we are sure a microwave is free
+     *
+     * @return the microwave's position in its arraylist
      */
-    public int whichMicrowave(){
+    public int whichMicrowave() {
         int i = 0;
         boolean found = false;
         //On cherche quel microonde est libre
@@ -163,11 +183,12 @@ public final class ControllerDevices {
     }
 
     /**
-     * Cherche quelle cafetiere est actuellement libre
-     * Cette méthode ne doit être lancée qu'après s'être assuré qu'il y avait une cafetiere de libre
-     * @return la position de la cafetiere libre dans son arraylist
+     * Search which cafetiere is currently free
+     * Must only be called when we are sure a cafetiere is free
+     *
+     * @return the cafetiere's position in its arraylist
      */
-    public int whichCafetiere(){
+    public int whichCafetiere() {
         int i = 0;
         boolean found = false;
         //On cherche quelle cafetiere est libre
@@ -185,11 +206,12 @@ public final class ControllerDevices {
     }
 
     /**
-     * Cherche quelle machine à choco est actuellement libre
-     * Cette méthode ne doit être lancée qu'après s'être assuré qu'il y avait une machine à choco de libre
-     * @return la position de la machine à choco libre dans son arraylist
+     * Search which Cocoa machine is currently free
+     * Must only be called when we are sure a cocoa machine is free
+     *
+     * @return the cocoa machine's position in its arraylist
      */
-    public int whichCocoa(){
+    public int whichCocoa() {
         int i = 0;
         boolean found = false;
         //On cherche quelle machine à choco est libre
@@ -207,11 +229,12 @@ public final class ControllerDevices {
     }
 
     /**
-     * Cherche quelle bouilloire est actuellement libre
-     * Cette méthode ne doit être lancée qu'après s'être assuré qu'il y avait une bouilloire de libre
-     * @return la position de la bouilloire libre dans son arraylist
+     * Search which Kettle is currently free
+     * Must only be called when we are sure a kettle is free
+     *
+     * @return the kettle's position in its arraylist
      */
-    public int whichKettle(){
+    public int whichKettle() {
         int i = 0;
         boolean found = false;
         //On cherche quelle bouilloire est libre

@@ -23,8 +23,6 @@ public class EndPayment extends Event {
 
     @Override
     public void run() {
-        //Libère le caissier
-        System.out.println("End Payment "+ customer.id);
         cashier.setFree(true);
         CoreController.getInstance().free(cashier.getId());
         ControllerHR.getInstance().getFreeKfetier().replace("Cashier", ControllerHR.getInstance().getFreeKfetier().get("Cashier") + 1);
@@ -34,10 +32,8 @@ public class EndPayment extends Event {
         //Lance la préparation de commande
         Scheduler.getInstance().addEvent(new PreparationOrder(customer, time));
 
-
         //Si la liste Pré Order n'est pas vide, on appelle le client suivant
         if (!WaitingList.getInstance().getPreOrder().isEmpty()) {
-            System.out.println("Appel client suivant de préOrder: Client "+WaitingList.getInstance().getPreOrder().get(0).id);
             Scheduler.getInstance().addEvent(new NewCustomer(WaitingList.getInstance().getPreOrder().get(0), time));
         }
     }

@@ -7,6 +7,7 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonType;
 import main.java.WaitingList;
 import main.java.control.ControllerDevices;
+import main.java.control.ControllerHR;
 import org.apache.poi.ss.usermodel.*;
 import org.apache.poi.ss.util.CellRangeAddress;
 import org.apache.poi.xddf.usermodel.*;
@@ -25,7 +26,6 @@ import java.util.Optional;
 public class ExportExcel {
 
     public static String datFile;
-    //TODO: si on a le temps: stats sur nb d'events lancés en retard
 
     /**
      * Créé le fichier contenant les rapports, ou ajoute une nouvelle feuille s'il existe déjà
@@ -77,7 +77,6 @@ public class ExportExcel {
                     Desktop d = Desktop.getDesktop();
                     Optional<ButtonType> result = alert.showAndWait();
                     if (result.get() == dirButtonType) {
-                        System.out.println("Approve Button is clicked");
                         d.open(directory);
                     }
 
@@ -98,6 +97,7 @@ public class ExportExcel {
         }
     }
 
+    //TODO: problème sur les stats des listes jsp pourquoi
     private static void tableWaitingList(XSSFWorkbook workbook, XSSFSheet sheet) {
         //Table WaitingList
         XSSFTable table = sheet.createTable(null);
@@ -224,7 +224,6 @@ public class ExportExcel {
      *
      * @param sheet feuille à écrire
      */
-
     private static void tableDevice(XSSFWorkbook workbook, XSSFSheet sheet) {
         int nbLine = 17;
 
@@ -309,6 +308,127 @@ public class ExportExcel {
             }
         }
     }
+
+    /**
+     * Créé une table remplie avec les appareils, leur taux d'occupation et leur nb d'utilisation
+     *
+     * @param sheet feuille à écrire
+     */
+    private static void tableKfetier(XSSFWorkbook workbook, XSSFSheet sheet) {
+        int nbLine = 17;
+
+        //On crée nos tables
+        XSSFTable tableCook = sheet.createTable(null);
+        CTTable cttableCook = tableCook.getCTTable();
+        cttableCook.setRef("A1:C" + (ControllerHR.getInstance().getNbCooks()+1));
+
+        XSSFTable tableCashier = sheet.createTable(null);
+        CTTable cttableCashier = tableCashier.getCTTable();
+        cttableCashier.setRef("A"+(ControllerHR.getInstance().getNbCooks()+2)+":C" + (ControllerHR.getInstance().getNbCooks()+3+ControllerHR.getInstance().getNbCashier()));
+
+        XSSFTable tableKfetier = sheet.createTable(null);
+        CTTable cttableKfetier = tableKfetier.getCTTable();
+        cttableKfetier.setRef("A"+(ControllerHR.getInstance().getNbCooks()+4+ControllerHR.getInstance().getNbCashier())+":F" + (ControllerHR.getInstance().getNbCooks()+5+ControllerHR.getInstance().getNbCashier()+ControllerHR.getInstance().getNbKfetiers()));
+
+        //Table avec une ligne sur deux en couleur
+        CTTableStyleInfo styleInfoCook = cttableCook.addNewTableStyleInfo();
+        styleInfoCook.setName("TableStyleMedium6");
+        styleInfoCook.setShowColumnStripes(false);
+        styleInfoCook.setShowRowStripes(true);
+
+        CTTableStyleInfo styleInfoCashier = cttableCashier.addNewTableStyleInfo();
+        styleInfoCashier.setName("TableStyleMedium3");
+        styleInfoCashier.setShowColumnStripes(false);
+        styleInfoCashier.setShowRowStripes(true);
+
+        CTTableStyleInfo styleInfoKfetier = cttableKfetier.addNewTableStyleInfo();
+        styleInfoKfetier.setName("TableStyleMedium1");
+        styleInfoKfetier.setShowColumnStripes(false);
+        styleInfoKfetier.setShowRowStripes(true);
+
+        //On choisit le nb de colonnes et on remplit
+        CTTableColumns columnsCook = cttableCook.addNewTableColumns();
+        columnsCook.setCount(2);
+        CTTableColumns columnsCashier = cttableCashier.addNewTableColumns();
+        columnsCashier.setCount(2);
+        CTTableColumns columnsKfetier = cttableKfetier.addNewTableColumns();
+        columnsKfetier.setCount(2);
+
+        String[] name = {"Kfetier", "Taux d'occupation (%)", "Nombre d'interventions"};
+
+        //On prépare la table avec id et nom
+        for (int i = 1; i <= 3; i++) {
+            CTTableColumn columnCook = columnsCook.addNewTableColumn();
+            columnCook.setId(i);
+            columnCook.setName(name[i - 1]);
+
+            CTTableColumn columnCashier = columnsCashier.addNewTableColumn();
+            columnCashier.setId(i);
+            columnCashier.setName(name[i-1]);
+
+            CTTableColumn columnKfetier = columnsKfetier.addNewTableColumn();
+            columnKfetier.setId(i);
+            columnKfetier.setName(name[i-1]);
+        }
+
+        XSSFRow firstRow = sheet.createRow(0);
+        for (int c = 0; c < 3; c++) {
+            XSSFCell cell = firstRow.createCell(c);
+            cell.setCellValue(name[c]);
+        }
+
+        ControllerDevices instanceDevice = ControllerDevices.getInstance();
+        int nbCafetiere = instanceDevice.getCafetiere().size();
+        int nbKettle = instanceDevice.getKettle().size();
+        int nbOven = instanceDevice.getOven().size();
+        int nbMicrowave = instanceDevice.getMicrowave().size();
+
+        int current;
+        //On remplit la table
+        for (int r = 0; r < nbLine - 1; r++) {
+            XSSFRow row = sheet.createRow(r + 1);
+            for (int c = 0; c < 3; c++) {
+                XSSFCell cell = row.createCell(c);
+                if (r < nbMicrowave) { // rmax = 2                                         //Micro ondes
+                    switch (c) {
+                        case 0 -> cell.setCellValue("Micro-Onde n°" + (r + 1));
+                        case 1 -> cell.setCellFormula("ROUND(" + ((double) instanceDevice.getMicrowave().get(r).getOccupationTime() / 72) + ",1)");
+                        case 2 -> cell.setCellValue(instanceDevice.getMicrowave().get(r).getNbUsed());
+                    }
+                } else if (r < nbMicrowave + nbOven) { //rmax = 3 + 8 -1 = 10                                        //fours
+                    current = r - nbMicrowave; // currentmax = 10 - 3 = 7
+                    switch (c) {
+                        case 0 -> cell.setCellValue("Four n°" + (current + 1));
+                        case 1 -> cell.setCellFormula("ROUND(" + ((double) instanceDevice.getOven().get(current).getOccupationTime() / 72) + ",1)");
+                        case 2 -> cell.setCellValue(instanceDevice.getOven().get(current).getNbUsed());
+                    }
+                } else if (r < nbMicrowave + nbOven + nbKettle) { //rmax = 3 + 8 + 2 -1 = 12         //Bouilloire
+                    current = r - nbMicrowave - nbOven; //currentmax = 12 - 3 - 8 = 1
+                    switch (c) {
+                        case 0 -> cell.setCellValue("Bouilloire n°" + (current + 1));
+                        case 1 -> cell.setCellFormula("ROUND(" + ((double) instanceDevice.getKettle().get(current).getOccupationTime() / 72) + ",1)");
+                        case 2 -> cell.setCellValue(instanceDevice.getKettle().get(current).getNbUsed());
+                    }
+                } else if (r < nbMicrowave + nbOven + nbKettle + nbCafetiere) { //rmax = 3 + 8 + 2 + 2 -1 = 14      //Cafetiere
+                    current = r - nbMicrowave - nbOven - nbKettle; //currentmax = 14 - 3 - 8 - 2 = 1
+                    switch (c) {
+                        case 0 -> cell.setCellValue("Cafetière n°" + (current + 1));
+                        case 1 -> cell.setCellFormula("ROUND(" + ((double) instanceDevice.getCafetiere().get(current).getOccupationTime() / 72) + ",1)");
+                        case 2 -> cell.setCellValue(instanceDevice.getCafetiere().get(current).getNbUsed());
+                    }
+                } else { //rmax = 16                                           //Chocolat
+                    current = r - nbMicrowave - nbOven - nbKettle - nbCafetiere;  //currentmax = 15 - 3 - 8 - 2 - 2 = 0
+                    switch (c) {
+                        case 0 -> cell.setCellValue("Machine à chocolat n°" + (current + 1));
+                        case 1 -> cell.setCellFormula("ROUND(" + ((double) instanceDevice.getCocoa().get(current).getOccupationTime() / 72) + ",1)");
+                        case 2 -> cell.setCellValue(instanceDevice.getCocoa().get(current).getNbUsed());
+                    }
+                }
+                sheet.autoSizeColumn(c);
+            }
+        }
+    }
+
 
     private static void setLineNoFill(XDDFScatterChartData.Series series) {
         XDDFNoFillProperties noFillProperties = new XDDFNoFillProperties();

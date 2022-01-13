@@ -24,7 +24,6 @@ public class CookingPizza extends Event {
     }
 
     public void run() {
-        System.out.println("Cooking Pizza " + customer.id);
         cook.setFree(true);
         ControllerHR.getInstance().getFreeKfetier().replace("Cook", ControllerHR.getInstance().getFreeKfetier().get("Cook") + 1);
         int time = customer.getOrder().getPizza().get(0) + getStartingTime();

@@ -9,6 +9,9 @@ import javafx.stage.Stage;
 import java.io.IOException;
 import java.util.Objects;
 
+/**
+ * The Help application.
+ */
 public class HelpApplication {
 
     public void start(Stage stage) throws IOException {
@@ -20,9 +23,5 @@ public class HelpApplication {
         stage.setResizable(false);
         stage.show();
     }
-
-    //public static void main(String[] args) {
-    //    launch();
-    //}
 }
 

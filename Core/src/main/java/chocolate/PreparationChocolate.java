@@ -22,9 +22,8 @@ public class PreparationChocolate extends Event {
 
     @Override
     public void run() {
-        System.out.println("Preparation Chocolate");
         if (ControllerHR.getInstance().getFreeKfetier().get("Kfetier") > 0) {
-            if (ControllerDevices.getInstance().getFreeDevices().get("Cocoa")>0) {
+            if (ControllerDevices.getInstance().getFreeDevices().get("Cocoa") > 0) {
                 int devicePosition = ControllerDevices.getInstance().whichCocoa();
                 Device cocoa = ControllerDevices.getInstance().getCocoa().get(devicePosition);
                 int position = ControllerHR.getInstance().whichKfetier(15);
@@ -33,13 +32,10 @@ public class PreparationChocolate extends Event {
                 customer.getOrder().setChocolate(customer.getOrder().getChocolate() - 1);
 
                 Scheduler.getInstance().addEvent(new ServeChocolate(customer, cocoa, kfetier, getStartingTime() + 30));
-            }
-            else{
-                System.out.println("Pas de chocolatiere libre");
+            } else {
                 Scheduler.getInstance().addEvent(new PreparationOrder(customer, Scheduler.getInstance().getCurrentTime() + 60));
             }
         } else {
-            System.out.println("Pas de kfetier libre");
             Scheduler.getInstance().addEvent(new PreparationOrder(customer, Scheduler.getInstance().getCurrentTime() + 60));
         }
     }

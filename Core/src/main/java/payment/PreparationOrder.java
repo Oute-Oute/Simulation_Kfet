@@ -16,18 +16,14 @@ public class PreparationOrder extends Event {
 
     @Override
     public void run() {
-        System.out.println("Preparation Order " + customer.id);
-
         if(!WaitingList.getInstance().getPostOrder().contains(customer)) {
-            //On ajoute le client à la liste d'attente post order
-            WaitingList.getInstance().getPostOrder().add(customer);
+            WaitingList.getInstance().getPostOrder().add(customer);         //On ajoute le client à la liste d'attente post order
         }
 
         //on cherche si quelque chose est dispo pour lancer sa commande, sinon l'algo le trouvera plus tard
         if (customer.getOrder().getNbPizza() > 0) {
             WaitingList.getInstance().searchPizza(customer);
         }
-
         if (customer.getOrder().getChocolate() + customer.getOrder().getCoffee() + customer.getOrder().getRamen() + customer.getOrder().getPicard() > 0) {
             WaitingList.getInstance().searchGlobal(customer);
         }

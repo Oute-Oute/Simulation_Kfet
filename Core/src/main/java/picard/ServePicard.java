@@ -25,10 +25,8 @@ public class ServePicard extends Event {
     }
 
     public void run() {
-        System.out.println("Serve Picard");
         Random r = new Random();
         if (r.nextDouble() < 0.2 && cooked != 2) {          //Le plat est froid donc il retourne chauffer
-            System.out.println("Picard froid: retourne chauffer");
             Scheduler.getInstance().addEvent(new ServePicard(customer, microwave, 2, getStartingTime() + 150));
         } else {                                            //On peut servir le plat
             microwave.setFree(true);
