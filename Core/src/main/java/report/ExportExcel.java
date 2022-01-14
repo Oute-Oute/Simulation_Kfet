@@ -98,6 +98,11 @@ public class ExportExcel {
         }
     }
 
+    /**
+     * Crée une table remplie avec la taille des listes d'attente toutes les 10 secondes
+     *
+     * @param sheet feuille à écrire
+     */
     private static void tableWaitingList(XSSFWorkbook workbook, XSSFSheet sheet) {
         //Table WaitingList
         XSSFTable table = sheet.createTable(null);
@@ -186,12 +191,12 @@ public class ExportExcel {
         series2.setMarkerStyle(MarkerStyle.NONE);
         chart.plot(data);
 
-        sheet.getRow(0).createCell(4).setCellValue("Temps d'attente moyen:");
+        sheet.getRow(0).createCell(4).setCellValue("Taille moyenne:");
         sheet.getRow(1).createCell(4).setCellValue("Caisse");
         sheet.getRow(1).createCell(5).setCellFormula("ROUND(AVERAGE(B2:B721),0)");
         sheet.getRow(2).createCell(4).setCellValue("Commande");
+        sheet.autoSizeColumn(4);
         sheet.getRow(2).createCell(5).setCellFormula("ROUND(AVERAGE(C2:C721),0)");
-
 
 
         CellStyle style = workbook.createCellStyle();
@@ -244,7 +249,7 @@ public class ExportExcel {
                 } else {
                     Customer current = customers.getCustomers().get(r - 1);
                     switch (c) {
-                        case 0 -> cell.setCellValue(r-1);
+                        case 0 -> cell.setCellValue(r - 1);
                         case 1 -> cell.setCellValue(current.getArrivalTime());
                         case 2 -> cell.setCellValue(current.getOrder().getNbArticles());
                         case 3 -> cell.setCellValue(current.getDepartureTime());
@@ -259,12 +264,40 @@ public class ExportExcel {
         cell.setCellValue("Temps d'attente moyen:");
         sheet.autoSizeColumn(3);
         XSSFCell cell1 = row.createCell(4);
-        cell1.setCellFormula("ROUND(AVERAGE(E2:E" + (nbLine) + "),0)");
+        cell1.setCellFormula("ROUND(AVERAGE(E2:E" + nbLine + "),0)");
+
+        XSSFRow row1 = sheet.createRow(nbLine + 1);
+        XSSFCell cellServed = row1.createCell(0);
+        cellServed.setCellValue("Clients non servis:");
+        XSSFCell cellnumber = row1.createCell(1);
+        cellnumber.setCellFormula("COUNTIF(D2:D" + nbLine + ",0)");
+
+        XSSFRow row2 = sheet.createRow(nbLine + 2);
+        XSSFCell cell2 = row2.createCell(3);
+        cell2.setCellValue("Temps d'attente min:");
+        XSSFCell cell3 = row2.createCell(4);
+        cell3.setCellFormula("MIN(E2:E" + (nbLine) + ")");
+
+        XSSFRow row3 = sheet.createRow(nbLine + 3);
+        XSSFCell cell4 = row3.createCell(3);
+        cell4.setCellValue("Temps d'attente max:");
+        XSSFCell cell5 = row3.createCell(4);
+        cell5.setCellFormula("MAX(E2:E" + (nbLine) + ")");
 
         CellStyle style = workbook.createCellStyle();
-        style.setFillBackgroundColor(IndexedColors.LIGHT_ORANGE.getIndex());
         style.setFillPattern(FillPatternType.SOLID_FOREGROUND);
+        style.setFillForegroundColor(IndexedColors.ORANGE.getIndex());
+        cell1.setCellStyle(style);
 
+        CellStyle style1 = workbook.createCellStyle();
+        style1.setFillPattern(FillPatternType.SOLID_FOREGROUND);
+        style1.setFillForegroundColor(IndexedColors.LIGHT_GREEN.getIndex());
+        cell3.setCellStyle(style1);
+
+        CellStyle style2 = workbook.createCellStyle();
+        style2.setFillPattern(FillPatternType.SOLID_FOREGROUND);
+        style2.setFillForegroundColor(IndexedColors.RED1.getIndex());
+        cell5.setCellStyle(style2);
 
         XSSFDrawing drawing = sheet.createDrawingPatriarch();
         XSSFClientAnchor anchor = drawing.createAnchor(0, 0, 0, 0, 6, 5, 15, 25);
@@ -276,15 +309,15 @@ public class ExportExcel {
         leftAxis.setTitle("Temps d'attente en seconde");
         leftAxis.setCrosses(AxisCrosses.AUTO_ZERO);
 
-        XDDFDataSource<Double> xs = XDDFDataSourcesFactory.fromNumericCellRange(sheet, new CellRangeAddress(1, nbLine-1, 2, 2));
-        XDDFNumericalDataSource<Double> ys1 = XDDFDataSourcesFactory.fromNumericCellRange(sheet, new CellRangeAddress(1, nbLine-1, 4, 4));
+        XDDFDataSource<Double> xs = XDDFDataSourcesFactory.fromNumericCellRange(sheet, new CellRangeAddress(1, nbLine - 1, 2, 2));
+        XDDFNumericalDataSource<Double> ys1 = XDDFDataSourcesFactory.fromNumericCellRange(sheet, new CellRangeAddress(1, nbLine - 1, 4, 4));
 
         XDDFScatterChartData data = (XDDFScatterChartData) chart.createData(ChartTypes.SCATTER, bottomAxis, leftAxis);
         XDDFScatterChartData.Series series1 = (XDDFScatterChartData.Series) data.addSeries(xs, ys1);
         series1.setSmooth(false); // https://stackoverflow.com/questions/39636138
 
         series1.setMarkerStyle(MarkerStyle.CIRCLE);
-        series1.setMarkerSize((short)5);
+        series1.setMarkerSize((short) 5);
         setLineNoFill(series1);
         chart.plot(data);
     }
