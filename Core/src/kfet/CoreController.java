@@ -117,7 +117,7 @@ public final class CoreController {
         humans.put(5, CoffeeMaker2);
 
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("hh:mm");
-        time = LocalTime.of(12, 30, 0);
+        time = LocalTime.of(12, 00, 0);
         Reclock(0);
     }
 
@@ -257,5 +257,6 @@ public final class CoreController {
 
     public void Reclock(int second) {
         LocalTime newTime = time.plusSeconds(second);
+        clock.setText(newTime.toString());
     }
 }

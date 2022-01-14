@@ -1,5 +1,5 @@
 @font-face {
-    src: url("/fonts/DS-DIGIT.TTF") format("ttf");
+    src: url("fonts/DS-DIGIT.TTF") format("ttf");
 }
 
 #clock{
