@@ -31,7 +31,7 @@
               <MenuItem mnemonicParsing="false" text="About" />
           </Menu>
       </MenuBar>
-      <ImageView fitHeight="595.0" fitWidth="897.0" layoutY="26.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fitHeight="595.0" fitWidth="897.0" layoutX="-1.0" layoutY="23.0" pickOnBounds="true" preserveRatio="true">
             <Image url="@Sprites/background.png" />
       </ImageView>
 
@@ -81,7 +81,7 @@
          <Image url="@Sprites/Hogan.png" />
       </image>
    </ImageView>
-   <Text id="clock" fx:id="clock" layoutX="14.0" layoutY="555.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="clock" text="00:00" wrappingWidth="117.13671875">
+   <Text id="clock" fx:id="clock" layoutX="14.0" layoutY="555.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="clock" text="00:00" textAlignment="JUSTIFY" wrappingWidth="181.13671875">
       <font>
          <Font name="DS-Digital" size="48.0" />
       </font>
